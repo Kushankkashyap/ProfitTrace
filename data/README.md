@@ -1,14 +1,14 @@
 # ProfitTrace | Source Data
 
-The project starts with five raw Excel workbooks that represent common e-commerce operational extracts.
+ProfitTrace starts with five raw Excel workbooks representing common e-commerce operational extracts. The files are intentionally kept close to a source-system format so that validation and cleaning happen in SQL Server.
 
-| Workbook | Grain | Approx. rows |
+| Workbook | Grain | Rows |
 |---|---|---:|
 | `Customers.xlsx` | One row per customer | 800 |
 | `Products.xlsx` | One row per product | 240 |
 | `Orders.xlsx` | One row per order-product line | 11,000 |
-| `Returns.xlsx` | One row per return event | Up to 900 |
 | `Shipping.xlsx` | One row per shipment/order | 11,000 |
+| `Returns.xlsx` | One row per return event | 785 |
 
 ## Source-to-SQL Mapping
 
@@ -16,26 +16,24 @@ The project starts with five raw Excel workbooks that represent common e-commerc
 Customers.xlsx  → stg.Customers
 Products.xlsx   → stg.Products
 Orders.xlsx     → stg.Orders
-Returns.xlsx    → stg.Returns
 Shipping.xlsx   → stg.Shipping
+Returns.xlsx    → stg.Returns
 ```
 
-The Excel files are treated as raw source data. Data standardization and business transformations are performed in SQL Server rather than being hidden inside the source files.
-
-A small number of controlled quality issues are included in the raw files, mainly text-format inconsistencies. These give the validation and cleaning stages a practical purpose and make the workflow closer to a typical analyst task.
+The source files contain a small set of controlled quality issues such as inconsistent text casing, leading/trailing spaces and a few values that need business-rule review. These are deliberate and limited so the SQL cleaning stage has a clear purpose without making the dataset unrealistic.
 
 ## Source Data Notes
 
-- Customers: customer attributes, segment, region and acquisition channel
-- Products: category, subcategory and unit economics
-- Orders: sales transactions, quantities, prices, discounts and order status
-- Returns: return reason, refund value and return status
-- Shipping: ship date, promised date, delivery date, carrier and shipping cost
+- **Customers:** customer attributes, segment, region and acquisition channel
+- **Products:** category, subcategory and unit economics
+- **Orders:** sales transactions, quantities, prices, discounts and order status
+- **Shipping:** shipment dates, promised delivery, actual delivery, carrier and shipping cost
+- **Returns:** return reason, refund value and return status
 
-The data is synthetic and is intended for portfolio and learning purposes. It is not representative of a real company's customers, transactions or performance.
+The data is synthetic and is intended for portfolio and learning purposes. It does not represent a real company's customers, transactions or performance.
 
 ## SQL Server Import
 
-Use SQL Server Management Studio's Import and Export Wizard to load each workbook into the matching `stg` table. The detailed sequence is documented in `sql/03_Load_Raw_Data.sql` and `documentation/BUILD_RUNBOOK.md`.
+Run `sql/01_Database_Setup.sql`, then `sql/02_Import_Raw_Data.sql`. Use SQL Server's Import and Export Wizard to load each Excel workbook into its matching `stg` table. After the five imports are complete, continue with the validation, cleaning, analysis and QA scripts.
 
-CSV copies may also be used as a fallback when the local SQL Server installation does not expose an Excel provider in the Import and Export Wizard.
+CSV copies can be used as a fallback if the local SQL Server installation does not have an Excel provider available.
