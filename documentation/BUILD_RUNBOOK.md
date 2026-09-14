@@ -1,196 +1,70 @@
-# ProfitTrace | Build and Validation Runbook
+# ProfitTrace | V2 Build Runbook
 
-## Purpose
+## Phase 1: Source
 
-This runbook takes the project from raw Excel workbooks to a finished Power BI dashboard. The workflow is intentionally split across Excel, SQL Server and Power BI so that each tool has a clear purpose.
+1. Keep the V2 Excel workbooks in `data/` locally.
+2. Keep the CSV copies available as the SQL import fallback.
+3. Confirm row counts before loading.
 
-## 1. Prepare the source files
+## Phase 2: SQL Server
 
-Keep the five Excel workbooks in one local project folder:
+Run in order:
 
 ```text
-ProfitTrace/
-└── data/
-    ├── Customers.xlsx
-    ├── Products.xlsx
-    ├── Orders.xlsx
-    ├── Returns.xlsx
-    └── Shipping.xlsx
+01_Database_Setup.sql
+02_Import_Raw_Data.sql
 ```
 
-Do not perform the main cleaning work in Excel. Treat these workbooks as the raw operational source.
+Load these five files into the matching staging tables:
 
-## 2. SQL Server setup
+```text
+Customers → stg.Customers
+Products  → stg.Products
+Orders    → stg.Orders
+Shipping  → stg.Shipping
+Returns   → stg.Returns
+```
 
-Open **SQL Server Management Studio (SSMS)** and run:
+Then run:
 
-1. `sql/01_Database_Setup.sql`
-2. `sql/02_Import_Raw_Data.sql`
+```text
+03_Data_Validation.sql
+04_Data_Cleaning.sql
+05_Business_Analysis.sql
+06_Post_Load_QA.sql
+07_Final_Portfolio_QA.sql
+```
 
-This creates the `ProfitTrace` database, schemas and staging tables.
+Do not start Power BI until the final QA checks reconcile.
 
-## 3. Load Excel data into SSMS
+## Phase 3: Power BI
 
-Use the SQL Server **Import and Export Wizard** to load each workbook into its matching staging table.
+Load `analytics.vw_OrderProfitability` as `FactProfitability`.
 
-| Excel workbook | SQL staging table |
-|---|---|
-| `Customers.xlsx` | `stg.Customers` |
-| `Products.xlsx` | `stg.Products` |
-| `Orders.xlsx` | `stg.Orders` |
-| `Returns.xlsx` | `stg.Returns` |
-| `Shipping.xlsx` | `stg.Shipping` |
+Create:
 
-After the import, run `sql/03_Data_Validation.sql` to confirm row counts and inspect source quality.
+```text
+DimDate
+DimCustomer
+DimProduct
+```
 
-If the local SQL Server installation does not provide an Excel data provider, save the same workbook as CSV and use the flat-file import option. The downstream SQL workflow does not change.
+Use the relationships documented in `powerbi/DASHBOARD_BLUEPRINT.md` and add the measures in `powerbi/DAX_MEASURES.md`.
 
-## 4. Validate the raw data
-
-Run:
-
-`sql/03_Data_Validation.sql`
-
-Review the output for:
-
-- Missing required values
-- Duplicate keys
-- Invalid quantities or prices
-- Invalid discounts
-- Invalid product economics
-- Invalid refunds or shipping costs
-- Invalid status values
-- Orphan customer, product, return or shipping references
-- Multiple shipping rows for one order
-- Invalid date relationships
-
-Some source values are intentionally inconsistent in formatting. These are expected to be addressed by the cleaning layer.
-
-If structural or referential checks fail, stop and fix the source/import issue before moving on.
-
-## 5. Clean and transform the data
-
-Run:
-
-`sql/04_Data_Cleaning.sql`
-
-The cleaning layer keeps the raw staging data unchanged and creates analytical views that standardize text and apply business rules. This includes:
-
-- Standardizing order status labels
-- Combining product, customer, shipping and return information
-- Aggregating approved refunds at order level
-- Allocating order-level refunds and shipping costs across product lines where required
-- Calculating revenue, discount, refund, cost and profit fields
-- Creating delivery and return indicators
-
-The main analytical view is:
-
-`analytics.vw_OrderProfitability`
-
-Supporting views:
-
-- `analytics.vw_ReturnsOperations`
-- `analytics.vw_CustomerProfitability`
-
-The main profitability view is intentionally maintained at order-product-line grain so product-level analysis remains possible without duplicating order-level costs.
-
-## 6. Run business analysis queries
-
-Run:
-
-`sql/05_Business_Analysis.sql`
-
-This produces analysis for:
-
-- Executive profitability
-- Monthly trends
-- Category profitability
-- Product profitability
-- Discount leakage
-- Return reasons
-- Late delivery versus return behavior
-- Regional performance
-- One-time versus repeat customer economics
-- Customer profitability ranking
-
-These outputs are useful for validating the business story before building the dashboard.
-
-## 7. Run post-load QA
-
-Run:
-
-`sql/06_Post_Load_QA.sql`
-
-Confirm that:
-
-- Source relationships reconcile.
-- Each `order_id + product_id` combination appears once in `vw_OrderProfitability`.
-- Allocated shipping and refund totals reconcile to their order-level source amounts.
-- Revenue, discount, net revenue and gross profit identities reconcile.
-- Refunds do not exceed customer-paid sales.
-- No cleaned economic fields contain invalid values.
-- Delivery dates are logically ordered.
-- Final KPI totals are non-null and sensible.
-
-Do not move to Power BI if these checks expose unexplained errors.
-
-## 8. Build the Power BI model
-
-Connect Power BI to SQL Server and import:
-
-`analytics.vw_OrderProfitability`
-
-Use it as the main fact table, named `FactProfitability`.
-
-Recommended dimensions:
-
-- `DimDate`
-- `DimCustomer`
-- `DimProduct`
-
-Use one-to-many, single-direction relationships from dimensions to the fact table.
-
-Use `analytics.vw_ReturnsOperations` only where return-level detail is required. Avoid unnecessary many-to-many relationships.
-
-## 9. Build the dashboard
-
-Create the four pages in this order:
+Build the four pages in this order:
 
 1. Executive Profit Command Center
 2. Profitability Deep Dive
-3. Returns and Operational Leakage
-4. Customer and Commercial Intelligence
+3. Returns & Operational Leakage
+4. Customer & Commercial Intelligence
 
-Create the DAX measures in `powerbi/DAX_MEASURES.md` before building the final visuals.
+## Phase 4: Final Evidence
 
-Follow `powerbi/DASHBOARD_BLUEPRINT.md` for visual placement, interactions, slicers and page-level objectives.
+Capture clean screenshots showing:
 
-## 10. Final portfolio QA
+- executive KPI page
+- product/category profitability
+- return and delivery analysis
+- customer/channel economics
 
-Before publishing the project:
-
-- All KPI values are measure-driven.
-- Currency and percentages are consistently formatted.
-- Page titles use business language.
-- Slicers and cross-filtering behave correctly.
-- No temporary or unexplained visuals remain.
-- SQL findings agree with the Power BI numbers.
-- README claims match the actual final dashboard.
-- Screenshots match the PBIX that is delivered.
-- Synthetic-data disclosure remains visible where appropriate.
-
-## 11. Final evidence
-
-Capture clean screenshots of all four dashboard pages. The final GitHub project should make the workflow easy to understand:
-
-```text
-Excel source data
-      ↓
-SQL Server validation and cleaning
-      ↓
-SQL business analysis
-      ↓
-Power BI model and DAX
-      ↓
-Decision-ready dashboard
-```
+Document the strongest business findings and recommendations. Do not invent findings before the SQL/Power BI results exist.
