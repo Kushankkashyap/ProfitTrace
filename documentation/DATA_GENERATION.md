@@ -8,7 +8,7 @@ ProfitTrace is a portfolio project, so the dataset is synthetic. The generator i
 
 The data is deliberately designed to contain business patterns that can be investigated rather than merely random numbers:
 
-- Discount intensity varies by customer segment and product category.
+- Discount intensity varies by order and product category.
 - Fashion and Electronics receive additional promotional pressure.
 - Shipping performance varies across orders, with patterned late deliveries.
 - Returns are concentrated around high-discount/category/late-delivery scenarios.
@@ -34,7 +34,8 @@ These patterns are **scenario design choices**, not real-company findings. The f
 2. Run `sql/00_Generate_Synthetic_Data.sql`.
 3. Run `sql/04_Data_Validation.sql`.
 4. Run `sql/05_Data_Cleaning.sql`.
-5. Run `sql/06_Business_Analysis.sql`.
-6. Build the Power BI model using the cleaned analytical layer.
+5. Run `sql/07_Post_Load_QA.sql`.
+6. Run `sql/06_Business_Analysis.sql`.
+7. Build the Power BI model using the cleaned analytical layer.
 
-The generator is the preferred reproducible route for the portfolio version. `sql/03_Load_Raw_Data.sql` remains as a conventional CSV-loading template for demonstrating a raw-file ingestion workflow.
+The generator is the preferred reproducible route for the portfolio version. `sql/02_Table_Creation.sql` + `sql/03_Load_Raw_Data.sql` remain available as a conventional CSV-loading alternative. Do not mix the two workflows unless the staging tables are intentionally rebuilt.
