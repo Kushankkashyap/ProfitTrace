@@ -1,0 +1,31 @@
+{
+  "name": "ProfitTrace Executive",
+  "dataColors": [
+    "#1F4E79",
+    "#2F75B5",
+    "#70AD47",
+    "#ED7D31",
+    "#A5A5A5",
+    "#FFC000",
+    "#5B9BD5",
+    "#4472C4"
+  ],
+  "background": "#F7F9FC",
+  "foreground": "#1F2937",
+  "tableAccent": "#1F4E79",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "fontFamily": "Segoe UI",
+        "fontSize": 10,
+        "title": [
+          {
+            "show": true,
+            "fontSize": 12,
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ]
+      }
+    }
+  }
+}
