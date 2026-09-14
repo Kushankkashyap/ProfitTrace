@@ -38,21 +38,37 @@ LineBase AS
         o.product_id,
         o.quantity,
         o.unit_price,
-        o.discount_pct,
+        o.discount_pct AS discount_pct_raw,
+        CAST(CASE WHEN o.discount_pct < 0 THEN 0
+                  WHEN o.discount_pct > 0.30 THEN 0.30
+                  ELSE o.discount_pct END AS DECIMAL(6,4)) AS discount_pct,
         CASE WHEN LOWER(LTRIM(RTRIM(o.order_status)))='completed' THEN 'Completed' ELSE 'Cancelled' END AS order_status,
         p.product_name,
-        p.category,
-        p.subcategory,
+        CASE WHEN LOWER(LTRIM(RTRIM(p.category)))='electronics' THEN 'Electronics'
+             WHEN LOWER(LTRIM(RTRIM(p.category)))='home' THEN 'Home'
+             WHEN LOWER(LTRIM(RTRIM(p.category)))='fashion' THEN 'Fashion'
+             WHEN LOWER(LTRIM(RTRIM(p.category)))='beauty' THEN 'Beauty'
+             WHEN LOWER(LTRIM(RTRIM(p.category)))='sports' THEN 'Sports'
+             ELSE LTRIM(RTRIM(p.category)) END AS category,
+        LTRIM(RTRIM(p.subcategory)) AS subcategory,
         p.unit_cost,
-        c.segment AS customer_segment,
-        c.region,
-        c.acquisition_channel,
+        CASE WHEN LOWER(LTRIM(RTRIM(c.segment)))='consumer' THEN 'Consumer'
+             WHEN LOWER(LTRIM(RTRIM(c.segment)))='small business' THEN 'Small Business'
+             WHEN LOWER(LTRIM(RTRIM(c.segment)))='enterprise' THEN 'Enterprise'
+             ELSE LTRIM(RTRIM(c.segment)) END AS customer_segment,
+        LTRIM(RTRIM(c.region)) AS region,
+        CASE WHEN LOWER(LTRIM(RTRIM(c.acquisition_channel)))='paid social' THEN 'Paid Social'
+             WHEN LOWER(LTRIM(RTRIM(c.acquisition_channel)))='paid search' THEN 'Paid Search'
+             WHEN LOWER(LTRIM(RTRIM(c.acquisition_channel)))='organic' THEN 'Organic'
+             WHEN LOWER(LTRIM(RTRIM(c.acquisition_channel)))='referral' THEN 'Referral'
+             WHEN LOWER(LTRIM(RTRIM(c.acquisition_channel)))='email' THEN 'Email'
+             ELSE LTRIM(RTRIM(c.acquisition_channel)) END AS acquisition_channel,
         s.ship_date,
         s.promised_date,
         s.delivery_date,
         CAST(o.quantity*o.unit_price AS DECIMAL(14,2)) AS gross_revenue,
-        CAST(o.quantity*o.unit_price*o.discount_pct AS DECIMAL(14,2)) AS discount_value,
-        CAST(o.quantity*o.unit_price*(1-o.discount_pct) AS DECIMAL(14,2)) AS sales_after_discount,
+        CAST(o.quantity*o.unit_price*CASE WHEN o.discount_pct < 0 THEN 0 WHEN o.discount_pct > 0.30 THEN 0.30 ELSE o.discount_pct END AS DECIMAL(14,2)) AS discount_value,
+        CAST(o.quantity*o.unit_price*(1-CASE WHEN o.discount_pct < 0 THEN 0 WHEN o.discount_pct > 0.30 THEN 0.30 ELSE o.discount_pct END) AS DECIMAL(14,2)) AS sales_after_discount,
         COALESCE(r.refund_value,0) AS order_refund_value,
         COALESCE(r.return_count,0) AS return_count,
         COALESCE(s.shipping_cost,0) AS order_shipping_cost
@@ -66,13 +82,14 @@ LineBase AS
 LineAllocated AS
 (
     SELECT *,
+           CASE WHEN discount_pct_raw <> discount_pct THEN 1 ELSE 0 END AS discount_corrected_flag,
            SUM(sales_after_discount) OVER (PARTITION BY order_id) AS order_sales_after_discount,
            COUNT(*) OVER (PARTITION BY order_id) AS order_line_count
     FROM LineBase
 )
 SELECT
     order_id, order_date, customer_id, product_id, quantity,
-    unit_price, discount_pct, order_status,
+    unit_price, discount_pct_raw, discount_pct, discount_corrected_flag, order_status,
     product_name, category, subcategory, unit_cost,
     customer_segment, region, acquisition_channel,
     ship_date, promised_date, delivery_date,
@@ -114,9 +131,19 @@ WITH ShippingOne AS
     FROM stg.Shipping
     GROUP BY order_id
 )
-SELECT r.return_id, r.order_id, r.return_date, r.return_reason, r.refund_value,
-       r.return_status, o.order_date, o.customer_id, o.product_id,
-       p.product_name, p.category, p.subcategory, c.region, c.segment AS customer_segment,
+SELECT r.return_id, r.order_id, r.return_date, LTRIM(RTRIM(r.return_reason)) AS return_reason,
+       r.refund_value,
+       CASE WHEN LOWER(LTRIM(RTRIM(r.return_status)))='approved' THEN 'Approved'
+            WHEN LOWER(LTRIM(RTRIM(r.return_status)))='rejected' THEN 'Rejected'
+            ELSE LTRIM(RTRIM(r.return_status)) END AS return_status,
+       o.order_date, o.customer_id, o.product_id,
+       p.product_name,
+       CASE WHEN LOWER(LTRIM(RTRIM(p.category)))='electronics' THEN 'Electronics'
+            ELSE LTRIM(RTRIM(p.category)) END AS category,
+       LTRIM(RTRIM(p.subcategory)) AS subcategory,
+       LTRIM(RTRIM(c.region)) AS region,
+       CASE WHEN LOWER(LTRIM(RTRIM(c.segment)))='consumer' THEN 'Consumer'
+            ELSE LTRIM(RTRIM(c.segment)) END AS customer_segment,
        s.promised_date, s.delivery_date,
        CASE WHEN s.delivery_date>s.promised_date THEN 1 ELSE 0 END AS is_late_delivery
 FROM stg.Returns r
