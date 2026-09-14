@@ -1,6 +1,5 @@
 /* ProfitTrace | Final Portfolio QA
-   Run after the Power BI model is built to confirm the SQL source layer
-   remains aligned with the report definitions.
+   Run after the SQL source layer is built and again before finalizing Power BI.
 */
 
 USE ProfitTrace;
@@ -20,7 +19,7 @@ FROM analytics.vw_OrderProfitability;
 /* Profit identity should reconcile to zero rows. */
 SELECT COUNT(*) AS reconciliation_errors
 FROM analytics.vw_OrderProfitability
-WHERE ABS(net_revenue - (gross_revenue - discount_value - refund_value)) > 0.01
+WHERE ABS(net_revenue - (sales_after_discount - refund_value)) > 0.01
    OR ABS(gross_profit - (net_revenue - product_cost - shipping_cost)) > 0.01;
 
 /* Business-rule checks should return zero rows. */
@@ -28,7 +27,15 @@ SELECT order_id, 'Refund exceeds paid sales' AS issue
 FROM analytics.vw_OrderProfitability
 WHERE refund_value > sales_after_discount;
 
-SELECT order_id, 'Invalid discount' AS issue
+/* The raw source may contain controlled invalid discounts. The cleaning layer
+   caps them at the documented business ceiling and records the correction. */
+SELECT order_id, product_id, discount_pct_raw, discount_pct,
+       'Discount corrected during cleaning' AS issue
+FROM analytics.vw_OrderProfitability
+WHERE discount_corrected_flag=1;
+
+/* Cleaned discounts should now be within the approved range. */
+SELECT COUNT(*) AS invalid_cleaned_discounts
 FROM analytics.vw_OrderProfitability
 WHERE discount_pct < 0 OR discount_pct > 0.30;
 GO
