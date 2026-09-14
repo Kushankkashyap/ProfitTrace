@@ -53,10 +53,13 @@ GO
 
 SELECT COUNT(*) AS invalid_shipping_dates
 FROM stg.Shipping
-WHERE promised_delivery_date IS NOT NULL AND ship_date IS NOT NULL AND promised_delivery_date < ship_date
-   OR delivery_date IS NOT NULL AND ship_date IS NOT NULL AND delivery_date < ship_date;
+WHERE (promised_delivery_date IS NOT NULL AND ship_date IS NOT NULL AND promised_delivery_date < ship_date)
+   OR (delivery_date IS NOT NULL AND ship_date IS NOT NULL AND delivery_date < ship_date);
 
 SELECT COUNT(*) AS invalid_return_dates
 FROM stg.Returns r JOIN stg.Orders o ON o.order_id=r.order_id
 WHERE r.return_date < o.order_date;
 GO
+
+/* Text casing/whitespace and status variants are intentionally inspected here.
+   The standardized analytical layer is created by 04_Data_Cleaning.sql. */
