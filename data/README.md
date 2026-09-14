@@ -1,39 +1,55 @@
-# ProfitTrace | Source Data
+# ProfitTrace | Source Data V2
 
-ProfitTrace starts with five raw Excel workbooks representing common e-commerce operational extracts. The files are intentionally kept close to a source-system format so that validation and cleaning happen in SQL Server.
+ProfitTrace starts with a connected set of e-commerce operational extracts. Excel is the primary source representation. CSV copies are included as a practical SQL Server import fallback when the local environment cannot read `.xlsx` files directly.
 
-| Workbook | Grain | Rows |
+## Source Files
+
+| File | Grain | Rows |
 |---|---|---:|
-| `Customers.xlsx` | One row per customer | 800 |
-| `Products.xlsx` | One row per product | 240 |
-| `Orders.xlsx` | One row per order-product line | 11,000 |
-| `Shipping.xlsx` | One row per shipment/order | 11,000 |
-| `Returns.xlsx` | One row per return event | 785 |
+| `Customers.xlsx` / `.csv` | One row per customer | 1,000 |
+| `Products.xlsx` / `.csv` | One row per product | 300 |
+| `Orders.xlsx` / `.csv` | One row per order-product transaction | 15,000 |
+| `Shipping.xlsx` / `.csv` | One row per order shipment | 15,000 |
+| `Returns.xlsx` / `.csv` | One row per return event | 1,155 |
+| `DATASET_SUMMARY.xlsx` | Dataset inventory | 8 |
 
 ## Source-to-SQL Mapping
 
 ```text
-Customers.xlsx  → stg.Customers
-Products.xlsx   → stg.Products
-Orders.xlsx     → stg.Orders
-Shipping.xlsx   → stg.Shipping
-Returns.xlsx    → stg.Returns
+Customers → stg.Customers
+Products  → stg.Products
+Orders    → stg.Orders
+Shipping  → stg.Shipping
+Returns   → stg.Returns
 ```
 
-The source files contain a small set of controlled quality issues such as inconsistent text casing, leading/trailing spaces and a few values that need business-rule review. These are deliberate and limited so the SQL cleaning stage has a clear purpose without making the dataset unrealistic.
+## Why the Data Is More Than Random
 
-## Source Data Notes
+The V2 dataset is synthetic, but the records are behaviorally structured to create realistic analytical trade-offs:
 
-- **Customers:** customer attributes, segment, region and acquisition channel
-- **Products:** category, subcategory and unit economics
-- **Orders:** sales transactions, quantities, prices, discounts and order status
-- **Shipping:** shipment dates, promised delivery, actual delivery, carrier and shipping cost
-- **Returns:** return reason, refund value and return status
+- Fashion carries higher discount intensity and a stronger Size/Fit return pattern.
+- Late delivery increases the probability of a return event.
+- Higher discounts can compress product-level margin.
+- Customer segments influence product price mix and discount behavior.
+- Shipping method affects cost and delivery speed.
+- Acquisition channels can be compared on customer economics, not just order volume.
 
-The data is synthetic and is intended for portfolio and learning purposes. It does not represent a real company's customers, transactions or performance.
+These patterns are intentionally designed to support investigation. They should be treated as portfolio scenarios, not real-world causal claims.
 
-## SQL Server Import
+## Controlled Data-Quality Issues
 
-Run `sql/01_Database_Setup.sql`, then `sql/02_Import_Raw_Data.sql`. Use SQL Server's Import and Export Wizard to load each Excel workbook into its matching `stg` table. After the five imports are complete, continue with the validation, cleaning, analysis and QA scripts.
+A small number of source records contain deliberate quality issues such as:
 
-CSV copies can be used as a fallback if the local SQL Server installation does not have an Excel provider available.
+- inconsistent text casing
+- leading/trailing whitespace
+- one discount above the intended 0% to 30% range
+- one inconsistent carrier value
+- one inconsistent return-reason value
+
+`03_Data_Validation.sql` is expected to surface these issues. `04_Data_Cleaning.sql` standardizes them for analysis.
+
+## Import Note
+
+Run `01_Database_Setup.sql`, then `02_Import_Raw_Data.sql`. Load the five files into the matching `stg` tables. If the Excel provider is unavailable on the local machine, use the CSV copies. Do not delete the Excel workbooks because they remain the documented primary source layer.
+
+The data is synthetic and intended for portfolio and learning purposes only.
