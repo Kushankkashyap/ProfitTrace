@@ -33,7 +33,7 @@ SELECT category,
        SUM(CASE WHEN order_status='Delivered' THEN gross_profit ELSE 0 END) AS gross_profit,
        CAST(100.0*SUM(CASE WHEN order_status='Delivered' THEN gross_profit ELSE 0 END)/NULLIF(SUM(CASE WHEN order_status='Delivered' THEN net_revenue ELSE 0 END),0) AS DECIMAL(10,2)) AS margin_pct,
        CAST(100.0*SUM(CASE WHEN order_status='Delivered' THEN discount_value ELSE 0 END)/NULLIF(SUM(CASE WHEN order_status='Delivered' THEN gross_revenue ELSE 0 END),0) AS DECIMAL(10,2)) AS discount_rate_pct,
-       CAST(100.0*COUNT(DISTINCT CASE WHEN returned_flag=1 AND order_status='Delivered' THEN order_id END)/NULLIF(COUNT(DISTINCT CASE WHEN order_status='Delivered' THEN order_id END),0) AS DECIMAL(10,2)) AS return_rate_pct
+       CAST(100.0*COUNT(DISTINCT CASE WHEN is_returned=1 AND order_status='Delivered' THEN order_id END)/NULLIF(COUNT(DISTINCT CASE WHEN order_status='Delivered' THEN order_id END),0) AS DECIMAL(10,2)) AS return_rate_pct
 FROM analytics.vw_OrderProfitability
 GROUP BY category ORDER BY gross_profit DESC;
 GO
