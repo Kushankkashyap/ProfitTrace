@@ -22,6 +22,7 @@ Do not proceed if validation or reconciliation gates show unexpected failures.
 Import:
 
 - `analytics.vw_OrderProfitability` and rename it to `FactProfitability`
+- `analytics.vw_ReturnsOperations` and rename it to `FactReturns`
 - Distinct customer attributes from the SQL source into `DimCustomer`
 - Distinct product attributes from the SQL source into `DimProduct`
 - Create `DimDate` using the DAX definition in `DAX_MEASURES.md`
@@ -29,10 +30,14 @@ Import:
 Relationships:
 
 - `DimDate[Date]` 1:* `FactProfitability[order_date]`
+- `DimDate[Date]` 1:* `FactReturns[return_date]`
 - `DimCustomer[customer_id]` 1:* `FactProfitability[customer_id]`
+- `DimCustomer[customer_id]` 1:* `FactReturns[customer_id]`
 - `DimProduct[product_id]` 1:* `FactProfitability[product_id]`
 
-Use single-direction filtering from dimensions to fact.
+Use single-direction filtering from dimensions to facts. Do not create a direct fact-to-fact relationship.
+
+`FactReturns` is intentionally an event-level return table. The source returns extract does not contain a product identifier, so do not invent product-level return attribution. Use it for return reasons, return dates, customer/channel analysis and refund leakage. Use `FactProfitability` for category/product profitability and late-delivery comparisons.
 
 ## 3. Create measures
 
@@ -44,7 +49,7 @@ Create the measures in `powerbi/DAX_MEASURES.md` before building visuals. Use th
 
 Tell the story: **Where is the money made, and where is it leaking?**
 
-KPI cards: Gross Revenue, Net Revenue, Gross Profit, Profit Margin %, Orders, Return Rate %.
+KPI cards: Gross Revenue, Net Revenue, Gross Profit, Margin %, Orders, Return Rate %.
 
 Main visuals: monthly Net Revenue vs Gross Profit, category profit, regional margin, profitability leakage waterfall, management alert table.
 
@@ -60,7 +65,7 @@ Tell the story: **Where do returns and operational friction destroy economics?**
 
 KPI cards: Returned Orders, Return Rate %, Refund Value, Late Delivery %.
 
-Use return reason/refund analysis, category × return reason, late vs on-time return comparison, monthly refunds, and regional delivery performance.
+Use return reason/refund analysis from `FactReturns`, monthly refunds, customer/channel return activity, and late versus on-time return comparison from `FactProfitability`.
 
 State association, not causation, when interpreting late delivery versus returns.
 
@@ -96,6 +101,7 @@ Before screenshots:
 - No blank or placeholder visuals remain.
 - No unexplained many-to-many relationships exist.
 - All KPI cards use measures, not raw columns.
+- Return metrics do not accidentally double-count return events.
 
 ## 7. Portfolio evidence
 
