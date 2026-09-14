@@ -28,6 +28,7 @@ SELECT o.order_id, o.order_date, o.customer_id, o.product_id, o.quantity,
        o.unit_price, o.discount_pct, o.order_status,
        p.product_name, p.category, p.subcategory, p.unit_cost,
        c.segment AS customer_segment, c.region, c.acquisition_channel,
+       s.ship_date, s.promised_date, s.delivery_date,
        CAST(o.quantity * o.unit_price AS DECIMAL(14,2)) AS gross_revenue,
        CAST(o.quantity * o.unit_price * o.discount_pct AS DECIMAL(14,2)) AS discount_value,
        CAST(o.quantity * o.unit_price * (1 - o.discount_pct) AS DECIMAL(14,2)) AS sales_after_discount,
@@ -39,7 +40,8 @@ SELECT o.order_id, o.order_date, o.customer_id, o.product_id, o.quantity,
             - o.quantity * p.unit_cost
             - COALESCE(s.shipping_cost,0) AS DECIMAL(14,2)) AS gross_profit,
        CASE WHEN s.delivery_date IS NOT NULL AND s.delivery_date > s.promised_date THEN 1 ELSE 0 END AS is_late_delivery,
-       CASE WHEN COALESCE(r.return_count,0) > 0 THEN 1 ELSE 0 END AS is_returned
+       CASE WHEN COALESCE(r.return_count,0) > 0 THEN 1 ELSE 0 END AS is_returned,
+       CASE WHEN s.delivery_date IS NOT NULL THEN 1 ELSE 0 END AS is_delivered
 FROM stg.Orders o
 JOIN stg.Products p ON p.product_id=o.product_id
 JOIN stg.Customers c ON c.customer_id=o.customer_id
