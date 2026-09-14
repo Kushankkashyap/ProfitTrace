@@ -25,7 +25,7 @@ WHERE shipment_id IS NULL OR order_id IS NULL OR shipping_cost IS NULL;
 SELECT 'Orders with invalid quantity' AS check_name, COUNT(*) AS issue_count
 FROM stg.Orders WHERE quantity <= 0
 UNION ALL SELECT 'Orders with invalid unit price', COUNT(*) FROM stg.Orders WHERE unit_price <= 0
-UNION ALL SELECT 'Orders with invalid discount', COUNT(*) FROM stg.Orders WHERE discount_pct < 0 OR discount_pct > 1
+UNION ALL SELECT 'Orders with discount outside approved 0%-30% range', COUNT(*) FROM stg.Orders WHERE discount_pct < 0 OR discount_pct > 0.30
 UNION ALL SELECT 'Products with invalid economics', COUNT(*) FROM stg.Products WHERE unit_cost <= 0 OR list_price <= 0 OR unit_cost > list_price
 UNION ALL SELECT 'Returns with negative refund', COUNT(*) FROM stg.Returns WHERE refund_value < 0
 UNION ALL SELECT 'Shipping with negative cost', COUNT(*) FROM stg.Shipping WHERE shipping_cost < 0;
@@ -54,6 +54,12 @@ UNION ALL SELECT 'Duplicate shipment IDs', COUNT(*) FROM (SELECT shipment_id FRO
 /* One shipment per order */
 SELECT order_id, COUNT(*) AS shipment_rows
 FROM stg.Shipping GROUP BY order_id HAVING COUNT(*) <> 1;
+
+/* Order-product-line uniqueness */
+SELECT order_id, product_id, COUNT(*) AS duplicate_rows
+FROM stg.Orders
+GROUP BY order_id, product_id
+HAVING COUNT(*) > 1;
 
 /* Date checks */
 SELECT COUNT(*) AS invalid_shipping_dates
