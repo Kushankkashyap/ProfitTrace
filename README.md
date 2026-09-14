@@ -55,7 +55,7 @@ Executive Decision Dashboard
 
 ## 📊 Source Data
 
-The V2 portfolio dataset is intentionally richer than a simple demo dataset. It contains connected business entities and behavioral patterns designed to support meaningful commercial analysis.
+The portfolio dataset contains connected business entities and behavioral patterns designed to support meaningful commercial analysis.
 
 | Entity | Records | Purpose |
 |---|---:|---|
@@ -154,9 +154,11 @@ ProfitTrace/
 │   ├── DATA_DICTIONARY.md
 │   ├── DATA_GENERATION.md
 │   ├── BUILD_RUNBOOK.md
+│   ├── HANDS_ON_BUILD_GUIDE.md
 │   └── PORTFOLIO_QA_CHECKLIST.md
 ├── powerbi/
 │   ├── DASHBOARD_BLUEPRINT.md
+│   ├── BUILD_HANDOFF.md
 │   ├── DAX_MEASURES.md
 │   └── PROFITTRACE_THEME.json
 ├── screenshots/
@@ -177,13 +179,14 @@ ProfitTrace/
 10. Build the Power BI star schema and DAX measures.
 11. Capture final dashboard screenshots and document the findings.
 
+For the detailed hands-on sequence, see `documentation/HANDS_ON_BUILD_GUIDE.md`.
+
 ## 📌 Project Status
 
-**Foundation V2 is rebuilt and locked. Power BI implementation is the remaining hands-on stage.**
+**Foundation is complete. Local SQL execution and the Power BI implementation are the remaining hands-on stages.**
 
 - [x] Business case and recruiter-oriented scope
-- [x] V2 source dataset design
-- [x] Excel and CSV source files
+- [x] Source dataset design and Excel-first workflow
 - [x] SQL staging model
 - [x] Validation and cleaning logic
 - [x] Business analysis queries
@@ -191,6 +194,7 @@ ProfitTrace/
 - [x] Power BI model specification
 - [x] DAX measure plan
 - [x] Four-page dashboard blueprint
+- [x] Hands-on build guide
 - [ ] SQL Server import and QA execution on local machine
 - [ ] Power BI star schema implementation
 - [ ] Dashboard pages, interactions and final styling
