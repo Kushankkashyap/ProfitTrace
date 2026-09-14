@@ -16,16 +16,33 @@ GROUP BY order_id, product_id
 HAVING COUNT(*) <> 1;
 
 /* Multi-line orders are valid. Shipping and approved refunds are allocated
-   across lines, so order-level totals should reconcile without duplication. */
-SELECT order_id,
-       MAX(shipping_cost) AS max_line_shipping,
-       SUM(shipping_cost) AS allocated_shipping,
-       MAX(refund_value) AS max_line_refund,
-       SUM(refund_value) AS allocated_refund
-FROM analytics.vw_OrderProfitability
-GROUP BY order_id
-HAVING ABS(SUM(shipping_cost) - MAX(shipping_cost)) < 0
-    OR ABS(SUM(refund_value) - MAX(refund_value)) < 0;
+   across lines, so their line-level sums must reconcile to the order-level
+   source amounts. */
+WITH SourceRefund AS
+(
+    SELECT order_id,
+           SUM(CASE WHEN LOWER(LTRIM(RTRIM(return_status)))='approved' THEN refund_value ELSE 0 END) AS source_refund
+    FROM stg.Returns
+    GROUP BY order_id
+),
+SourceShipping AS
+(
+    SELECT order_id, MAX(shipping_cost) AS source_shipping
+    FROM stg.Shipping
+    GROUP BY order_id
+),
+LineTotals AS
+(
+    SELECT order_id, SUM(shipping_cost) AS allocated_shipping, SUM(refund_value) AS allocated_refund
+    FROM analytics.vw_OrderProfitability
+    GROUP BY order_id
+)
+SELECT l.order_id, l.allocated_shipping, s.source_shipping, l.allocated_refund, r.source_refund
+FROM LineTotals l
+LEFT JOIN SourceShipping s ON s.order_id=l.order_id
+LEFT JOIN SourceRefund r ON r.order_id=l.order_id
+WHERE ABS(l.allocated_shipping-COALESCE(s.source_shipping,0)) > 0.01
+   OR ABS(l.allocated_refund-COALESCE(r.source_refund,0)) > 0.01;
 
 /* Financial identities */
 SELECT TOP (20) order_id, product_id, gross_revenue, discount_value, sales_after_discount,
