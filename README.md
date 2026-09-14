@@ -56,12 +56,12 @@ ProfitTrace/
 │   └── README.md
 ├── sql/
 │   ├── 01_Database_Setup.sql
-│   ├── 02_Table_Creation.sql
-│   ├── 03_Load_Raw_Data.sql
-│   ├── 04_Data_Validation.sql
-│   ├── 05_Data_Cleaning.sql
-│   ├── 06_Business_Analysis.sql
-│   └── 07_Post_Load_QA.sql
+│   ├── 02_Import_Raw_Data.sql
+│   ├── 03_Data_Validation.sql
+│   ├── 04_Data_Cleaning.sql
+│   ├── 05_Business_Analysis.sql
+│   ├── 06_Post_Load_QA.sql
+│   └── 07_Final_Portfolio_QA.sql
 ├── documentation/
 │   ├── PROJECT_BRIEF.md
 │   ├── DATA_DICTIONARY.md
@@ -112,7 +112,9 @@ Customer-level analysis covering one-time versus repeat behavior, average order 
 |---|---|
 | Gross Revenue | Quantity × unit selling price before discount |
 | Discount Value | Gross Revenue × discount percentage |
-| Net Revenue | Gross Revenue − Discount Value − Refund Value |
+| Sales After Discount | Gross Revenue − Discount Value |
+| Refund Value | Approved refund amount allocated to order-product lines when an order contains multiple lines |
+| Net Revenue | Sales After Discount − Refund Value |
 | Gross Profit | Net Revenue − Product Cost − Shipping Cost |
 | Profit Margin | Gross Profit ÷ Net Revenue |
 | Return Rate | Returned delivered orders ÷ delivered orders |
@@ -139,30 +141,33 @@ The SQL work demonstrates practical analyst skills including:
 
 ```text
 1. 01_Database_Setup.sql
-2. 02_Table_Creation.sql
-3. 03_Load_Raw_Data.sql
-4. 04_Data_Validation.sql
-5. 05_Data_Cleaning.sql
-6. 06_Business_Analysis.sql
-7. 07_Post_Load_QA.sql
-8. Power BI model and dashboard
+2. 02_Import_Raw_Data.sql
+3. Import the five Excel workbooks with SQL Server Import and Export Wizard
+4. 03_Data_Validation.sql
+5. 04_Data_Cleaning.sql
+6. 05_Business_Analysis.sql
+7. 06_Post_Load_QA.sql
+8. 07_Final_Portfolio_QA.sql
+9. Power BI model and dashboard
 ```
 
 The SQL layer keeps the main business logic close to the data while Power BI handles modeling, interactive analysis and presentation.
 
 ## 📌 Data & Methodology
 
-The project uses portfolio data designed to represent a realistic e-commerce operating environment. The source files contain customers, products, orders, returns and shipping information across connected business entities.
+The project uses portfolio data designed to represent a realistic e-commerce operating environment. The source workbooks contain 800 customers, 240 products, 11,000 order-product lines, 11,000 shipping records and 785 return records across connected business entities.
 
 The dataset is synthetic and is intended for portfolio and learning purposes. Any patterns or findings shown in the dashboard should be treated as analytical examples rather than claims about a real company.
 
-The source workbooks include a small number of controlled quality issues, such as inconsistent text formatting, so the SQL cleaning stage has a genuine purpose rather than simply passing clean data directly into Power BI.
+The source workbooks include a small number of controlled quality issues, such as inconsistent text formatting and a deliberately invalid discount value, so the SQL validation and cleaning stages have a genuine purpose rather than simply passing clean data directly into Power BI.
+
+The profitability fact view is maintained at order-product-line grain. Because shipping and approved refunds originate at order level, the cleaning layer allocates those amounts across lines to prevent double-counting when line-level profitability is aggregated.
 
 The project maintains a clear distinction between **association and causation**. For example, a relationship between late deliveries and returns can be investigated in the data, but the analysis does not by itself prove that late delivery caused a return.
 
 ## 🚧 Project Status
 
-**Excel source layer and SQL analytics foundation are being finalized. Power BI implementation follows the SQL QA stage.**
+**Excel source layer and SQL analytics foundation are finalized. Power BI implementation follows the SQL QA stage.**
 
 - [x] Business case and analytical scope
 - [x] Repository structure
@@ -173,9 +178,11 @@ The project maintains a clear distinction between **association and causation**.
 - [x] Power BI semantic-model specification
 - [x] DAX measure plan
 - [x] Four-page dashboard blueprint
-- [ ] Final Excel files added to project workspace
+- [x] Excel source files generated
+- [x] SQL import, validation and cleaning scripts
+- [x] Post-load and portfolio QA scripts
+- [ ] Excel files committed to project workspace
 - [ ] SQL Server import and validation run
-- [ ] Post-load QA using final source data
 - [ ] Power BI star schema implementation
 - [ ] Dashboard pages and interactions
 - [ ] Final screenshots and portfolio evidence
