@@ -13,7 +13,7 @@ SELECT
     SUM(gross_profit) AS gross_profit,
     CAST(SUM(gross_profit) / NULLIF(SUM(sales_after_discount - refund_value),0) AS DECIMAL(10,4)) AS profit_margin,
     CAST(COUNT(DISTINCT CASE WHEN is_returned=1 THEN order_id END) * 1.0
-         / NULLIF(COUNT(DISTINCT order_id),0) AS DECIMAL(10,4)) AS return_rate
+         / NULLIF(COUNT(DISTINCT CASE WHEN is_delivered=1 THEN order_id END),0) AS DECIMAL(10,4)) AS return_rate
 FROM analytics.vw_OrderProfitability;
 
 /* 2. Monthly profitability trend */
@@ -39,7 +39,7 @@ SELECT
     SUM(gross_profit) AS gross_profit,
     CAST(SUM(gross_profit) / NULLIF(SUM(sales_after_discount - refund_value),0) AS DECIMAL(10,4)) AS profit_margin,
     CAST(COUNT(DISTINCT CASE WHEN is_returned=1 THEN order_id END) * 1.0
-         / NULLIF(COUNT(DISTINCT order_id),0) AS DECIMAL(10,4)) AS return_rate
+         / NULLIF(COUNT(DISTINCT CASE WHEN is_delivered=1 THEN order_id END),0) AS DECIMAL(10,4)) AS return_rate
 FROM analytics.vw_OrderProfitability
 GROUP BY category
 ORDER BY gross_profit DESC;
@@ -57,7 +57,7 @@ SELECT
     SUM(gross_profit) AS gross_profit,
     CAST(SUM(gross_profit) / NULLIF(SUM(sales_after_discount - refund_value),0) AS DECIMAL(10,4)) AS profit_margin,
     CAST(COUNT(DISTINCT CASE WHEN is_returned=1 THEN order_id END) * 1.0
-         / NULLIF(COUNT(DISTINCT order_id),0) AS DECIMAL(10,4)) AS return_rate
+         / NULLIF(COUNT(DISTINCT CASE WHEN is_delivered=1 THEN order_id END),0) AS DECIMAL(10,4)) AS return_rate
 FROM analytics.vw_OrderProfitability
 GROUP BY product_id, product_name, category, subcategory
 ORDER BY gross_profit ASC;
@@ -83,15 +83,18 @@ WHERE return_status = 'Approved'
 GROUP BY return_reason
 ORDER BY refund_value DESC;
 
-/* 7. Late delivery vs return behavior */
+/* 7. Late delivery vs return behavior
+   IMPORTANT: this analysis uses the complete order population, not only returned orders. */
 SELECT
-    is_late_delivery,
-    COUNT(DISTINCT order_id) AS orders,
-    COUNT(DISTINCT CASE WHEN return_status = 'Approved' THEN order_id END) AS returned_orders,
-    CAST(COUNT(DISTINCT CASE WHEN return_status = 'Approved' THEN order_id END) * 1.0
+    CASE WHEN is_late_delivery=1 THEN 'Late Delivery' ELSE 'On Time' END AS delivery_status,
+    COUNT(DISTINCT order_id) AS delivered_orders,
+    COUNT(DISTINCT CASE WHEN is_returned=1 THEN order_id END) AS returned_orders,
+    CAST(COUNT(DISTINCT CASE WHEN is_returned=1 THEN order_id END) * 1.0
          / NULLIF(COUNT(DISTINCT order_id),0) AS DECIMAL(10,4)) AS return_rate
-FROM analytics.vw_ReturnsOperations
-GROUP BY is_late_delivery;
+FROM analytics.vw_OrderProfitability
+WHERE is_delivered=1
+GROUP BY is_late_delivery
+ORDER BY is_late_delivery DESC;
 
 /* 8. Regional profitability */
 SELECT
@@ -101,7 +104,7 @@ SELECT
     SUM(gross_profit) AS gross_profit,
     CAST(SUM(gross_profit) / NULLIF(SUM(sales_after_discount - refund_value),0) AS DECIMAL(10,4)) AS profit_margin,
     CAST(COUNT(DISTINCT CASE WHEN is_returned=1 THEN order_id END) * 1.0
-         / NULLIF(COUNT(DISTINCT order_id),0) AS DECIMAL(10,4)) AS return_rate
+         / NULLIF(COUNT(DISTINCT CASE WHEN is_delivered=1 THEN order_id END),0) AS DECIMAL(10,4)) AS return_rate
 FROM analytics.vw_OrderProfitability
 GROUP BY region
 ORDER BY gross_profit DESC;
