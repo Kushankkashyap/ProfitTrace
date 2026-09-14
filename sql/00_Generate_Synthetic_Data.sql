@@ -103,11 +103,9 @@ SELECT 500000+n,
        10001+((n*17)%800),
        20001+((n*29)%240),
        CASE WHEN n%11<9 THEN 1 ELSE 2+(n%3) END,
-       CAST(p.list_price*(1-
-           CASE WHEN (n%10) IN(6,7) THEN .18
-                WHEN (n%10) IN(8,9) THEN .12
-                ELSE .07 END
-           - CASE WHEN p.category IN('Fashion','Electronics') THEN .04 ELSE 0 END) AS DECIMAL(12,2)),
+       /* unit_price is intentionally the pre-discount list/selling price.
+          Discount is stored separately so the analytical layer applies it once. */
+       CAST(p.list_price AS DECIMAL(12,2)),
        CAST(CASE WHEN (n%10) IN(6,7) THEN .18
                  WHEN (n%10) IN(8,9) THEN .12 ELSE .07 END
             + CASE WHEN p.category IN('Fashion','Electronics') THEN .04 ELSE 0 END AS DECIMAL(6,4)),
@@ -151,7 +149,8 @@ SELECT TOP (900)
          WHEN rn%3=0 THEN 'Wrong Item'
          ELSE 'Changed Mind'
        END,
-       CAST(quantity*unit_price AS DECIMAL(12,2)),
+       /* Refund equals the actual customer-paid amount after discount. */
+       CAST(quantity*unit_price*(1-discount_pct) AS DECIMAL(12,2)),
        'Approved'
 FROM candidates
 ORDER BY rn;
