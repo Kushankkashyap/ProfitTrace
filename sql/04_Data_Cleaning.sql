@@ -6,6 +6,7 @@ CREATE OR ALTER VIEW analytics.vw_OrderProfitability AS
 WITH CleanOrders AS
 (
     SELECT o.order_id,o.order_date,o.customer_id,o.product_id,o.quantity,o.unit_price,
+           o.discount_pct AS discount_pct_raw,
            CASE WHEN o.discount_pct < 0 THEN 0 WHEN o.discount_pct > 0.30 THEN 0.30 ELSE o.discount_pct END AS discount_pct,
            CASE LOWER(LTRIM(RTRIM(o.order_status)))
                 WHEN 'delivered' THEN 'Delivered' WHEN 'cancelled' THEN 'Cancelled'
@@ -45,14 +46,13 @@ LineMath AS
 ),
 Allocated AS
 (
-    SELECT *,
-           SUM(sales_after_discount) OVER(PARTITION BY order_id) AS order_sales,
+    SELECT *,SUM(sales_after_discount) OVER(PARTITION BY order_id) AS order_sales,
            COUNT(*) OVER(PARTITION BY order_id) AS order_lines
     FROM LineMath
 )
 SELECT order_id,order_date,customer_id,customer_name,customer_segment,region,state,city,acquisition_channel,
        product_id,product_name,category,subcategory,brand,product_tier,rating,quantity,unit_price,
-       discount_pct,gross_revenue,discount_value,sales_after_discount,
+       discount_pct_raw,discount_pct,gross_revenue,discount_value,sales_after_discount,
        CAST(CASE WHEN order_sales>0 THEN order_refund_amount*sales_after_discount/order_sales ELSE order_refund_amount/NULLIF(order_lines,0) END AS DECIMAL(14,2)) AS refund_amount,
        CAST(sales_after_discount-CASE WHEN order_sales>0 THEN order_refund_amount*sales_after_discount/order_sales ELSE order_refund_amount/NULLIF(order_lines,0) END AS DECIMAL(14,2)) AS net_revenue,
        CAST(quantity*unit_cost AS DECIMAL(14,2)) AS product_cost,
@@ -63,7 +63,7 @@ SELECT order_id,order_date,customer_id,customer_name,customer_segment,region,sta
             - quantity*unit_cost
             - CASE WHEN order_sales>0 THEN shipping_cost*sales_after_discount/order_sales ELSE shipping_cost/NULLIF(order_lines,0) END
             - CASE WHEN order_sales>0 THEN order_return_cost*sales_after_discount/order_sales ELSE order_return_cost/NULLIF(order_lines,0) END AS DECIMAL(14,2)) AS gross_profit,
-       CASE WHEN discount_pct>0.30 THEN 1 ELSE 0 END AS discount_corrected_flag,
+       CASE WHEN discount_pct_raw<>discount_pct THEN 1 ELSE 0 END AS discount_corrected_flag,
        ship_date,promised_delivery_date,delivery_date,carrier,shipping_method,
        CASE WHEN delivery_date IS NULL THEN 'Not Delivered' WHEN delivery_date>promised_delivery_date THEN 'Late' ELSE 'On Time' END AS delivery_status_clean,
        CASE WHEN delivery_date IS NOT NULL AND delivery_date>promised_delivery_date THEN 1 ELSE 0 END AS is_late_delivery,
@@ -93,6 +93,5 @@ SELECT customer_id,MAX(customer_name) AS customer_name,MAX(customer_segment) AS 
        SUM(CASE WHEN order_status='Delivered' THEN net_revenue ELSE 0 END) AS net_revenue,
        SUM(CASE WHEN order_status='Delivered' THEN gross_profit ELSE 0 END) AS gross_profit,
        CASE WHEN COUNT(DISTINCT CASE WHEN order_status='Delivered' THEN order_id END)>1 THEN 'Repeat' ELSE 'One-Time' END AS customer_type
-FROM analytics.vw_OrderProfitability
-GROUP BY customer_id;
+FROM analytics.vw_OrderProfitability GROUP BY customer_id;
 GO
