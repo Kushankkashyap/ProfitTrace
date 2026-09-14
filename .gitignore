@@ -1,0 +1,20 @@
+# Power BI local/cache files
+*.pbi-tools
+*.pbix~
+*.pbit~
+
+# Local SQL / IDE files
+*.user
+*.suo
+.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local exports / temporary files
+*.tmp
+*.temp
+~$*
+
+# Keep project folders visible in GitHub until populated
