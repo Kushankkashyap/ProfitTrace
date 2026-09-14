@@ -8,7 +8,7 @@ Recommended Power BI fact table name: `FactProfitability`, sourced from `analyti
 m_Orders = DISTINCTCOUNT(FactProfitability[order_id])
 m_Gross Revenue = SUM(FactProfitability[gross_revenue])
 m_Discount Value = SUM(FactProfitability[discount_value])
-m_Net Revenue = SUM(FactProfitability[sales_after_discount]) - SUM(FactProfitability[refund_value])
+m_Net Revenue = SUM(FactProfitability[net_revenue])
 m_Refund Value = SUM(FactProfitability[refund_value])
 m_Product Cost = SUM(FactProfitability[product_cost])
 m_Shipping Cost = SUM(FactProfitability[shipping_cost])
@@ -30,7 +30,7 @@ m_Late Delivery % = DIVIDE([m_Late Orders], [m_Delivered Orders])
 m_Return Leakage % = DIVIDE([m_Refund Value], [m_Net Revenue])
 ```
 
-`Return Rate %` uses delivered orders as the denominator, matching the project definition. The current deterministic generator delivers every generated order, but the explicit flag keeps the metric definition robust if future data contains undelivered orders.
+`Return Rate %` uses delivered orders as the denominator, matching the project definition. The explicit delivery flag keeps the metric robust if future data contains undelivered orders.
 
 ## Customer Metrics
 
@@ -48,7 +48,7 @@ m_Repeat Customer % = DIVIDE([m_Repeat Customers], [m_Customers])
 m_Profit per Customer = DIVIDE([m_Gross Profit], [m_Customers])
 ```
 
-These customer measures evaluate in the current filter context, so region, segment, channel and date slicers can be used without hard-coded results.
+These measures evaluate in the current filter context, so region, segment, channel and date slicers can be used without hard-coded results.
 
 ## Date Table
 
