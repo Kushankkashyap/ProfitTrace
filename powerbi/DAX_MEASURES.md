@@ -22,21 +22,33 @@ m_Profit per Order = DIVIDE([m_Gross Profit], [m_Orders])
 ## Returns & Operations
 
 ```DAX
+m_Delivered Orders = CALCULATE([m_Orders], FactProfitability[is_delivered] = 1)
 m_Returned Orders = CALCULATE([m_Orders], FactProfitability[is_returned] = 1)
-m_Return Rate % = DIVIDE([m_Returned Orders], [m_Orders])
+m_Return Rate % = DIVIDE([m_Returned Orders], [m_Delivered Orders])
 m_Late Orders = CALCULATE([m_Orders], FactProfitability[is_late_delivery] = 1)
-m_Late Delivery % = DIVIDE([m_Late Orders], [m_Orders])
+m_Late Delivery % = DIVIDE([m_Late Orders], [m_Delivered Orders])
 m_Return Leakage % = DIVIDE([m_Refund Value], [m_Net Revenue])
 ```
 
-The current generator intentionally keeps one analytical row per order, so the binary order flags are safe for these measures.
+`Return Rate %` uses delivered orders as the denominator, matching the project definition. The current deterministic generator delivers every generated order, but the explicit flag keeps the metric definition robust if future data contains undelivered orders.
 
 ## Customer Metrics
 
 ```DAX
 m_Customers = DISTINCTCOUNT(FactProfitability[customer_id])
 m_Orders per Customer = DIVIDE([m_Orders], [m_Customers])
+m_Repeat Customers =
+COUNTROWS(
+    FILTER(
+        VALUES(FactProfitability[customer_id]),
+        CALCULATE(DISTINCTCOUNT(FactProfitability[order_id])) > 1
+    )
+)
+m_Repeat Customer % = DIVIDE([m_Repeat Customers], [m_Customers])
+m_Profit per Customer = DIVIDE([m_Gross Profit], [m_Customers])
 ```
+
+These customer measures evaluate in the current filter context, so region, segment, channel and date slicers can be used without hard-coded results.
 
 ## Date Table
 
@@ -52,7 +64,7 @@ ADDCOLUMNS(
 )
 ```
 
-Sort Month by Month Number and use Year Month for chronological trend axes.
+Sort `DimDate[Month]` by `DimDate[Month Number]` and use `Year Month` for chronological trend axes.
 
 ## Star Schema Relationships
 
@@ -71,7 +83,7 @@ If Returns/Shipping detail is imported separately, keep it disconnected from the
 ## Formatting
 
 - Currency: revenue, discounts, refunds, costs, profit, AOV, profit/order.
-- Percentage: margin, discount rate, return rate, late-delivery rate, return leakage.
-- Whole number: orders, customers, returned orders, late orders.
+- Percentage: margin, discount rate, return rate, late-delivery rate, return leakage, repeat customer %.
+- Whole number: orders, customers, returned orders, delivered orders, late orders.
 
 All measures use the `m_` prefix for a clean, inspection-friendly Fields pane.
