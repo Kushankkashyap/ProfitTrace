@@ -2,51 +2,138 @@
 
 > **Trace the Revenue. Find the Leakage. Protect the Profit.**
 
-ProfitTrace is an end-to-end data analytics project built around a practical e-commerce question:
+ProfitTrace is an end-to-end analytics project built around a practical commercial question:
 
-> **An e-commerce business is generating strong revenue, but where is the profit actually being lost?**
+> **Revenue looks healthy, but where is the business actually losing profit?**
 
-The project follows a realistic analyst workflow, starting with raw Excel business data, moving through SQL Server for data validation, cleaning and analysis, and ending in Power BI for interactive reporting and decision support.
+The project follows a realistic analyst workflow from operational source data in Excel, through SQL Server for validation and transformation, to Power BI for interactive decision support.
 
-The analysis focuses on the gap between sales and actual profitability by examining discounts, refunds, product costs, shipping costs, returns and delivery performance.
+Rather than treating revenue as the final KPI, ProfitTrace follows the economics of an order from selling price to discount, refund, product cost, shipping and return-related cost.
 
-## 🎯 Business Objectives
+## 🎯 Business Case
 
-- Measure gross revenue, net revenue, gross profit and profit margin.
-- Identify categories, products and regions where strong sales do not translate into strong profit.
-- Quantify profitability leakage from discounts, refunds, product costs and shipping.
-- Evaluate the relationship between delivery performance and return activity.
-- Compare one-time and repeat customer economics.
-- Translate analytical findings into practical commercial and operational actions.
+An e-commerce business wants to grow sales without quietly giving away margin. Leadership needs to understand:
+
+- Which categories and products create the most profit?
+- Where are discounts eroding margin?
+- Which products generate strong sales but weak economics?
+- How much financial leakage is associated with returns?
+- Is late delivery associated with higher return activity?
+- Which customer segments and acquisition channels create stronger economics?
+- Are repeat customers materially more valuable than one-time buyers?
+
+## 🧰 Tool Stack
+
+| Tool | Purpose |
+|---|---|
+| **Excel** | Operational source data and business-friendly raw files |
+| **SQL Server / SSMS** | Staging, validation, cleaning, transformation, QA and business analysis |
+| **Power BI** | Star-schema modeling, DAX, visualization and decision support |
+| **DAX** | KPI and interactive business measures |
 
 ## 🔄 End-to-End Workflow
 
 ```text
-Raw Excel Files
-      ↓
-SQL Server Import / Staging
-      ↓
-Data Validation
-      ↓
-Data Cleaning & Transformation
-      ↓
-Business Analysis Queries
-      ↓
-Power BI Data Model
-      ↓
+Excel Source Workbooks
+        ↓
+SQL Server Staging
+        ↓
+Data Quality Validation
+        ↓
+Cleaning & Standardization
+        ↓
+Analytical Views
+        ↓
+Business Analysis & QA
+        ↓
+Power BI Star Schema
+        ↓
 DAX Measures
-      ↓
-Interactive Profitability Dashboard
+        ↓
+Executive Decision Dashboard
 ```
 
-This structure keeps each tool focused on a clear part of the analytics process:
+## 📊 Source Data
 
-| Tool | Role in the project |
+The V2 portfolio dataset is intentionally richer than a simple demo dataset. It contains connected business entities and behavioral patterns designed to support meaningful commercial analysis.
+
+| Entity | Records | Purpose |
+|---|---:|---|
+| Customers | 1,000 | Customer identity, geography, segment and acquisition source |
+| Products | 300 | Product, category, brand, tier, price, cost and rating |
+| Orders | 15,000 | 2025 order-product transactions and commercial attributes |
+| Shipping | 15,000 | Shipment timing, promised delivery, carrier and shipping cost |
+| Returns | 1,155 | Approved/rejected return events, reasons and financial impact |
+
+The source data is synthetic, but it is **behaviorally structured rather than purely random**. Examples include higher return propensity for Fashion, elevated return likelihood after late delivery, different discount intensity by category and customer segment, and different product economics across tiers.
+
+A small number of controlled data-quality issues are also present in the raw layer, including inconsistent text casing/whitespace and one discount above the approved 0% to 30% business range. These issues create a genuine reason to perform SQL validation and cleaning.
+
+## 📈 Power BI Dashboard
+
+### 1. Executive Profit Command Center
+
+A management-level view of Gross Revenue, Net Revenue, Gross Profit, Margin, Orders and Return Rate. The page highlights the monthly profit trend, category contribution, regional economics and the path from revenue to profit.
+
+**Decision:** Where should management focus first to protect profit?
+
+### 2. Profitability Deep Dive
+
+Category, subcategory and product analysis with revenue, discount, refund, profit and margin. Scatter analysis helps identify high-sales products with weak profitability and high-discount products with compressed margins.
+
+**Decision:** Which products are commercially attractive but economically weak?
+
+### 3. Returns & Operational Leakage
+
+Return reasons, refund value, return rate, late delivery and delivery performance are brought together to quantify operational leakage.
+
+**Decision:** Which operational problems deserve investigation because they coincide with financial leakage?
+
+### 4. Customer & Commercial Intelligence
+
+Customer profitability, one-time versus repeat economics, acquisition-channel performance and customer segments provide a commercial view beyond transaction volume.
+
+**Decision:** Which customer groups and acquisition sources create sustainable value?
+
+## 🗄️ SQL Engineering & Analysis
+
+The SQL layer is deliberately separated into stages so the workflow is auditable:
+
+```text
+01  Database Setup
+02  Staging Table Definition
+03  Data Validation
+04  Cleaning & Analytical Views
+05  Business Analysis
+06  Post-Load QA
+07  Final Portfolio QA
+```
+
+The project demonstrates practical SQL skills including joins, CTEs, conditional logic, aggregations, window functions, date analysis, data-quality checks, financial reconciliation and customer/product profitability analysis.
+
+The cleaned profitability view is kept at **order-product-line grain**. Order-level refunds, shipping and return costs are allocated across lines so aggregation does not accidentally double-count order-level amounts.
+
+## 💡 Core Metric Definitions
+
+| Metric | Definition |
 |---|---|
-| Excel | Raw operational source data |
-| SQL Server / SSMS | Data loading, validation, cleaning, transformation and analysis |
-| Power BI | Data modeling, visualization and interactive reporting |
-| DAX | KPI calculations and business metrics |
+| Gross Revenue | Quantity × Unit Price |
+| Discount Value | Gross Revenue × Discount % |
+| Sales After Discount | Gross Revenue − Discount Value |
+| Refund Value | Approved refund allocated to the analytical line |
+| Net Revenue | Sales After Discount − Refund Value |
+| Product Cost | Quantity × Unit Cost |
+| Gross Profit | Net Revenue − Product Cost − Shipping Cost − Return Cost |
+| Profit Margin | Gross Profit ÷ Net Revenue |
+| Return Rate | Returned delivered orders ÷ delivered orders |
+| AOV | Net Revenue ÷ delivered orders |
+| Late Delivery Rate | Late delivered orders ÷ delivered orders |
+
+## ⚠️ Analytical Discipline
+
+ProfitTrace distinguishes **association from causation**. For example, if late-delivery orders show a higher return rate, that is evidence of an observed relationship in the dataset, not proof that late delivery caused every return.
+
+The dataset is synthetic and the findings are portfolio examples, not claims about a real company.
 
 ## 📁 Repository Structure
 
@@ -70,128 +157,48 @@ ProfitTrace/
 │   └── PORTFOLIO_QA_CHECKLIST.md
 ├── powerbi/
 │   ├── DASHBOARD_BLUEPRINT.md
-│   └── DAX_MEASURES.md
+│   ├── DAX_MEASURES.md
+│   └── PROFITTRACE_THEME.json
 ├── screenshots/
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
-## 📊 Dashboard
+## 🚀 Build Order
 
-The Power BI report is designed as a four-page decision-support dashboard.
+1. Keep the Excel workbooks as the primary source layer.
+2. Use the CSV copies when the local SQL Server environment cannot read Excel directly.
+3. Run `01_Database_Setup.sql`.
+4. Run `02_Import_Raw_Data.sql` to create staging tables.
+5. Load the five source files into `stg`.
+6. Run `03_Data_Validation.sql` and inspect the intentional quality issues.
+7. Run `04_Data_Cleaning.sql` to create analytical views.
+8. Run `05_Business_Analysis.sql` for business findings.
+9. Run `06_Post_Load_QA.sql` and `07_Final_Portfolio_QA.sql`.
+10. Build the Power BI star schema and DAX measures.
+11. Capture final dashboard screenshots and document the findings.
 
-### 1. Executive Profit Command Center
+## 📌 Project Status
 
-A management view of revenue, net revenue, orders, gross profit, margin and return performance. Monthly trends, category profitability, regional performance and a profit-leakage view help highlight where commercial attention is needed.
+**Foundation V2 is rebuilt and locked. Power BI implementation is the remaining hands-on stage.**
 
-### 2. Profitability Deep Dive
-
-A detailed category, subcategory and product analysis covering revenue, net revenue, profit, margin, discounts and returns. A discount-intensity analysis helps identify products where higher discounting is accompanied by weaker profitability.
-
-### 3. Returns & Operational Leakage
-
-An operational view covering returned orders, return rate, refund value, return reasons, delivery performance and late-delivery patterns. The objective is to identify where customer experience and operational issues may be contributing to financial leakage.
-
-### 4. Customer & Commercial Intelligence
-
-Customer-level analysis covering one-time versus repeat behavior, average order value, revenue, profit and customer profitability segments. The page is designed to highlight commercially valuable customer groups and weaker customer economics.
-
-## 🔎 Key Business Questions
-
-1. Which categories generate the most revenue but the least profit?
-2. How much profitability is affected by discounting?
-3. Which products have strong sales but weak margins?
-4. Where do returns create the largest financial leakage?
-5. Is late delivery associated with higher return activity?
-6. Which regions and customer segments generate stronger economics?
-7. Are repeat customers more valuable than one-time customers?
-
-## 💡 Core Metrics
-
-| Metric | Definition |
-|---|---|
-| Gross Revenue | Quantity × unit selling price before discount |
-| Discount Value | Gross Revenue × discount percentage |
-| Sales After Discount | Gross Revenue − Discount Value |
-| Refund Value | Approved refund amount allocated to order-product lines when an order contains multiple lines |
-| Net Revenue | Sales After Discount − Refund Value |
-| Gross Profit | Net Revenue − Product Cost − Shipping Cost |
-| Profit Margin | Gross Profit ÷ Net Revenue |
-| Return Rate | Returned delivered orders ÷ delivered orders |
-| AOV | Net Revenue ÷ Orders |
-| Late Delivery Rate | Late delivered orders ÷ delivered orders |
-
-## 🗄️ SQL Analysis
-
-SQL Server is used for the core data preparation and analytical workflow. The project includes separate stages for loading source data, validating quality, cleaning and transforming the data, and producing business analysis outputs.
-
-The SQL work demonstrates practical analyst skills including:
-
-- Multi-table joins
-- CTEs
-- Conditional logic with `CASE`
-- Aggregations and conditional aggregations
-- Window functions
-- Date-based analysis
-- Data-quality checks
-- Profitability and return calculations
-- Customer and product-level analysis
-
-### Recommended Build Order
-
-```text
-1. 01_Database_Setup.sql
-2. 02_Import_Raw_Data.sql
-3. Import the five Excel workbooks with SQL Server Import and Export Wizard
-4. 03_Data_Validation.sql
-5. 04_Data_Cleaning.sql
-6. 05_Business_Analysis.sql
-7. 06_Post_Load_QA.sql
-8. 07_Final_Portfolio_QA.sql
-9. Power BI model and dashboard
-```
-
-The SQL layer keeps the main business logic close to the data while Power BI handles modeling, interactive analysis and presentation.
-
-## 📌 Data & Methodology
-
-The project uses portfolio data designed to represent a realistic e-commerce operating environment. The source workbooks contain 800 customers, 240 products, 11,000 order-product lines, 11,000 shipping records and 785 return records across connected business entities.
-
-The dataset is synthetic and is intended for portfolio and learning purposes. Any patterns or findings shown in the dashboard should be treated as analytical examples rather than claims about a real company.
-
-The source workbooks include a small number of controlled quality issues, such as inconsistent text formatting and a deliberately invalid discount value, so the SQL validation and cleaning stages have a genuine purpose rather than simply passing clean data directly into Power BI.
-
-The profitability fact view is maintained at order-product-line grain. Because shipping and approved refunds originate at order level, the cleaning layer allocates those amounts across lines to prevent double-counting when line-level profitability is aggregated.
-
-The project maintains a clear distinction between **association and causation**. For example, a relationship between late deliveries and returns can be investigated in the data, but the analysis does not by itself prove that late delivery caused a return.
-
-## 🚧 Project Status
-
-**Excel source layer and SQL analytics foundation are finalized. Power BI implementation follows the SQL QA stage.**
-
-- [x] Business case and analytical scope
-- [x] Repository structure
-- [x] Data model and business definitions
-- [x] Excel source dataset design
-- [x] SQL workflow design
-- [x] Data validation and cleaning logic
-- [x] Power BI semantic-model specification
+- [x] Business case and recruiter-oriented scope
+- [x] V2 source dataset design
+- [x] Excel and CSV source files
+- [x] SQL staging model
+- [x] Validation and cleaning logic
+- [x] Business analysis queries
+- [x] Post-load and final QA
+- [x] Power BI model specification
 - [x] DAX measure plan
 - [x] Four-page dashboard blueprint
-- [x] Excel source files generated
-- [x] SQL import, validation and cleaning scripts
-- [x] Post-load and portfolio QA scripts
-- [ ] Excel files committed to project workspace
-- [ ] SQL Server import and validation run
+- [ ] SQL Server import and QA execution on local machine
 - [ ] Power BI star schema implementation
-- [ ] Dashboard pages and interactions
-- [ ] Final screenshots and portfolio evidence
-- [ ] Final recruiter-facing project summary
+- [ ] Dashboard pages, interactions and final styling
+- [ ] Final screenshots and PBIX evidence
 
 ## 👤 Author
 
-**Kushank Kashyap**
-
+**Kushank Kashyap**  
 Data Analyst | Business Analyst | BI Analyst
 
 **Core skills:** SQL • Power BI • DAX • Excel • Data Modeling • Business Analysis • Data Storytelling
