@@ -1,22 +1,34 @@
 # ProfitTrace — Power BI Dashboard Blueprint
 
-This file is the build specification for the final `.pbix`. **Do not start dashboard design until the SQL layer has been loaded and validated.**
+This file is the build specification for the final `.pbix`. **Build the dashboard only after the SQL layer has been loaded, cleaned and passed validation/QA.**
 
 ## Semantic Model
 
-Recommended model:
+The primary Power BI fact is the cleaned, order-level analytical view:
 
 ```text
-                 DimDate
-                    |
-DimCustomers ── FactOrders ── DimProducts
-                    |
-             Order-level aggregates
-                /           \
-        FactReturns      FactShipping
+DimDate
+   |
+DimCustomer ── FactProfitability ── DimProduct
 ```
 
-For the first build, it is acceptable to import the cleaned `analytics.vw_OrderProfitability` view as the main analytical fact and use dedicated dimensions for Date, Customer and Product. Returns/Shipping should be pre-aggregated or modeled separately so order-level metrics are not duplicated.
+- `FactProfitability` = `analytics.vw_OrderProfitability`
+- Grain = **one analytical row per order** in the current generated dataset.
+- `DimDate[Date]` → `FactProfitability[order_date]` (1:*, single direction)
+- `DimCustomer[customer_id]` → `FactProfitability[customer_id]` (1:*, single direction)
+- `DimProduct[product_id]` → `FactProfitability[product_id]` (1:*, single direction)
+
+Returns and shipping are already aggregated to order level inside the analytical view. Do **not** relate raw Returns/Shipping directly to `FactProfitability` in a way that can multiply order rows. If detail is needed for a dedicated operational visual, use a separate deliberate model/bridge rather than a casual many-to-many relationship.
+
+### Recommended build sequence
+
+1. Load `analytics.vw_OrderProfitability` as `FactProfitability`.
+2. Create `DimDate` from the fact's order-date range.
+3. Create `DimCustomer` from customer attributes.
+4. Create `DimProduct` from product attributes.
+5. Create the three 1:* single-direction relationships above.
+6. Add the DAX measures from `DAX_MEASURES.md`.
+7. Validate totals against the SQL QA outputs before styling the pages.
 
 ## Page 1 — Executive Profit Command Center
 
@@ -31,7 +43,7 @@ For the first build, it is acceptable to import the cleaned `analytics.vw_OrderP
 ### Visuals
 1. Monthly Net Revenue vs Gross Profit line/column combination.
 2. Category Gross Profit bar chart.
-3. Regional Profit Margin matrix/map-style visual.
+3. Regional Profit Margin matrix or map-style visual.
 4. Profit Leakage waterfall: Gross Revenue → Discounts → Refunds → Product Cost → Shipping → Gross Profit.
 5. Management alert table showing high-revenue / low-margin categories or products.
 
@@ -95,19 +107,7 @@ Keep slicers consistent across pages where practical:
 
 ## DAX Measure Naming
 
-Use a clean `m_` prefix for measures, for example:
-
-```DAX
-m_Gross Revenue
-m_Net Revenue
-m_Gross Profit
-m_Profit Margin %
-m_Return Rate %
-m_AOV
-m_Discount Rate %
-m_Late Delivery %
-m_Profit per Order
-```
+Use the clean `m_` prefix for measures, as documented in `DAX_MEASURES.md`.
 
 Avoid hard-coded KPI numbers. All dashboard KPIs should be driven by measures.
 
@@ -120,3 +120,5 @@ Avoid hard-coded KPI numbers. All dashboard KPIs should be driven by measures.
 - Add dynamic titles where useful.
 - Keep detailed explanations in tooltips rather than filling the canvas with text.
 - Every major visual should answer a business question.
+- Use conditional formatting sparingly to surface risk/opportunity, not as decoration.
+- Keep whitespace intentional and align visuals to a consistent grid.
