@@ -48,7 +48,7 @@ ProfitTrace/
 │   ├── 06_Business_Analysis.sql
 │   └── 07_Post_Load_QA.sql
 ├── documentation/         # Business requirements, definitions and methodology
-├── powerbi/               # Dashboard/model blueprint
+├── powerbi/               # Dashboard/model blueprint and DAX measure pack
 ├── screenshots/            # Final dashboard screenshots
 ├── README.md
 └── .gitignore
@@ -98,11 +98,11 @@ For the portfolio's deterministic generated dataset:
 2. 00_Generate_Synthetic_Data.sql
 3. 04_Data_Validation.sql
 4. 05_Data_Cleaning.sql
-5. 06_Business_Analysis.sql
-6. 07_Post_Load_QA.sql
+5. 07_Post_Load_QA.sql
+6. 06_Business_Analysis.sql
 ```
 
-`02_Table_Creation.sql` and `03_Load_Raw_Data.sql` are retained as an alternative CSV-loading workflow. Do **not** run `02_Table_Creation.sql` immediately before the generator, because the generator creates the staging tables itself.
+Run post-load QA before the business-analysis output layer so reconciliation failures are caught before dashboard work. `02_Table_Creation.sql` and `03_Load_Raw_Data.sql` are retained as an alternative CSV-loading workflow. Do **not** run `02_Table_Creation.sql` immediately before the generator, because the generator creates the staging tables itself.
 
 ## 📌 Data & Methodology Note
 
@@ -112,7 +112,7 @@ The current generated model keeps one product line per order so order-level refu
 
 ## 🚧 Project Status
 
-**Foundation complete — dashboard build pending.**
+**SQL + analytical foundation complete — Power BI build pending.**
 
 - [x] Repository and project structure
 - [x] Deterministic synthetic data generator
@@ -120,11 +120,13 @@ The current generated model keeps one product line per order so order-level refu
 - [x] Validation and cleaning layer
 - [x] Analytical business queries
 - [x] Post-load QA / reconciliation checks
-- [x] Power BI dashboard blueprint
-- [ ] Power BI star schema
-- [ ] DAX measures
-- [ ] Dashboard pages
-- [ ] Screenshots and final portfolio evidence
+- [x] Power BI semantic-model specification
+- [x] DAX measure pack
+- [x] Four-page dashboard blueprint and build checklist
+- [ ] Power BI star schema implementation
+- [ ] Dashboard pages and interactions
+- [ ] Screenshots / final portfolio evidence
+- [ ] Final recruiter-facing README refresh
 
 ## 👤 Author
 
