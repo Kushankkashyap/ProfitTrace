@@ -2,32 +2,34 @@
 
 > **Trace the Revenue. Find the Leakage. Protect the Profit.**
 
-ProfitTrace is an end-to-end analytics portfolio project built to answer a practical e-commerce question:
+ProfitTrace is an end-to-end analytics portfolio project built around a practical e-commerce problem:
 
 > **An e-commerce business is generating strong revenue, but where is the profit actually being lost?**
 
-The project combines **SQL Server, data validation/cleaning, Power BI, DAX and business analysis** to trace revenue from order to net revenue and ultimately to profit, while investigating discounting, returns, shipping performance and customer behavior.
+The project traces order economics from gross revenue through discounts, refunds, product cost and shipping cost to expose profitability pressure and operational leakage. It combines **SQL Server, T-SQL validation/cleaning, analytical SQL, Power BI, DAX and star-schema modeling**.
 
 ## 🎯 Business Objectives
 
-- Measure revenue, net revenue, gross profit and margin performance.
-- Identify products, categories and regions where revenue does not translate into profit.
-- Quantify profit leakage from discounts, returns and operational costs.
-- Understand whether late delivery is associated with higher return activity.
-- Compare new vs. repeat customers and customer profitability.
-- Surface actionable commercial and operational recommendations.
+- Measure gross revenue, net revenue, gross profit and margin.
+- Identify categories, products and regions where revenue does not translate into profit.
+- Quantify leakage from discounts, refunds, product cost and shipping.
+- Test whether late delivery is associated with higher return activity.
+- Compare one-time and repeat customer economics.
+- Turn analytical findings into commercial and operational actions.
 
-## 🧩 Project Architecture
+## 🧩 Architecture
 
 ```text
-Raw Data (CSV)
-      ↓
-SQL Server — Staging / Validation / Cleaning
-      ↓
-Business Analysis — SQL Views & Queries
-      ↓
+Synthetic Source Data
+        ↓
+SQL Server — Staging
+        ↓
+Validation + Cleaning
+        ↓
+Analytical Views / Business Queries
+        ↓
 Power BI — Star Schema + DAX
-      ↓
+        ↓
 Executive Profitability & Returns Dashboard
 ```
 
@@ -35,10 +37,18 @@ Executive Profitability & Returns Dashboard
 
 ```text
 ProfitTrace/
-├── data/                  # Synthetic source datasets
-├── sql/                   # Database, validation, cleaning and analysis scripts
-├── documentation/         # Business requirements, data dictionary and methodology
-├── powerbi/               # Power BI model / dashboard documentation
+├── data/                  # Source-data documentation / future CSV exports
+├── sql/
+│   ├── 00_Generate_Synthetic_Data.sql
+│   ├── 01_Database_Setup.sql
+│   ├── 02_Table_Creation.sql
+│   ├── 03_Load_Raw_Data.sql
+│   ├── 04_Data_Validation.sql
+│   ├── 05_Data_Cleaning.sql
+│   ├── 06_Business_Analysis.sql
+│   └── 07_Post_Load_QA.sql
+├── documentation/         # Business requirements, definitions and methodology
+├── powerbi/               # Dashboard/model blueprint
 ├── screenshots/            # Final dashboard screenshots
 ├── README.md
 └── .gitignore
@@ -48,54 +58,73 @@ ProfitTrace/
 
 | Layer | Tools |
 |---|---|
-| Data | CSV / synthetic e-commerce data |
+| Data | Deterministic synthetic e-commerce data |
 | Database | Microsoft SQL Server / T-SQL |
 | BI | Microsoft Power BI |
 | Calculations | DAX |
-| Data Modeling | Star schema |
+| Modeling | Star schema |
 | Documentation | Markdown |
 
-## 📊 Planned Dashboard Pages
+## 📊 Dashboard Plan
 
 ### 1. Executive Profit Command Center
-Revenue, net revenue, orders, gross profit, margin %, return rate, monthly trends, category profitability, regional margin and profit-leakage indicators.
+Executive KPIs, revenue-to-profit trend, category profitability, regional margin and a visual leakage bridge covering discounts, refunds and operating costs.
 
 ### 2. Profitability Deep Dive
-Category → subcategory → product analysis with revenue, net revenue, profit, margin, discount and return metrics, plus a discount-vs-margin profitability view.
+Category → subcategory → product analysis with revenue, net revenue, profit, margin, discount and return metrics, plus a discount-intensity vs. margin analysis.
 
 ### 3. Returns & Operational Leakage
-Return rate, refund value, return reasons, delivery performance and the relationship between late delivery and returns.
+Return rate, refund value, return reasons, late-delivery performance and the relationship between delivery experience and returns.
 
 ### 4. Customer & Commercial Intelligence
-New vs. repeat behavior, AOV, orders/customer, customer revenue/profit and profitability segmentation.
+One-time vs. repeat behavior, AOV, customer revenue/profit, customer profitability segmentation and commercial opportunity flags.
 
 ## 🔎 Core Analytical Questions
 
 1. Which categories generate the most revenue but the least profit?
-2. How much profit is being sacrificed through discounting?
-3. Which products have high sales but structurally weak margins?
-4. Where are returns creating the largest financial leakage?
+2. How much revenue is sacrificed through discounting?
+3. Which products have high sales but weak margins?
+4. Where do returns create the largest financial leakage?
 5. Does late delivery coincide with higher return rates?
 6. Which regions and customer segments are most profitable?
-7. Are repeat customers economically more valuable than new customers?
+7. Are repeat customers economically more valuable than one-time customers?
 
-## 📌 Data Note
+## ▶️ Reproducible SQL Run Order
 
-The project uses synthetic data designed for portfolio and learning purposes. Business findings will be presented as analytical insights from the modeled dataset, not as claims about a real company.
+For the portfolio's deterministic generated dataset:
+
+```text
+1. 01_Database_Setup.sql
+2. 00_Generate_Synthetic_Data.sql
+3. 04_Data_Validation.sql
+4. 05_Data_Cleaning.sql
+5. 06_Business_Analysis.sql
+6. 07_Post_Load_QA.sql
+```
+
+`02_Table_Creation.sql` and `03_Load_Raw_Data.sql` are retained as an alternative CSV-loading workflow. Do **not** run `02_Table_Creation.sql` immediately before the generator, because the generator creates the staging tables itself.
+
+## 📌 Data & Methodology Note
+
+The dataset is synthetic and intentionally designed to contain realistic profitability signals such as discount pressure, category-level return behavior and late-delivery patterns. Findings are portfolio analysis outputs, not claims about a real company.
+
+The current generated model keeps one product line per order so order-level refund and shipping economics can be allocated without duplication. If the generator is later expanded to multi-line orders, those order-level costs must be allocated before line-level profitability is aggregated.
 
 ## 🚧 Project Status
 
-**Phase 1 — Foundation:** In progress
+**Foundation complete — dashboard build pending.**
 
-- [x] Repository created
-- [ ] Source datasets finalized
-- [ ] SQL database and tables
-- [ ] Data validation and cleaning
-- [ ] Business analysis queries
+- [x] Repository and project structure
+- [x] Deterministic synthetic data generator
+- [x] SQL database setup and staging schema
+- [x] Validation and cleaning layer
+- [x] Analytical business queries
+- [x] Post-load QA / reconciliation checks
+- [x] Power BI dashboard blueprint
 - [ ] Power BI star schema
 - [ ] DAX measures
 - [ ] Dashboard pages
-- [ ] Screenshots and final documentation
+- [ ] Screenshots and final portfolio evidence
 
 ## 👤 Author
 
