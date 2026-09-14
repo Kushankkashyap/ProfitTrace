@@ -9,17 +9,31 @@ UNION ALL SELECT 'Orders', COUNT(*) FROM stg.Orders
 UNION ALL SELECT 'Shipping', COUNT(*) FROM stg.Shipping
 UNION ALL SELECT 'Returns', COUNT(*) FROM stg.Returns;
 
-/* One analytical row per completed order */
-SELECT order_id, COUNT(*) AS analytical_rows
+/* The profitability view is at order-product-line grain. */
+SELECT order_id, product_id, COUNT(*) AS analytical_rows
 FROM analytics.vw_OrderProfitability
-GROUP BY order_id HAVING COUNT(*) <> 1;
+GROUP BY order_id, product_id
+HAVING COUNT(*) <> 1;
+
+/* Multi-line orders are valid. Shipping and approved refunds are allocated
+   across lines, so order-level totals should reconcile without duplication. */
+SELECT order_id,
+       MAX(shipping_cost) AS max_line_shipping,
+       SUM(shipping_cost) AS allocated_shipping,
+       MAX(refund_value) AS max_line_refund,
+       SUM(refund_value) AS allocated_refund
+FROM analytics.vw_OrderProfitability
+GROUP BY order_id
+HAVING ABS(SUM(shipping_cost) - MAX(shipping_cost)) < 0
+    OR ABS(SUM(refund_value) - MAX(refund_value)) < 0;
 
 /* Financial identities */
-SELECT TOP (20) order_id, gross_revenue, discount_value, sales_after_discount,
-       refund_value, net_revenue, gross_profit
+SELECT TOP (20) order_id, product_id, gross_revenue, discount_value, sales_after_discount,
+       refund_value, net_revenue, product_cost, shipping_cost, gross_profit
 FROM analytics.vw_OrderProfitability
 WHERE ABS(sales_after_discount-(gross_revenue-discount_value)) > 0.01
    OR ABS(net_revenue-(sales_after_discount-refund_value)) > 0.01
+   OR ABS(gross_profit-(net_revenue-product_cost-shipping_cost)) > 0.01
    OR refund_value > sales_after_discount;
 
 /* Economic anomalies */
