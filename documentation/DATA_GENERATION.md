@@ -1,56 +1,44 @@
-# ProfitTrace | Data Source & Scenario Design
+# ProfitTrace | V2 Data Generation Notes
 
-## Why synthetic data?
+ProfitTrace V2 uses a deterministic synthetic e-commerce dataset designed for portfolio analysis. The objective is not to imitate a real company's records, but to create a believable operating environment in which commercial trade-offs can be investigated.
 
-ProfitTrace is a portfolio project, so the dataset is synthetic. The source workbooks were generated as a deterministic portfolio dataset and are supplied as Excel files so the project can demonstrate a realistic Excel → SQL Server → Power BI workflow.
+## Source Layer
 
-## Source workbooks
+| Entity | Records | Grain |
+|---|---:|---|
+| Customers | 1,000 | Customer |
+| Products | 300 | Product |
+| Orders | 15,000 | Order-product transaction |
+| Shipping | 15,000 | Order shipment |
+| Returns | 1,155 | Return event |
 
-| Workbook | Grain | Rows |
-|---|---|---:|
-| `Customers.xlsx` | One row per customer | 800 |
-| `Products.xlsx` | One row per product | 240 |
-| `Orders.xlsx` | One row per order-product line | 11,000 |
-| `Shipping.xlsx` | One row per order | 11,000 |
-| `Returns.xlsx` | One row per return event | 785 |
+The primary source representation is Excel. CSV copies are provided for SQL Server environments where the Excel OLE DB provider is unavailable.
 
-## Intended analytical signals
+## Behavioral Design
 
-The data is deliberately designed to contain business patterns that can be investigated rather than merely random numbers:
+The dataset contains structured signals rather than independent random values:
 
-- Discount intensity varies by order and product category.
-- Fashion and Electronics receive additional promotional pressure.
-- Shipping performance varies across orders, with patterned late deliveries.
-- Returns are concentrated around higher-discount, category and late-delivery scenarios.
-- Return reasons are varied enough for operational analysis.
-- Customers have different segments, regions and acquisition channels.
-- Product economics vary through unit cost and list-price differences.
+- Customer segment influences product price mix and discount behavior.
+- Fashion products have stronger Size/Fit return behavior.
+- Late deliveries have elevated return propensity.
+- Higher discount intensity can compress margin.
+- Shipping method changes both delivery speed and cost.
+- Acquisition channels can be compared using customer economics rather than volume alone.
 
-These patterns are **scenario design choices**, not real-company findings. The final dashboard should calculate the relationships from the data rather than hard-code conclusions.
+These patterns are intentionally designed for analysis. They are not claims about a real business.
 
-## Controlled data-quality issues
+## Controlled Quality Issues
 
-A small number of source values intentionally contain formatting or domain inconsistencies so that the SQL validation and cleaning stages have a genuine analytical purpose. Examples include inconsistent casing, leading or trailing whitespace, a carrier with inconsistent spacing, and a discount value outside the intended range.
+The raw layer includes a small number of deliberate issues:
 
-The raw Excel files should remain unchanged. Data-quality correction belongs in SQL Server so the project demonstrates a traceable staging-to-analytics workflow.
+- inconsistent casing in customer segment and acquisition channel
+- leading/trailing whitespace in selected region, product and carrier values
+- one discount above the intended 0% to 30% business range
+- one inconsistent order-status value
+- one inconsistent return-reason value
 
-## Recommended workflow
+The SQL validation layer should surface these issues. The cleaning layer standardizes them while preserving the raw staging tables.
 
-1. Open the five Excel source workbooks.
-2. Run `sql/01_Database_Setup.sql` in SSMS.
-3. Run `sql/02_Import_Raw_Data.sql` to create the staging tables.
-4. Use the SQL Server Import and Export Wizard to load each Excel workbook into its matching `stg` table.
-5. Run `sql/03_Data_Validation.sql` and review the intentional source issues.
-6. Run `sql/04_Data_Cleaning.sql` to create the analytical views.
-7. Run `sql/05_Business_Analysis.sql` for business analysis outputs.
-8. Run `sql/06_Post_Load_QA.sql` and confirm the source and analytical totals reconcile.
-9. Run `sql/07_Final_Portfolio_QA.sql` before finalizing the Power BI report.
-10. Build the Power BI model and dashboard from the validated analytical layer.
+## Reproducibility
 
-## Grain and allocation note
-
-`analytics.vw_OrderProfitability` is maintained at order-product-line grain. Shipping cost and approved refunds are sourced at order level. When an order contains multiple product lines, those order-level amounts are allocated across lines using each line's share of sales after discount. This prevents shipping and refund values from being multiplied when line-level data is aggregated in Power BI.
-
-## Methodology note
-
-The dataset is synthetic and intended for portfolio and learning purposes. Relationships observed in the final analysis should be described as associations in the data, not as causal proof.
+The V2 source package is deterministic and was generated with a fixed random seed. This keeps the source stable while the SQL and Power BI layers are being built and reviewed.
