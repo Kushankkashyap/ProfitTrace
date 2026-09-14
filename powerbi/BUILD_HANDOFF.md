@@ -1,17 +1,19 @@
-# ProfitTrace — Power BI Build Handoff
+# ProfitTrace | Power BI Build Handoff
 
-The SQL and documentation foundation is complete. The remaining execution is the Power BI build.
+The Excel and SQL foundation is ready. The remaining execution is the Power BI build after the SQL load and QA gates pass.
 
 ## 1. Prepare the SQL layer
 
-Run in SQL Server using the documented order:
+Run in SQL Server using this order:
 
 1. `sql/01_Database_Setup.sql`
-2. `sql/00_Generate_Synthetic_Data.sql`
-3. `sql/04_Data_Validation.sql`
-4. `sql/05_Data_Cleaning.sql`
-5. `sql/07_Post_Load_QA.sql`
-6. `sql/06_Business_Analysis.sql`
+2. `sql/02_Import_Raw_Data.sql`
+3. Import the five Excel workbooks into the matching `stg` tables
+4. `sql/03_Data_Validation.sql`
+5. `sql/04_Data_Cleaning.sql`
+6. `sql/05_Business_Analysis.sql`
+7. `sql/06_Post_Load_QA.sql`
+8. `sql/07_Final_Portfolio_QA.sql`
 
 Do not proceed if validation or reconciliation gates show unexpected failures.
 
@@ -19,9 +21,9 @@ Do not proceed if validation or reconciliation gates show unexpected failures.
 
 Import:
 
-- `analytics.vw_OrderProfitability` → rename to `FactProfitability`
-- Distinct customer attributes → `DimCustomer`
-- Distinct product attributes → `DimProduct`
+- `analytics.vw_OrderProfitability` and rename it to `FactProfitability`
+- Distinct customer attributes from the SQL source into `DimCustomer`
+- Distinct product attributes from the SQL source into `DimProduct`
 - Create `DimDate` using the DAX definition in `DAX_MEASURES.md`
 
 Relationships:
@@ -38,7 +40,7 @@ Create the measures in `powerbi/DAX_MEASURES.md` before building visuals. Use th
 
 ## 4. Build four pages
 
-### Page 1 — Executive Profit Command Center
+### Page 1 | Executive Profit Command Center
 
 Tell the story: **Where is the money made, and where is it leaking?**
 
@@ -46,13 +48,13 @@ KPI cards: Gross Revenue, Net Revenue, Gross Profit, Profit Margin %, Orders, Re
 
 Main visuals: monthly Net Revenue vs Gross Profit, category profit, regional margin, profitability leakage waterfall, management alert table.
 
-### Page 2 — Profitability Deep Dive
+### Page 2 | Profitability Deep Dive
 
-Tell the story: **Which products/categories convert sales into healthy profit?**
+Tell the story: **Which products and categories convert sales into healthy profit?**
 
 Use category → subcategory → product drilldown, Revenue vs Profit scatter, Discount % vs Margin % scatter, and top/bottom product profitability.
 
-### Page 3 — Returns & Operational Leakage
+### Page 3 | Returns & Operational Leakage
 
 Tell the story: **Where do returns and operational friction destroy economics?**
 
@@ -60,9 +62,9 @@ KPI cards: Returned Orders, Return Rate %, Refund Value, Late Delivery %.
 
 Use return reason/refund analysis, category × return reason, late vs on-time return comparison, monthly refunds, and regional delivery performance.
 
-State association—not causation—when interpreting late delivery vs returns.
+State association, not causation, when interpreting late delivery versus returns.
 
-### Page 4 — Customer & Commercial Intelligence
+### Page 4 | Customer & Commercial Intelligence
 
 Tell the story: **Which customer groups create durable profit?**
 
@@ -91,7 +93,7 @@ Before screenshots:
 - Slicers affect intended visuals.
 - Drilldown works.
 - Tooltips are useful.
-- No blank/placeholder visuals remain.
+- No blank or placeholder visuals remain.
 - No unexplained many-to-many relationships exist.
 - All KPI cards use measures, not raw columns.
 
