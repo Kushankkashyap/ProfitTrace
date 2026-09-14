@@ -56,10 +56,10 @@ ProfitTrace/
 │   └── README.md
 ├── sql/
 │   ├── 01_Database_Setup.sql
-│   ├── 02_Import_Raw_Data.sql
-│   ├── 03_Data_Validation.sql
-│   ├── 04_Data_Cleaning.sql
-│   ├── 05_Analytics_Views.sql
+│   ├── 02_Table_Creation.sql
+│   ├── 03_Load_Raw_Data.sql
+│   ├── 04_Data_Validation.sql
+│   ├── 05_Data_Cleaning.sql
 │   ├── 06_Business_Analysis.sql
 │   └── 07_Post_Load_QA.sql
 ├── documentation/
@@ -121,7 +121,7 @@ Customer-level analysis covering one-time versus repeat behavior, average order 
 
 ## 🗄️ SQL Analysis
 
-SQL Server is used for the core data preparation and analytical workflow. The project includes separate stages for loading source data, validating quality, cleaning and transforming the data, creating analytical views, and producing business analysis outputs.
+SQL Server is used for the core data preparation and analytical workflow. The project includes separate stages for loading source data, validating quality, cleaning and transforming the data, and producing business analysis outputs.
 
 The SQL work demonstrates practical analyst skills including:
 
@@ -138,17 +138,17 @@ The SQL work demonstrates practical analyst skills including:
 ### Recommended Build Order
 
 ```text
-1. Database setup
-2. Import Excel source data
-3. Data validation
-4. Data cleaning and transformation
-5. Analytical views
-6. Business analysis
-7. Post-load QA
+1. 01_Database_Setup.sql
+2. 02_Table_Creation.sql
+3. 03_Load_Raw_Data.sql
+4. 04_Data_Validation.sql
+5. 05_Data_Cleaning.sql
+6. 06_Business_Analysis.sql
+7. 07_Post_Load_QA.sql
 8. Power BI model and dashboard
 ```
 
-The SQL layer is designed to keep business logic close to the data while leaving presentation and interactive analysis to Power BI.
+The SQL layer keeps the main business logic close to the data while Power BI handles modeling, interactive analysis and presentation.
 
 ## 📌 Data & Methodology
 
@@ -156,21 +156,25 @@ The project uses portfolio data designed to represent a realistic e-commerce ope
 
 The dataset is synthetic and is intended for portfolio and learning purposes. Any patterns or findings shown in the dashboard should be treated as analytical examples rather than claims about a real company.
 
+The source workbooks include a small number of controlled quality issues, such as inconsistent text formatting, so the SQL cleaning stage has a genuine purpose rather than simply passing clean data directly into Power BI.
+
 The project maintains a clear distinction between **association and causation**. For example, a relationship between late deliveries and returns can be investigated in the data, but the analysis does not by itself prove that late delivery caused a return.
 
 ## 🚧 Project Status
 
-**Foundation and analytics design complete. Power BI implementation in progress.**
+**Excel source layer and SQL analytics foundation are being finalized. Power BI implementation follows the SQL QA stage.**
 
 - [x] Business case and analytical scope
 - [x] Repository structure
 - [x] Data model and business definitions
+- [x] Excel source dataset design
 - [x] SQL workflow design
+- [x] Data validation and cleaning logic
 - [x] Power BI semantic-model specification
 - [x] DAX measure plan
 - [x] Four-page dashboard blueprint
-- [ ] Final Excel source files
-- [ ] SQL Server import and cleaning workflow
+- [ ] Final Excel files added to project workspace
+- [ ] SQL Server import and validation run
 - [ ] Post-load QA using final source data
 - [ ] Power BI star schema implementation
 - [ ] Dashboard pages and interactions
