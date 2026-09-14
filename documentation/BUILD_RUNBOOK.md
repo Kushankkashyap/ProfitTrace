@@ -25,7 +25,7 @@ Do not perform the main cleaning work in Excel. Treat these workbooks as the raw
 Open **SQL Server Management Studio (SSMS)** and run:
 
 1. `sql/01_Database_Setup.sql`
-2. `sql/02_Table_Creation.sql`
+2. `sql/02_Import_Raw_Data.sql`
 
 This creates the `ProfitTrace` database, schemas and staging tables.
 
@@ -41,7 +41,7 @@ Use the SQL Server **Import and Export Wizard** to load each workbook into its m
 | `Returns.xlsx` | `stg.Returns` |
 | `Shipping.xlsx` | `stg.Shipping` |
 
-Run `sql/03_Load_Raw_Data.sql` after the import to confirm row counts.
+After the import, run `sql/03_Data_Validation.sql` to confirm row counts and inspect source quality.
 
 If the local SQL Server installation does not provide an Excel data provider, save the same workbook as CSV and use the flat-file import option. The downstream SQL workflow does not change.
 
@@ -49,7 +49,7 @@ If the local SQL Server installation does not provide an Excel data provider, sa
 
 Run:
 
-`sql/04_Data_Validation.sql`
+`sql/03_Data_Validation.sql`
 
 Review the output for:
 
@@ -72,18 +72,16 @@ If structural or referential checks fail, stop and fix the source/import issue b
 
 Run:
 
-`sql/05_Data_Cleaning.sql`
+`sql/04_Data_Cleaning.sql`
 
 The cleaning layer keeps the raw staging data unchanged and creates analytical views that standardize text and apply business rules. This includes:
 
-- Trimming whitespace
-- Standardizing category and segment labels
-- Standardizing acquisition channels and carriers
-- Normalizing order and return statuses
-- Applying a controlled discount ceiling
-- Aggregating approved refunds at order level
+- Standardizing order status labels
 - Combining product, customer, shipping and return information
+- Aggregating approved refunds at order level
+- Allocating order-level refunds and shipping costs across product lines where required
 - Calculating revenue, discount, refund, cost and profit fields
+- Creating delivery and return indicators
 
 The main analytical view is:
 
@@ -94,29 +92,13 @@ Supporting views:
 - `analytics.vw_ReturnsOperations`
 - `analytics.vw_CustomerProfitability`
 
-## 6. Run post-load QA
+The main profitability view is intentionally maintained at order-product-line grain so product-level analysis remains possible without duplicating order-level costs.
+
+## 6. Run business analysis queries
 
 Run:
 
-`sql/07_Post_Load_QA.sql`
-
-Confirm that:
-
-- Source relationships reconcile.
-- Each completed order appears once in `vw_OrderProfitability`.
-- Revenue, discount and net revenue identities reconcile.
-- Refunds do not exceed customer-paid sales.
-- No cleaned economic fields contain invalid values.
-- Delivery dates are logically ordered.
-- Final KPI totals are non-null and sensible.
-
-Do not move to Power BI if these checks expose unexplained errors.
-
-## 7. Run business analysis queries
-
-Run:
-
-`sql/06_Business_Analysis.sql`
+`sql/05_Business_Analysis.sql`
 
 This produces analysis for:
 
@@ -132,6 +114,25 @@ This produces analysis for:
 - Customer profitability ranking
 
 These outputs are useful for validating the business story before building the dashboard.
+
+## 7. Run post-load QA
+
+Run:
+
+`sql/06_Post_Load_QA.sql`
+
+Confirm that:
+
+- Source relationships reconcile.
+- Each `order_id + product_id` combination appears once in `vw_OrderProfitability`.
+- Allocated shipping and refund totals reconcile to their order-level source amounts.
+- Revenue, discount, net revenue and gross profit identities reconcile.
+- Refunds do not exceed customer-paid sales.
+- No cleaned economic fields contain invalid values.
+- Delivery dates are logically ordered.
+- Final KPI totals are non-null and sensible.
+
+Do not move to Power BI if these checks expose unexplained errors.
 
 ## 8. Build the Power BI model
 
