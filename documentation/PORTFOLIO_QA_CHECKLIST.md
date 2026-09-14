@@ -1,18 +1,19 @@
-# ProfitTrace — Final Portfolio QA Checklist
+# ProfitTrace | Final Portfolio QA Checklist
 
 Use this checklist after the Power BI build is complete and before presenting the repository to recruiters.
 
 ## Technical
 
-- [ ] SQL scripts execute in the documented order: `01 → 00 → 04 → 05 → 07 → 06`.
-- [ ] Validation returns zero unexpected integrity/domain errors.
+- [ ] SQL scripts execute in the documented order: `01 → 02 → Excel import → 03 → 04 → 05 → 06 → 07`.
+- [ ] Validation returns zero unexpected integrity/domain errors. The intentionally invalid source discount is visible in raw validation and corrected by the cleaning rule.
 - [ ] Analytical views are created successfully.
 - [ ] Revenue, discount, refund, cost and profit reconcile to the documented identities.
-- [ ] `FactProfitability` contains one analytical row per order in the current generated dataset.
+- [ ] `FactProfitability` has the expected order-product-line grain with no duplicate `order_id + product_id` combinations.
+- [ ] Order-level shipping and approved refunds are pre-aggregated before reaching the profitability fact.
 - [ ] `DimDate`, `DimCustomer` and `DimProduct` relationships are 1:* and single-direction.
 - [ ] All KPI values are measure-driven; no hard-coded dashboard totals.
 - [ ] No unexplained many-to-many relationship exists.
-- [ ] No raw order-level Returns/Shipping join multiplies fact rows.
+- [ ] No raw one-to-many Returns/Shipping join multiplies fact rows.
 
 ## Analytical
 
@@ -33,7 +34,7 @@ Use this checklist after the Power BI build is complete and before presenting th
 - [ ] Returns page connects refunds, reasons and delivery performance.
 - [ ] Customer page supports commercial segmentation.
 - [ ] Slicers behave correctly across relevant visuals.
-- [ ] Cross-filtering/drilldown interactions work as intended.
+- [ ] Cross-filtering and drilldown interactions work as intended.
 - [ ] Number formats are consistent.
 - [ ] Titles use business language.
 - [ ] No temporary visuals, default titles or editing artifacts remain.
@@ -43,9 +44,9 @@ Use this checklist after the Power BI build is complete and before presenting th
 ## GitHub
 
 - [ ] README accurately describes the finished project and actual dashboard.
+- [ ] SQL and documentation filenames match the actual repository.
 - [ ] Screenshots match the final PBIX.
-- [ ] SQL and documentation are organized into folders.
-- [ ] PBIX is referenced/attached appropriately if size/access permits.
+- [ ] PBIX is referenced or attached appropriately if size/access permits.
 - [ ] No credentials, local machine paths or secrets are committed.
 - [ ] No false claims about real-company results are present.
 - [ ] Final repository structure is clean and recruiter-readable.
