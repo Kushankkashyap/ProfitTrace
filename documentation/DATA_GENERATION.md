@@ -1,6 +1,6 @@
-# ProfitTrace | V2 Data Generation Notes
+# ProfitTrace | Data Generation Notes
 
-ProfitTrace V2 uses a deterministic synthetic e-commerce dataset designed for portfolio analysis. The objective is not to imitate a real company's records, but to create a believable operating environment in which commercial trade-offs can be investigated.
+ProfitTrace uses a deterministic synthetic e-commerce dataset designed for portfolio analysis. The objective is not to imitate a real company's records, but to create a believable operating environment in which commercial trade-offs can be investigated.
 
 ## Source Layer
 
@@ -41,4 +41,4 @@ The SQL validation layer should surface these issues. The cleaning layer standar
 
 ## Reproducibility
 
-The V2 source package is deterministic and was generated with a fixed random seed. This keeps the source stable while the SQL and Power BI layers are being built and reviewed.
+The source package is deterministic and was generated with a fixed random seed. This keeps the source stable while the SQL and Power BI layers are being built and reviewed.
