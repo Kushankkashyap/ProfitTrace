@@ -74,16 +74,30 @@ FROM Allocated;
 GO
 
 CREATE OR ALTER VIEW analytics.vw_ReturnsOperations AS
-SELECT r.return_id,r.order_id,r.return_date,
-       CASE LOWER(LTRIM(RTRIM(r.return_reason)))
-            WHEN 'changed mind' THEN 'Changed Mind' WHEN 'late delivery' THEN 'Late Delivery'
-            WHEN 'size/fit' THEN 'Size/Fit' WHEN 'not as expected' THEN 'Not as Expected'
-            WHEN 'wrong item' THEN 'Wrong Item' WHEN 'damaged' THEN 'Damaged'
-            ELSE LTRIM(RTRIM(r.return_reason)) END AS return_reason,
-       CASE WHEN LOWER(LTRIM(RTRIM(r.return_status)))='approved' THEN 'Approved' ELSE 'Rejected' END AS return_status,
-       r.refund_amount,r.return_shipping_cost,r.restocking_cost,
+WITH CleanReturns AS
+(
+    SELECT r.return_id,r.order_id,r.return_date,
+           CASE LOWER(LTRIM(RTRIM(r.return_reason)))
+                WHEN 'changed mind' THEN 'Changed Mind' WHEN 'late delivery' THEN 'Late Delivery'
+                WHEN 'size/fit' THEN 'Size/Fit' WHEN 'not as expected' THEN 'Not as Expected'
+                WHEN 'wrong item' THEN 'Wrong Item' WHEN 'damaged' THEN 'Damaged'
+                ELSE LTRIM(RTRIM(r.return_reason)) END AS return_reason,
+           CASE WHEN LOWER(LTRIM(RTRIM(r.return_status)))='approved' THEN 'Approved' ELSE 'Rejected' END AS return_status,
+           r.refund_amount,r.return_shipping_cost,r.restocking_cost
+    FROM stg.Returns r
+),
+OrderCustomers AS
+(
+    SELECT DISTINCT o.order_id,o.customer_id,o.order_date,c.customer_name,c.customer_segment,
+           c.region,c.state,c.city,c.acquisition_channel
+    FROM stg.Orders o JOIN stg.Customers c ON c.customer_id=o.customer_id
+)
+SELECT r.return_id,r.order_id,r.return_date,o.order_date,o.customer_id,o.customer_name,o.customer_segment,
+       o.region,o.state,o.city,o.acquisition_channel,
+       r.return_reason,r.return_status,r.refund_amount,r.return_shipping_cost,r.restocking_cost,
        r.refund_amount+r.return_shipping_cost+r.restocking_cost AS total_return_cost
-FROM stg.Returns r;
+FROM CleanReturns r
+JOIN OrderCustomers o ON o.order_id=r.order_id;
 GO
 
 CREATE OR ALTER VIEW analytics.vw_CustomerProfitability AS
