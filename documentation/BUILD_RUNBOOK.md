@@ -1,10 +1,10 @@
-# ProfitTrace | V2 Build Runbook
+# ProfitTrace | Build Runbook
 
 ## Phase 1: Source
 
-1. Keep the V2 Excel workbooks in `data/` locally.
+1. Keep the Excel workbooks in `data/` locally as the primary source layer.
 2. Keep the CSV copies available as the SQL import fallback.
-3. Confirm row counts before loading.
+3. Confirm the expected row counts before loading.
 
 ## Phase 2: SQL Server
 
@@ -37,9 +37,15 @@ Then run:
 
 Do not start Power BI until the final QA checks reconcile.
 
+### Excel import fallback
+
+If the SQL Server Import and Export Wizard cannot read `.xlsx` because the Excel OLE DB provider is unavailable or has a bitness mismatch, use the CSV copies instead. The analytical workflow and staging schema remain unchanged.
+
 ## Phase 3: Power BI
 
 Load `analytics.vw_OrderProfitability` as `FactProfitability`.
+
+Load `analytics.vw_ReturnsOperations` as `FactReturns` for return-event and operational leakage analysis.
 
 Create:
 
@@ -67,4 +73,4 @@ Capture clean screenshots showing:
 - return and delivery analysis
 - customer/channel economics
 
-Document the strongest business findings and recommendations. Do not invent findings before the SQL/Power BI results exist.
+Document the strongest business findings and recommendations only after SQL and Power BI results exist. Do not invent findings in advance.
