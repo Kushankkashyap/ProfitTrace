@@ -1,4 +1,4 @@
-# ProfitTrace | Source Data V2
+# ProfitTrace | Source Data
 
 ProfitTrace starts with a connected set of e-commerce operational extracts. Excel is the primary source representation. CSV copies are included as a practical SQL Server import fallback when the local environment cannot read `.xlsx` files directly.
 
@@ -25,7 +25,7 @@ Returns   → stg.Returns
 
 ## Why the Data Is More Than Random
 
-The V2 dataset is synthetic, but the records are behaviorally structured to create realistic analytical trade-offs:
+The dataset is synthetic, but the records are behaviorally structured to create realistic analytical trade-offs:
 
 - Fashion carries higher discount intensity and a stronger Size/Fit return pattern.
 - Late delivery increases the probability of a return event.
