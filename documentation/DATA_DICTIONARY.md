@@ -1,6 +1,6 @@
-# ProfitTrace — Data Dictionary
+# ProfitTrace | Data Dictionary
 
-The project uses five analytical entities. The final CSV files will follow these fields and business meanings.
+The project uses five raw operational entities. The primary source is Excel, and the raw workbooks are loaded into SQL Server staging tables before cleaning.
 
 ## Customers
 
@@ -11,7 +11,7 @@ The project uses five analytical entities. The final CSV files will follow these
 | segment | VARCHAR | Consumer, Small Business, Enterprise |
 | region | VARCHAR | Sales region |
 | signup_date | DATE | Customer acquisition date |
-| acquisition_channel | VARCHAR | Organic, Paid Search, Social, Referral, Email |
+| acquisition_channel | VARCHAR | Organic, Paid Search, Paid Social, Marketplace, Referral, Email |
 
 ## Products
 
@@ -28,25 +28,25 @@ The project uses five analytical entities. The final CSV files will follow these
 
 | Column | Type | Description |
 |---|---|---|
-| order_id | INT | Unique order identifier |
+| order_id | INT | Unique order identifier in the current source dataset |
 | order_date | DATE | Date order was placed |
 | customer_id | INT | Customer placing the order |
 | product_id | INT | Purchased product |
 | quantity | INT | Units purchased |
 | unit_price | DECIMAL | Actual selling price per unit before discount |
-| discount_pct | DECIMAL | Discount applied to the line |
-| order_status | VARCHAR | Delivered, Cancelled, Pending |
+| discount_pct | DECIMAL | Discount applied to the line; the cleaned analytical view enforces a 0%-30% business ceiling |
+| order_status | VARCHAR | Completed or Cancelled in the source data |
 
 ## Returns
 
 | Column | Type | Description |
 |---|---|---|
-| return_id | INT | Unique return identifier |
+| return_id | INT | Unique return event identifier |
 | order_id | INT | Related order |
 | return_date | DATE | Return/refund date |
-| return_reason | VARCHAR | Customer/operational return reason |
+| return_reason | VARCHAR | Customer or operational return reason |
 | refund_value | DECIMAL | Amount refunded |
-| return_status | VARCHAR | Approved, Rejected |
+| return_status | VARCHAR | Approved, Rejected or Pending |
 
 ## Shipping
 
@@ -60,10 +60,16 @@ The project uses five analytical entities. The final CSV files will follow these
 | shipping_cost | DECIMAL | Cost incurred to ship the order |
 | carrier | VARCHAR | Synthetic carrier name |
 
+## Analytical View
+
+`analytics.vw_OrderProfitability` is the main Power BI fact source. It is designed at order-product-line grain and pre-aggregates order-level returns and shipping before allocating those values across lines when necessary.
+
+The cleaned view also standardizes text fields, normalizes order status labels, and records when a source discount was corrected by the business-rule ceiling.
+
 ## Modeling Notes
 
-- `Orders` is the primary transaction fact at order-line grain.
-- `Customers` and `Products` are dimensions.
-- `Returns` and `Shipping` are operational event tables related through `order_id`.
-- Order-level metrics must not be summed after joining multiple one-to-many event tables without pre-aggregation.
-- Power BI should use a star-schema-friendly semantic model and explicit DAX measures.
+- `Orders` is the primary sales transaction source.
+- `Customers` and `Products` are dimensions in the Power BI star schema.
+- `Returns` and `Shipping` are operational event sources related through `order_id`.
+- Raw one-to-many event tables should not be joined directly to the sales fact without pre-aggregation.
+- Power BI should use explicit DAX measures rather than hard-coded KPI values.
