@@ -32,6 +32,7 @@ SELECT o.order_id, o.order_date, o.customer_id, o.product_id, o.quantity,
        CAST(o.quantity * o.unit_price AS DECIMAL(14,2)) AS gross_revenue,
        CAST(o.quantity * o.unit_price * o.discount_pct AS DECIMAL(14,2)) AS discount_value,
        CAST(o.quantity * o.unit_price * (1 - o.discount_pct) AS DECIMAL(14,2)) AS sales_after_discount,
+       CAST(o.quantity * o.unit_price * (1 - o.discount_pct) - COALESCE(r.refund_value,0) AS DECIMAL(14,2)) AS net_revenue,
        CAST(COALESCE(r.refund_value,0) AS DECIMAL(14,2)) AS refund_value,
        CAST(o.quantity * p.unit_cost AS DECIMAL(14,2)) AS product_cost,
        CAST(COALESCE(s.shipping_cost,0) AS DECIMAL(14,2)) AS shipping_cost,
@@ -41,7 +42,10 @@ SELECT o.order_id, o.order_date, o.customer_id, o.product_id, o.quantity,
             - COALESCE(s.shipping_cost,0) AS DECIMAL(14,2)) AS gross_profit,
        CASE WHEN s.delivery_date IS NOT NULL AND s.delivery_date > s.promised_date THEN 1 ELSE 0 END AS is_late_delivery,
        CASE WHEN COALESCE(r.return_count,0) > 0 THEN 1 ELSE 0 END AS is_returned,
-       CASE WHEN s.delivery_date IS NOT NULL THEN 1 ELSE 0 END AS is_delivered
+       CASE WHEN s.delivery_date IS NOT NULL THEN 1 ELSE 0 END AS is_delivered,
+       CASE WHEN s.delivery_date IS NULL THEN 'Not Delivered'
+            WHEN s.delivery_date > s.promised_date THEN 'Late'
+            ELSE 'On Time' END AS delivery_status
 FROM stg.Orders o
 JOIN stg.Products p ON p.product_id=o.product_id
 JOIN stg.Customers c ON c.customer_id=o.customer_id
@@ -68,8 +72,9 @@ SELECT customer_id, customer_segment, region, acquisition_channel,
        SUM(gross_revenue) AS gross_revenue,
        SUM(discount_value) AS discount_value,
        SUM(refund_value) AS refund_value,
+       SUM(net_revenue) AS net_revenue,
        SUM(gross_profit) AS gross_profit,
-       CAST(SUM(gross_profit) / NULLIF(SUM(sales_after_discount - refund_value),0) AS DECIMAL(10,4)) AS profit_margin
+       CAST(SUM(gross_profit) / NULLIF(SUM(net_revenue),0) AS DECIMAL(10,4)) AS profit_margin
 FROM analytics.vw_OrderProfitability
 GROUP BY customer_id, customer_segment, region, acquisition_channel;
 GO
