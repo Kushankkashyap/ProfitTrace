@@ -41,7 +41,7 @@ Use single-direction filtering from dimensions to facts. Do not create a direct 
 
 ## 3. Create measures
 
-Create the measures in `powerbi/DAX_MEASURES.md` before building visuals. Use the `m_` naming convention and apply the documented number formats.
+Create the measures in `powerbi/DAX_MEASURES.md` before building visuals. Use clean business-facing measure names. Organize measures in a dedicated Measures table or display folder rather than adding a technical prefix to every measure.
 
 ## 4. Build four pages
 
