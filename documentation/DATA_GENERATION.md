@@ -20,7 +20,7 @@ The dataset contains structured signals rather than independent random values:
 
 - Customer segment influences product price mix and discount behavior.
 - Fashion products have stronger Size/Fit return behavior.
-- Late deliveries have elevated return propensity.
+- Late delivery is associated with higher return activity.
 - Higher discount intensity can compress margin.
 - Shipping method changes both delivery speed and cost.
 - Acquisition channels can be compared using customer economics rather than volume alone.
@@ -31,14 +31,21 @@ These patterns are intentionally designed for analysis. They are not claims abou
 
 The raw layer includes a small number of deliberate issues:
 
-- inconsistent casing in customer segment and acquisition channel
-- leading/trailing whitespace in selected region, product and carrier values
+- one customer segment with inconsistent casing
+- one customer region with leading/trailing whitespace
+- one acquisition channel with inconsistent casing
+- one product category with inconsistent casing
+- one product subcategory with leading/trailing whitespace
+- one shipping carrier with inconsistent casing/whitespace
+- one return reason with inconsistent casing
 - one discount above the intended 0% to 30% business range
-- one inconsistent order-status value
-- one inconsistent return-reason value
+- one order-status value with extra whitespace/casing variation
+- a small subset of shipping records with blank dispatch/promise/delivery dates
 
-The SQL validation layer should surface these issues. The cleaning layer standardizes them while preserving the raw staging tables.
+The SQL validation layer surfaces these issues. The cleaning layer standardizes them while preserving the raw staging tables.
+
+The dataset also intentionally contains one order whose source status is marked as delivered even though its delivery date is missing. The analytical layer therefore uses the explicit `is_delivered` flag for realized-order scope rather than relying only on the raw text status.
 
 ## Reproducibility
 
-The source package is deterministic and was generated with a fixed random seed. This keeps the source stable while the SQL and Power BI layers are being built and reviewed.
+The source package is deterministic and was generated with a fixed random seed of **42**. This keeps the source stable while the SQL and Power BI layers are being built and reviewed.
