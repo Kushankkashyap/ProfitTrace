@@ -1,75 +1,112 @@
 # ProfitTrace | Data Dictionary
 
-The project uses five raw operational entities. The primary source is Excel, and the raw workbooks are loaded into SQL Server staging tables before cleaning.
+The project uses five raw operational entities. Excel is the primary source representation, while CSV copies provide a practical SQL Server import fallback. The SQL staging schema preserves the source grain and applies the final target data types defined in `sql/02_Import_Raw_Data.sql`.
 
 ## Customers
 
-| Column | Type | Description |
+**Grain:** one row per customer.
+
+| Column | SQL Type | Description |
 |---|---|---|
-| customer_id | INT | Unique customer identifier |
-| customer_name | VARCHAR | Synthetic customer name |
-| segment | VARCHAR | Consumer, Small Business, Enterprise |
-| region | VARCHAR | Sales region |
-| signup_date | DATE | Customer acquisition date |
-| acquisition_channel | VARCHAR | Organic, Paid Search, Paid Social, Marketplace, Referral, Email |
+| `customer_id` | `VARCHAR(20)` | Unique customer identifier |
+| `customer_name` | `VARCHAR(100)` | Synthetic customer name |
+| `customer_segment` | `VARCHAR(30)` | Core, Value or Premium segment |
+| `region` | `VARCHAR(50)` | Sales region |
+| `state` | `VARCHAR(60)` | Customer state |
+| `city` | `VARCHAR(60)` | Customer city |
+| `signup_date` | `DATE` | Customer signup/acquisition date |
+| `acquisition_channel` | `VARCHAR(40)` | Customer acquisition source |
 
 ## Products
 
-| Column | Type | Description |
+**Grain:** one row per product.
+
+| Column | SQL Type | Description |
 |---|---|---|
-| product_id | INT | Unique product identifier |
-| product_name | VARCHAR | Synthetic product name |
-| category | VARCHAR | Product category |
-| subcategory | VARCHAR | Product subcategory |
-| unit_cost | DECIMAL | Product cost per unit |
-| list_price | DECIMAL | Standard selling price |
+| `product_id` | `VARCHAR(20)` | Unique product identifier |
+| `product_name` | `VARCHAR(180)` | Synthetic product name |
+| `category` | `VARCHAR(50)` | Product category |
+| `subcategory` | `VARCHAR(80)` | Product subcategory |
+| `brand` | `VARCHAR(60)` | Product brand |
+| `product_tier` | `VARCHAR(30)` | Core, Premium or Specialty tier |
+| `list_price` | `DECIMAL(12,2)` | Standard product selling price |
+| `unit_cost` | `DECIMAL(12,2)` | Product cost per unit |
+| `launch_date` | `DATE` | Product launch date |
+| `rating` | `DECIMAL(3,1)` | Product rating |
 
 ## Orders
 
-| Column | Type | Description |
-|---|---|---|
-| order_id | INT | Unique order identifier in the current source dataset |
-| order_date | DATE | Date order was placed |
-| customer_id | INT | Customer placing the order |
-| product_id | INT | Purchased product |
-| quantity | INT | Units purchased |
-| unit_price | DECIMAL | Actual selling price per unit before discount |
-| discount_pct | DECIMAL | Discount applied to the line; the cleaned analytical view enforces a 0%-30% business ceiling |
-| order_status | VARCHAR | Completed or Cancelled in the source data |
+**Grain:** one row per order-product transaction.
 
-## Returns
-
-| Column | Type | Description |
+| Column | SQL Type | Description |
 |---|---|---|
-| return_id | INT | Unique return event identifier |
-| order_id | INT | Related order |
-| return_date | DATE | Return/refund date |
-| return_reason | VARCHAR | Customer or operational return reason |
-| refund_value | DECIMAL | Amount refunded |
-| return_status | VARCHAR | Approved, Rejected or Pending |
+| `order_id` | `VARCHAR(20)` | Unique order identifier |
+| `order_date` | `DATE` | Date order was placed |
+| `customer_id` | `VARCHAR(20)` | Customer placing the order |
+| `product_id` | `VARCHAR(20)` | Purchased product |
+| `quantity` | `INT` | Units purchased |
+| `unit_price` | `DECIMAL(12,2)` | Selling price per unit before discount |
+| `discount_pct` | `DECIMAL(6,4)` | Line discount percentage; one source value exceeds the business ceiling intentionally |
+| `payment_method` | `VARCHAR(30)` | Payment method |
+| `order_channel` | `VARCHAR(30)` | Purchase channel |
+| `promo_code` | `VARCHAR(30)` | Promotion code or NONE |
+| `order_status` | `VARCHAR(30)` | Raw order lifecycle status |
 
 ## Shipping
 
-| Column | Type | Description |
+**Grain:** one row per order shipment.
+
+| Column | SQL Type | Description |
 |---|---|---|
-| shipment_id | INT | Unique shipment identifier |
-| order_id | INT | Related order |
-| ship_date | DATE | Shipment dispatch date |
-| promised_date | DATE | Promised delivery date |
-| delivery_date | DATE | Actual delivery date |
-| shipping_cost | DECIMAL | Cost incurred to ship the order |
-| carrier | VARCHAR | Synthetic carrier name |
+| `order_id` | `VARCHAR(20)` | Related order identifier and unique shipment key |
+| `ship_date` | `DATE NULL` | Shipment dispatch date; may be blank in the source |
+| `promised_delivery_date` | `DATE NULL` | Promised delivery date; may be blank in the source |
+| `delivery_date` | `DATE NULL` | Actual delivery date; may be blank for undelivered records |
+| `delivery_status` | `VARCHAR(30) NULL` | Shipment/delivery status |
+| `carrier` | `VARCHAR(40) NULL` | Shipping carrier |
+| `shipping_method` | `VARCHAR(30) NULL` | Shipping service/method |
+| `shipping_cost` | `DECIMAL(12,2)` | Shipping cost |
 
-## Analytical View
+## Returns
 
-`analytics.vw_OrderProfitability` is the main Power BI fact source. It is designed at order-product-line grain and pre-aggregates order-level returns and shipping before allocating those values across lines when necessary.
+**Grain:** one row per return event.
 
-The cleaned view also standardizes text fields, normalizes order status labels, and records when a source discount was corrected by the business-rule ceiling.
+| Column | SQL Type | Description |
+|---|---|---|
+| `return_id` | `VARCHAR(20)` | Unique return-event identifier |
+| `order_id` | `VARCHAR(20)` | Related order identifier |
+| `return_date` | `DATE` | Return event date |
+| `return_reason` | `VARCHAR(80)` | Customer or operational return reason |
+| `return_status` | `VARCHAR(20)` | Approved or rejected return status |
+| `refund_amount` | `DECIMAL(12,2)` | Refund amount associated with the return event |
+| `return_shipping_cost` | `DECIMAL(12,2)` | Return-shipping cost |
+| `restocking_cost` | `DECIMAL(12,2)` | Restocking cost |
 
-## Modeling Notes
+## Analytical Views
 
-- `Orders` is the primary sales transaction source.
-- `Customers` and `Products` are dimensions in the Power BI star schema.
-- `Returns` and `Shipping` are operational event sources related through `order_id`.
-- Raw one-to-many event tables should not be joined directly to the sales fact without pre-aggregation.
-- Power BI should use explicit DAX measures rather than hard-coded KPI values.
+### `analytics.vw_OrderProfitability`
+
+**Grain:** one analytical row per order-product line.
+
+This view joins cleaned customer, product, order and shipping data, pre-aggregates approved return amounts by `order_id`, and allocates order-level refund, shipping and return costs across lines. It also exposes business-ready fields such as `discount_pct`, `discount_corrected_flag`, `delivery_status_clean`, `is_delivered`, `is_late_delivery` and `is_returned`.
+
+### `analytics.vw_ReturnsOperations`
+
+**Grain:** one row per return event.
+
+This view standardizes return reasons/statuses and enriches return events with customer, region, segment and acquisition-channel context. The returns source does not contain a reliable product identifier, so this view does not invent product-level return attribution.
+
+### `analytics.vw_CustomerProfitability`
+
+**Grain:** one row per customer.
+
+This view summarizes delivered-order economics and classifies customers as `Repeat` or `One-Time` based on delivered orders.
+
+## Key Modeling Notes
+
+- `Orders` is the sales transaction source.
+- `Shipping` is a one-row-per-order shipment source and is joined to orders by `order_id`.
+- `Returns` is a one-row-per-event source and is pre-aggregated before order-level profitability calculations.
+- `DimCustomer` and `DimProduct` are Power BI dimensions.
+- `FactReturns` remains a separate event fact because the source does not provide a reliable `product_id`.
+- Core revenue/profitability measures in Power BI use `is_delivered = 1` so SQL and Power BI apply the same commercial scope.
