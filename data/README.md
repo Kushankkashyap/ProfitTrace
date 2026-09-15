@@ -1,6 +1,6 @@
 # ProfitTrace | Source Data
 
-ProfitTrace starts with a connected set of e-commerce operational extracts. Excel is the primary source representation. CSV copies are included as a practical SQL Server import fallback when the local environment cannot read `.xlsx` files directly.
+ProfitTrace starts with a connected set of e-commerce operational extracts. Excel is the primary source representation. CSV copies are a practical SQL Server import fallback when the local environment cannot read `.xlsx` files directly.
 
 ## Source Files
 
@@ -11,7 +11,6 @@ ProfitTrace starts with a connected set of e-commerce operational extracts. Exce
 | `Orders.xlsx` / `.csv` | One row per order-product transaction | 15,000 |
 | `Shipping.xlsx` / `.csv` | One row per order shipment | 15,000 |
 | `Returns.xlsx` / `.csv` | One row per return event | 1,155 |
-| `DATASET_SUMMARY.xlsx` | Dataset inventory | 8 |
 
 ## Source-to-SQL Mapping
 
@@ -28,7 +27,7 @@ Returns   → stg.Returns
 The dataset is synthetic, but the records are behaviorally structured to create realistic analytical trade-offs:
 
 - Fashion carries higher discount intensity and a stronger Size/Fit return pattern.
-- Late delivery increases the probability of a return event.
+- Late delivery is associated with higher return activity.
 - Higher discounts can compress product-level margin.
 - Customer segments influence product price mix and discount behavior.
 - Shipping method affects cost and delivery speed.
@@ -43,13 +42,21 @@ A small number of source records contain deliberate quality issues such as:
 - inconsistent text casing
 - leading/trailing whitespace
 - one discount above the intended 0% to 30% range
+- one inconsistent order-status value
 - one inconsistent carrier value
 - one inconsistent return-reason value
+- blank shipment/delivery dates on a subset of shipping records
 
 `03_Data_Validation.sql` is expected to surface these issues. `04_Data_Cleaning.sql` standardizes them for analysis.
 
 ## Import Note
 
-Run `01_Database_Setup.sql`, then `02_Import_Raw_Data.sql`. Load the five files into the matching `stg` tables. If the Excel provider is unavailable on the local machine, use the CSV copies. Do not delete the Excel workbooks because they remain the documented primary source layer.
+Run `01_Database_Setup.sql`, then `02_Import_Raw_Data.sql` to create the typed staging tables.
+
+When the SQL Server Import and Export Wizard can read Excel, the `.xlsx` workbooks can be loaded directly. If the Excel OLE DB provider is unavailable or has a bitness mismatch, use the CSV copies with `Flat File Source` and load the matching `stg` tables.
+
+For the Shipping CSV, some source date fields are blank. If the wizard attempts to coerce those blanks directly to `DATE` and fails, use the documented temporary `dbo.Shipping_Raw` text landing table workflow in `documentation/HANDS_ON_BUILD_GUIDE.md`. The raw text is then converted with `TRY_CONVERT` into the final typed `stg.Shipping` table.
+
+Do not manually change the raw source values to make the import pass. Validation and business-rule cleaning belong in SQL.
 
 The data is synthetic and intended for portfolio and learning purposes only.
