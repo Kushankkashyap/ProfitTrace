@@ -68,6 +68,8 @@ The Returns source does not contain a reliable product identifier, so `FactRetur
 
 **Purpose:** answer where revenue becomes profit and where it leaks.
 
+Core economics on this page use delivered orders for a consistent realized-profit scope.
+
 ### KPI cards
 - Gross Revenue
 - Net Revenue
@@ -80,7 +82,7 @@ The Returns source does not contain a reliable product identifier, so `FactRetur
 1. Monthly Net Revenue and Gross Profit trend.
 2. Gross Profit by Category.
 3. Profit Margin by Region.
-4. Profit Leakage waterfall: Gross Revenue → Discounts → Refunds → Product Cost → Shipping/Return Cost → Gross Profit.
+4. Profit leakage waterfall: Gross Revenue → Discount Value → Refund Value → Product Cost → Shipping Cost → Return Cost → Gross Profit.
 5. High-Revenue / Low-Margin product or category table.
 
 ### Executive callout
@@ -93,7 +95,7 @@ Use a dynamic text/card to highlight the selected category or product with the l
 ### Visuals
 - Category → Subcategory → Product matrix.
 - Net Revenue vs Gross Profit scatter.
-- Discount % vs Profit Margin % scatter, bubble size = Net Revenue.
+- Discount Rate % vs Profit Margin % scatter, bubble size = Net Revenue.
 - Bottom products by margin.
 - Top products by gross profit.
 
@@ -105,6 +107,7 @@ Revenue, discount value, refund value, net revenue, product cost, shipping cost,
 **Purpose:** connect customer returns to operational and financial leakage without overstating causality.
 
 ### KPI cards
+- Delivered Orders
 - Returned Orders
 - Return Rate %
 - Refund Value
@@ -112,10 +115,11 @@ Revenue, discount value, refund value, net revenue, product cost, shipping cost,
 
 ### Visuals
 - Return reason by refund value.
-- Return reason by return-event count.
-- Late vs On-Time return rate.
+- Return reason by event count.
+- Acquisition Channel × Return Reason matrix.
+- Return Rate: Late vs On-time.
 - Monthly refund/return trend.
-- Customer or acquisition-channel return activity table.
+- Region × Late Delivery % table.
 
 ### Analytical guardrail
 Use wording such as **"Late deliveries show a higher return rate"**, not **"Late delivery causes returns"**. Do not claim product/category return attribution because the return source has no reliable product identifier.
@@ -126,7 +130,7 @@ Use wording such as **"Late deliveries show a higher return rate"**, not **"Late
 
 ### KPI cards
 - Customers
-- AOV
+- Orders per Customer
 - Repeat Customer %
 - Profit per Customer
 
