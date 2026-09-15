@@ -10,17 +10,65 @@ All measures use clean business-facing names. No technical prefix is required be
 
 ## Core KPIs
 
+Core commercial economics are measured on delivered orders so Power BI matches the SQL business-analysis and QA scope. The base `Orders` measure remains available for total transaction count.
+
 ```DAX
 Orders = DISTINCTCOUNT(FactProfitability[order_id])
-Delivered Orders = CALCULATE([Orders], FactProfitability[is_delivered] = 1)
-Gross Revenue = SUM(FactProfitability[gross_revenue])
-Discount Value = SUM(FactProfitability[discount_value])
-Net Revenue = SUM(FactProfitability[net_revenue])
-Refund Value = SUM(FactProfitability[refund_amount])
-Product Cost = SUM(FactProfitability[product_cost])
-Shipping Cost = SUM(FactProfitability[shipping_cost])
-Return Cost = SUM(FactProfitability[return_cost])
-Gross Profit = SUM(FactProfitability[gross_profit])
+
+Delivered Orders =
+CALCULATE(
+    [Orders],
+    FactProfitability[is_delivered] = 1
+)
+
+Gross Revenue =
+CALCULATE(
+    SUM(FactProfitability[gross_revenue]),
+    FactProfitability[is_delivered] = 1
+)
+
+Discount Value =
+CALCULATE(
+    SUM(FactProfitability[discount_value]),
+    FactProfitability[is_delivered] = 1
+)
+
+Net Revenue =
+CALCULATE(
+    SUM(FactProfitability[net_revenue]),
+    FactProfitability[is_delivered] = 1
+)
+
+Refund Value =
+CALCULATE(
+    SUM(FactProfitability[refund_amount]),
+    FactProfitability[is_delivered] = 1
+)
+
+Product Cost =
+CALCULATE(
+    SUM(FactProfitability[product_cost]),
+    FactProfitability[is_delivered] = 1
+)
+
+Shipping Cost =
+CALCULATE(
+    SUM(FactProfitability[shipping_cost]),
+    FactProfitability[is_delivered] = 1
+)
+
+Return Cost =
+CALCULATE(
+    SUM(FactProfitability[return_cost]),
+    FactProfitability[is_delivered] = 1
+)
+
+Gross Profit =
+CALCULATE(
+    SUM(FactProfitability[gross_profit]),
+    FactProfitability[is_delivered] = 1
+)
+
 Profit Margin % = DIVIDE([Gross Profit], [Net Revenue])
 AOV = DIVIDE([Net Revenue], [Delivered Orders])
 Discount Rate % = DIVIDE([Discount Value], [Gross Revenue])
@@ -33,30 +81,74 @@ Use the profitability fact for order-level return rate and delivery metrics beca
 
 ```DAX
 Return Events = COUNTROWS(FactReturns)
-Approved Return Events = CALCULATE([Return Events], FactReturns[return_status] = "Approved")
-Returned Orders = CALCULATE([Orders], FactProfitability[is_returned] = 1, FactProfitability[is_delivered] = 1)
+
+Approved Return Events =
+CALCULATE(
+    [Return Events],
+    FactReturns[return_status] = "Approved"
+)
+
+Returned Orders =
+CALCULATE(
+    [Orders],
+    FactProfitability[is_returned] = 1,
+    FactProfitability[is_delivered] = 1
+)
+
 Return Rate % = DIVIDE([Returned Orders], [Delivered Orders])
-Late Orders = CALCULATE([Orders], FactProfitability[is_late_delivery] = 1, FactProfitability[is_delivered] = 1)
+
+Late Orders =
+CALCULATE(
+    [Orders],
+    FactProfitability[is_late_delivery] = 1,
+    FactProfitability[is_delivered] = 1
+)
+
 Late Delivery % = DIVIDE([Late Orders], [Delivered Orders])
-Return Refund Value = CALCULATE(SUM(FactReturns[refund_amount]), FactReturns[return_status] = "Approved")
-Return Event Cost = CALCULATE(SUM(FactReturns[total_return_cost]), FactReturns[return_status] = "Approved")
-Return Leakage % = DIVIDE([Refund Value] + [Return Cost], [Gross Revenue])
+
+Return Refund Value =
+CALCULATE(
+    SUM(FactReturns[refund_amount]),
+    FactReturns[return_status] = "Approved"
+)
+
+Return Event Cost =
+CALCULATE(
+    SUM(FactReturns[total_return_cost]),
+    FactReturns[return_status] = "Approved"
+)
+
+Return Leakage % =
+DIVIDE(
+    [Refund Value] + [Return Cost],
+    [Gross Revenue]
+)
 ```
 
-`Returned Orders` and `Return Rate %` are deliberately based on `FactProfitability`, preventing a multi-event return order from being counted multiple times. `Return Events` is an event count and can legitimately exceed returned orders.
+`Returned Orders` and `Return Rate %` are deliberately based on `FactProfitability`, preventing a multi-event return order from being counted multiple times. `Return Events` is an event count and can legitimately exceed returned orders. `Return Refund Value` and `Return Event Cost` are event-level diagnostics from `FactReturns`.
 
 ## Customer Metrics
 
 ```DAX
-Customers = DISTINCTCOUNT(FactProfitability[customer_id])
+Customers =
+CALCULATE(
+    DISTINCTCOUNT(FactProfitability[customer_id]),
+    FactProfitability[is_delivered] = 1
+)
+
 Orders per Customer = DIVIDE([Delivered Orders], [Customers])
+
 Repeat Customers =
 COUNTROWS(
     FILTER(
         VALUES(FactProfitability[customer_id]),
-        CALCULATE(DISTINCTCOUNT(FactProfitability[order_id]), FactProfitability[is_delivered] = 1) > 1
+        CALCULATE(
+            DISTINCTCOUNT(FactProfitability[order_id]),
+            FactProfitability[is_delivered] = 1
+        ) > 1
     )
 )
+
 Repeat Customer % = DIVIDE([Repeat Customers], [Customers])
 Profit per Customer = DIVIDE([Gross Profit], [Customers])
 ```
@@ -67,7 +159,14 @@ Profit per Customer = DIVIDE([Gross Profit], [Customers])
 Low Margin Revenue =
 CALCULATE(
     [Net Revenue],
-    FILTER(FactProfitability, DIVIDE(FactProfitability[gross_profit], FactProfitability[net_revenue]) < 0.15)
+    FILTER(
+        FactProfitability,
+        FactProfitability[is_delivered] = 1
+            && DIVIDE(
+                FactProfitability[gross_profit],
+                FactProfitability[net_revenue]
+            ) < 0.15
+    )
 )
 
 Return Refund per Returned Order = DIVIDE([Refund Value], [Returned Orders])
@@ -111,7 +210,7 @@ Relationships:
 
 All relationships should use single-direction filtering from dimensions to facts. Do not create a direct fact-to-fact relationship.
 
-The returns source does not contain a product identifier, so `FactReturns` should not be joined to `DimProduct`. Use `FactProfitability` for product/category profitability and use `FactReturns` for return-event analysis.
+The returns source does not contain a reliable product identifier, so `FactReturns` should not be joined to `DimProduct`. Use `FactProfitability` for product/category profitability and use `FactReturns` for return-event analysis.
 
 ## Formatting
 
