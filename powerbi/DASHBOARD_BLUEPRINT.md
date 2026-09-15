@@ -10,12 +10,19 @@ Use a simple star schema:
                  DimDate
                     |
 DimCustomer ---- FactProfitability ---- DimProduct
+                    |
+                FactReturns
 ```
 
-### Fact
+### Facts
+
 `FactProfitability` = `analytics.vw_OrderProfitability`
 
-**Grain:** one order-product analytical row. The current V2 source has one product per order, but the model is designed so the grain is explicit.
+**Grain:** one order-product analytical row. The model keeps the grain explicit so profitability metrics can be aggregated safely.
+
+`FactReturns` = `analytics.vw_ReturnsOperations`
+
+**Grain:** one return event. This fact is used for event-level return reasons, return dates and return financial detail.
 
 ### Dimensions
 
@@ -48,10 +55,14 @@ DimCustomer ---- FactProfitability ---- DimProduct
 ### Relationships
 
 - `DimDate[Date]` → `FactProfitability[order_date]` 1:*, single direction
+- `DimDate[Date]` → `FactReturns[return_date]` 1:*, single direction
 - `DimCustomer[customer_id]` → `FactProfitability[customer_id]` 1:*, single direction
+- `DimCustomer[customer_id]` → `FactReturns[customer_id]` 1:*, single direction
 - `DimProduct[product_id]` → `FactProfitability[product_id]` 1:*, single direction
 
-Do not connect raw Returns or Shipping directly to the main fact. Their financial impact is already represented in the analytical view.
+Do not create a direct fact-to-fact relationship.
+
+The Returns source does not contain a reliable product identifier, so `FactReturns` must not be joined to `DimProduct`. Do not create product/category return attribution from an unsupported relationship. Product/category profitability comes from `FactProfitability`; return-event analysis comes from `FactReturns`.
 
 ## 2. Page: Executive Profit Command Center
 
@@ -91,7 +102,7 @@ Revenue, discount value, refund value, net revenue, product cost, shipping cost,
 
 ## 4. Page: Returns & Operational Leakage
 
-**Purpose:** connect customer returns to operational and financial leakage.
+**Purpose:** connect customer returns to operational and financial leakage without overstating causality.
 
 ### KPI cards
 - Returned Orders
@@ -101,13 +112,13 @@ Revenue, discount value, refund value, net revenue, product cost, shipping cost,
 
 ### Visuals
 - Return reason by refund value.
-- Category × return reason matrix.
+- Return reason by return-event count.
 - Late vs On-Time return rate.
 - Monthly refund/return trend.
-- Carrier or shipping method performance table.
+- Customer or acquisition-channel return activity table.
 
 ### Analytical guardrail
-Use wording such as **"Late deliveries show a higher return rate"**, not **"Late delivery causes returns"**.
+Use wording such as **"Late deliveries show a higher return rate"**, not **"Late delivery causes returns"**. Do not claim product/category return attribution because the return source has no reliable product identifier.
 
 ## 5. Page: Customer & Commercial Intelligence
 
@@ -135,11 +146,10 @@ Use consistently where useful:
 - Category
 - Customer Segment
 - Acquisition Channel
-- Order Channel
 
 ## 7. Interaction Rules
 
-- Category selection filters product-level visuals.
+- Category selection filters product-level profitability visuals.
 - Region selection filters profitability and customer visuals.
 - Cross-page slicers should remain consistent.
 - Tooltips should explain the metric, not repeat the chart title.
