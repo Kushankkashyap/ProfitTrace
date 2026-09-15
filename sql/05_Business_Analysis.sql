@@ -124,7 +124,7 @@ ORDER BY gross_profit DESC;
 
 SELECT
     acquisition_channel,
-    COUNT(DISTINCT customer_id) AS customers,
+    COUNT(DISTINCT CASE WHEN is_delivered=1 THEN customer_id END) AS customers,
     SUM(CASE WHEN is_delivered=1 THEN net_revenue ELSE 0 END) AS net_revenue,
     SUM(CASE WHEN is_delivered=1 THEN gross_profit ELSE 0 END) AS gross_profit
 FROM analytics.vw_OrderProfitability
