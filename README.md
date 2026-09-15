@@ -63,17 +63,17 @@ The portfolio dataset contains connected business entities and behavioral patter
 | Products | 300 | Product, category, brand, tier, price, cost and rating |
 | Orders | 15,000 | 2025 order-product transactions and commercial attributes |
 | Shipping | 15,000 | Shipment timing, promised delivery, carrier and shipping cost |
-| Returns | 1,155 | Approved/rejected return events, reasons and financial impact |
+| Returns | 1,155 | Return events, reasons and financial impact |
 
 The source data is synthetic, but it is **behaviorally structured rather than purely random**. Examples include higher return propensity for Fashion, elevated return likelihood after late delivery, different discount intensity by category and customer segment, and different product economics across tiers.
 
-A small number of controlled data-quality issues are also present in the raw layer, including inconsistent text casing/whitespace and one discount above the approved 0% to 30% business range. These issues create a genuine reason to perform SQL validation and cleaning.
+A small number of controlled data-quality issues are also present in the raw layer, including inconsistent text casing/whitespace, one discount above the approved 0% to 30% business range, and incomplete delivery-date information on a small subset of shipping records. These issues create a genuine reason to perform SQL validation and cleaning.
 
 ## 📈 Power BI Dashboard
 
 ### 1. Executive Profit Command Center
 
-A management-level view of Net Revenue, Gross Profit, Profit Margin, Delivered Orders, Return Rate and Return Leakage. The page highlights the monthly profit trend, category contribution and the path from revenue to profit.
+A management-level view of Net Revenue, Gross Profit, Profit Margin, Delivered Orders, Return Rate and Return Leakage. Core commercial economics are scoped to delivered orders so the dashboard represents realized order economics consistently with the SQL layer.
 
 **Decision:** Where should management focus first to protect profit?
 
@@ -85,7 +85,7 @@ Category, subcategory and product analysis with revenue, discount, refund, profi
 
 ### 3. Returns & Operational Leakage
 
-Return reasons, refund value, return rate, late delivery and delivery performance are brought together to quantify operational leakage.
+Return reasons, refund value, return rate, late delivery and delivery performance are brought together to quantify operational leakage. Return-event analysis uses a separate return fact because the source does not provide a reliable product identifier.
 
 **Decision:** Which operational problems deserve investigation because they coincide with financial leakage?
 
@@ -113,12 +113,16 @@ The project demonstrates practical SQL skills including joins, CTEs, conditional
 
 The cleaned profitability view is kept at **order-product-line grain**. Order-level refunds, shipping and return costs are allocated across lines so aggregation does not accidentally double-count order-level amounts.
 
+### Delivered-order scope
+
+`is_delivered = 1` is the project’s operational definition for delivered commercial scope. Core SQL profitability metrics and core Power BI revenue/profit measures use this flag so the two layers reconcile to the same realized-order population. The raw `order_status` field is retained and normalized separately for data-quality analysis.
+
 ## 💡 Core Metric Definitions
 
 | Metric | Definition |
 |---|---|
-| Gross Revenue | Quantity × Unit Price |
-| Discount Value | Gross Revenue × Discount % |
+| Gross Revenue | Quantity × Unit Price on delivered orders |
+| Discount Value | Gross Revenue × Discount % on delivered orders |
 | Sales After Discount | Gross Revenue − Discount Value |
 | Refund Value | Approved refund allocated to the analytical line |
 | Net Revenue | Sales After Discount − Refund Value |
@@ -132,6 +136,8 @@ The cleaned profitability view is kept at **order-product-line grain**. Order-le
 ## ⚠️ Analytical Discipline
 
 ProfitTrace distinguishes **association from causation**. For example, if late-delivery orders show a higher return rate, that is evidence of an observed relationship in the dataset, not proof that late delivery caused every return.
+
+The return source contains return events but no reliable product identifier. Therefore, return-event analysis is intentionally kept at return/customer/channel/region level rather than inventing product or category return attribution.
 
 The dataset is synthetic and the findings are portfolio examples, not claims about a real company.
 
@@ -155,7 +161,9 @@ ProfitTrace/
 │   ├── DATA_GENERATION.md
 │   ├── BUILD_RUNBOOK.md
 │   ├── HANDS_ON_BUILD_GUIDE.md
-│   └── PORTFOLIO_QA_CHECKLIST.md
+│   ├── PORTFOLIO_QA_CHECKLIST.md
+│   ├── POWERBI_BUILD_CHECKLIST.md
+│   └── RECRUITER_REVIEW.md
 ├── powerbi/
 │   ├── DASHBOARD_BLUEPRINT.md
 │   ├── BUILD_HANDOFF.md
