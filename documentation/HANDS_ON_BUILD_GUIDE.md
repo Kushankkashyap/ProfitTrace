@@ -1,6 +1,6 @@
 # ProfitTrace | Hands-On Build Guide
 
-This guide is the practical execution checklist for building ProfitTrace locally. Follow it in order. The repository contains the design and SQL foundation; the local SQL execution and Power BI build create the final evidence.
+This is the practical local execution guide. Treat the Excel files as the primary source layer, use SQL Server for staging/validation/cleaning/analysis, and build the final four-page Power BI report only after the SQL QA gates pass.
 
 ## 1. Prepare the source files
 
@@ -25,6 +25,8 @@ Expected source counts:
 | Shipping | 15,000 |
 | Returns | 1,155 |
 
+Do not repair the intentional source-quality issues in Excel. The purpose of the project is to show those issues being identified and handled in SQL.
+
 ## 2. Prepare SQL Server
 
 Open SQL Server Management Studio and connect to the local SQL Server instance.
@@ -36,7 +38,7 @@ Run these scripts in order:
 02_Import_Raw_Data.sql
 ```
 
-The scripts create the `ProfitTrace` database, `stg` schema and staging tables.
+The scripts create the `ProfitTrace` database, `stg` schema and the five staging tables.
 
 ## 3. Load the five source files
 
@@ -50,11 +52,11 @@ Shipping.xlsx  → stg.Shipping
 Returns.xlsx   → stg.Returns
 ```
 
-For each import, verify the source columns and destination columns before completing the wizard.
+For each import, verify source columns, destination columns, data types and row count before completing the wizard.
 
 ### If Excel import fails
 
-If the wizard reports that the Microsoft ACE/OLE DB Excel provider is missing or has a 32-bit/64-bit mismatch, do not change the SQL schema. Use the CSV copies instead:
+If the wizard reports a missing Microsoft ACE/OLE DB Excel provider or a 32-bit/64-bit mismatch, do not redesign the SQL layer. Use the CSV copies instead:
 
 ```text
 Customers.csv → stg.Customers
@@ -64,7 +66,7 @@ Shipping.csv  → stg.Shipping
 Returns.csv   → stg.Returns
 ```
 
-The Excel files remain the documented primary source layer.
+Excel remains the documented primary source layer. CSV is only the practical local-import fallback.
 
 ## 4. Validate the raw layer
 
@@ -74,19 +76,7 @@ Run:
 03_Data_Validation.sql
 ```
 
-Review:
-
-- row counts
-- required fields
-- invalid quantity and price
-- discount outside 0% to 30%
-- invalid product economics
-- negative refund/cost
-- text/status variants
-- orphan records
-- duplicate order-product rows
-- shipment uniqueness
-- date validity
+Review row counts, required fields, invalid quantity/price, discount outside 0% to 30%, invalid product economics, negative refund/cost, text/status variants, orphan records, duplicate order-product rows, shipment uniqueness and date validity.
 
 The intentional quality issues should be visible before cleaning.
 
@@ -106,7 +96,7 @@ analytics.vw_ReturnsOperations
 analytics.vw_CustomerProfitability
 ```
 
-The raw staging tables are preserved. Standardization happens in the analytical layer.
+The raw staging tables remain unchanged. Standardization and analytical logic live in the SQL analytical layer.
 
 ## 6. Run business analysis
 
@@ -116,9 +106,7 @@ Run:
 05_Business_Analysis.sql
 ```
 
-Use the results to understand profitability, discount leakage, return behavior, delivery performance, geography and customer economics.
-
-Do not write final portfolio findings until the actual query results have been observed.
+Use the actual query results to understand profitability, discount leakage, return behavior, delivery performance, geography and customer economics. Do not write final portfolio findings before observing the real SQL results.
 
 ## 7. Run QA gates
 
@@ -129,7 +117,7 @@ Run:
 07_Final_Portfolio_QA.sql
 ```
 
-Check that the financial identities reconcile and that there are no unexpected analytical-grain or data-quality failures.
+Check financial reconciliation, analytical grain, row-count expectations and other data-quality gates. Stop here if an unexpected failure appears.
 
 ## 8. Build the Power BI model
 
@@ -150,86 +138,155 @@ DimCustomer
 DimProduct
 ```
 
-Use the relationships in `powerbi/BUILD_HANDOFF.md` and the measures in `powerbi/DAX_MEASURES.md`.
+Use a star schema with single-direction dimension-to-fact relationships. Do not create a direct FactProfitability ↔ FactReturns relationship.
 
-## 9. Build Page 1
+Important modeling guardrail: `FactReturns` is a return-event fact and the returns source does not contain a reliable product identifier. Do not invent product/category return attribution from that fact.
 
-**Executive Profit Command Center**
+## 9. Create clean business-facing DAX measures
 
-Focus on the question:
+Use the definitions in `powerbi/DAX_MEASURES.md`.
+
+Do **not** add a technical prefix such as `m_` to measure names. Use names such as:
+
+```text
+Orders
+Delivered Orders
+Net Revenue
+Gross Profit
+Profit Margin %
+Return Rate %
+Return Leakage %
+Customers
+Repeat Customer %
+Profit per Customer
+```
+
+Keep measures in a dedicated Measures table or display folder for organization.
+
+## 10. Build Page 1 | Executive Profit Command Center
+
+Business question:
 
 > Where is the money made, and where is it leaking?
 
-Use the approved KPI cards and monthly/category/regional profitability visuals from the dashboard blueprint.
+Use these six KPI cards:
 
-## 10. Build Page 2
+- Net Revenue
+- Gross Profit
+- Profit Margin %
+- Delivered Orders
+- Return Rate %
+- Return Leakage %
 
-**Profitability Deep Dive**
+Use the approved visuals from the dashboard blueprint: monthly Revenue vs Gross Profit trend, profit contribution by category, profitability leakage waterfall, revenue vs margin analysis and management-focused opportunity views.
 
-Focus on:
+## 11. Build Page 2 | Profitability Deep Dive
+
+Business question:
 
 > Which products and categories convert sales into healthy profit?
 
-Use drilldown, profitability scatter analysis and product ranking.
+KPIs:
 
-## 11. Build Page 3
+- Net Revenue
+- Gross Profit
+- Profit Margin %
+- AOV
 
-**Returns & Operational Leakage**
+Use category/subcategory/product drilldown, Revenue vs Gross Profit analysis, Discount Rate % vs Profit Margin % analysis and high-revenue/low-margin opportunity views.
 
-Focus on:
+## 12. Build Page 3 | Returns & Operational Leakage
+
+Business question:
 
 > Where do returns and operational friction destroy economics?
 
-Use `FactReturns` for return events, reasons and refund analysis. Use `FactProfitability` for order-level return rate and late-delivery comparisons.
+KPIs:
 
-Do not claim that an observed relationship proves causation.
+- Returned Orders
+- Return Rate %
+- Refund Value
+- Return Leakage %
+- Late Delivery %
 
-## 12. Build Page 4
+Use `FactReturns` for return-event counts, reasons, refund values and event-level return detail. Use `FactProfitability` for order-level returned orders, return rate and late-delivery comparisons.
 
-**Customer & Commercial Intelligence**
+Use wording such as **"Late deliveries show a higher return rate"** rather than claiming that late delivery caused the returns.
 
-Focus on:
+## 13. Build Page 4 | Customer & Commercial Intelligence
+
+Business question:
 
 > Which customer groups create durable profit?
 
-Use one-time versus repeat economics, customer profitability, segments, regions and acquisition channels.
+KPIs:
 
-## 13. Visual QA
+- Customers
+- Orders per Customer
+- Repeat Customer %
+- Profit per Customer
 
-Before taking screenshots:
+Use one-time versus repeat economics, customer profitability, customer segment, region, acquisition-channel profitability and top profit-contributing customers.
 
-- format currency and percentages consistently
-- sort months chronologically
-- test slicers
-- test drilldown
-- check tooltips
-- remove blank visuals
-- remove technical field names from titles
-- confirm KPI cards use measures
-- check that no many-to-many relationship was created accidentally
-- check that return events and returned orders are not being confused
+## 14. Visual QA
 
-## 14. Capture evidence
+Before screenshots:
 
-Save four clean screenshots under `screenshots/` using a consistent naming pattern:
+- no unexplained many-to-many relationships
+- dimension-to-fact relationships are single direction
+- `DimDate` is marked as the Date table
+- month labels are sorted chronologically
+- KPI cards use measures, not raw columns
+- technical field names are not exposed in the report
+- currency and percentage formats are consistent
+- slicers and interactions work as intended
+- no overlaps, placeholders or blank visuals remain
+- Page 3 does not imply unsupported product-level return attribution
+- return events are not accidentally substituted for returned orders
+
+## 15. SQL vs Power BI reconciliation
+
+Spot-check at least these KPIs before finalizing the report:
 
 ```text
-01_executive_profit_command_center.png
-02_profitability_deep_dive.png
-03_returns_operational_leakage.png
-04_customer_commercial_intelligence.png
+Orders
+Net Revenue
+Gross Profit
+Return Rate %
+Late Delivery %
 ```
 
-Keep the final `.pbix` file locally. If it is too large or unsuitable for the repository, document the build and use screenshots as the public evidence.
+Record the SQL result, the Power BI result and whether they match. Resolve mismatches before screenshots.
 
-## 15. Final portfolio pass
+## 16. Capture final evidence
 
-After the dashboard is complete:
+Save four clean screenshots under `screenshots/`:
 
-1. Update the README with real findings and recommendations.
-2. Add the final screenshots.
-3. Confirm the SQL scripts still match the executed workflow.
-4. Confirm the dashboard measures match the documented definitions.
-5. Review the repository as if you were a recruiter seeing it for the first time.
+```text
+executive_profit_command_center.png
+profitability_deep_dive.png
+returns_operational_leakage.png
+customer_commercial_intelligence.png
+```
 
-The final project should tell one consistent story from **Excel source data → SQL validation and transformation → Power BI decision support**.
+Save the final Power BI file as:
+
+```text
+powerbi/ProfitTrace_Dashboard.pbix
+```
+
+Keep the report canvas clean in the screenshots. Avoid showing unnecessary Power BI editing panes.
+
+## 17. Final portfolio pass
+
+After the dashboard is actually complete:
+
+1. Update the README with observed findings and recommendations.
+2. Add the four final screenshots.
+3. Confirm the SQL scripts still match the workflow you executed.
+4. Confirm DAX measures match the documented business definitions.
+5. Review the repository as a recruiter would see it for the first time.
+
+The final project story should remain consistent end to end:
+
+**Excel source data → SQL Server staging → validation → cleaning/analytical views → business analysis/QA → Power BI star schema → clean DAX measures → four-page decision dashboard.**
