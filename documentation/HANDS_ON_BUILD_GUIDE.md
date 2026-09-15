@@ -8,11 +8,16 @@ Keep these files in the local `ProfitTrace/data/` folder:
 
 ```text
 Customers.xlsx
+Customers.csv
 Products.xlsx
+Products.csv
 Orders.xlsx
+Orders.csv
 Shipping.xlsx
+Shipping.csv
 Returns.xlsx
-DATASET_SUMMARY.xlsx
+Returns.csv
+README.md
 ```
 
 Expected source counts:
@@ -25,38 +30,28 @@ Expected source counts:
 | Shipping | 15,000 |
 | Returns | 1,155 |
 
-Do not repair the intentional source-quality issues in Excel. The purpose of the project is to show those issues being identified and handled in SQL.
+`DATASET_SUMMARY.xlsx` is optional reference material and is not required for the SQL workflow.
+
+Do not repair the intentional source-quality issues in Excel or CSV. The purpose of the project is to show those issues being identified and handled in SQL.
 
 ## 2. Prepare SQL Server
 
 Open SQL Server Management Studio and connect to the local SQL Server instance.
 
-Run these scripts in order:
+If a previous `ProfitTrace` database exists and a clean rebuild is required, reset it first. Then run these scripts in order:
 
 ```text
 01_Database_Setup.sql
 02_Import_Raw_Data.sql
 ```
 
-The scripts create the `ProfitTrace` database, `stg` schema and the five staging tables.
+The scripts create the `ProfitTrace` database, `stg` schema, `analytics` schema and the five typed staging tables.
 
 ## 3. Load the five source files
 
-Use SQL Server Import and Export Wizard. Import each workbook into its matching staging table:
+Preferred source representation is Excel. If the SQL Server Import and Export Wizard cannot read `.xlsx` because the Microsoft ACE/OLE DB provider is missing or has a bitness mismatch, use the CSV copies with **Flat File Source**.
 
-```text
-Customers.xlsx → stg.Customers
-Products.xlsx  → stg.Products
-Orders.xlsx    → stg.Orders
-Shipping.xlsx  → stg.Shipping
-Returns.xlsx   → stg.Returns
-```
-
-For each import, verify source columns, destination columns, data types and row count before completing the wizard.
-
-### If Excel import fails
-
-If the wizard reports a missing Microsoft ACE/OLE DB Excel provider or a 32-bit/64-bit mismatch, do not redesign the SQL layer. Use the CSV copies instead:
+For each normal CSV import, map to the existing typed staging table and choose **Append rows to the destination table**:
 
 ```text
 Customers.csv → stg.Customers
@@ -66,7 +61,41 @@ Shipping.csv  → stg.Shipping
 Returns.csv   → stg.Returns
 ```
 
-Excel remains the documented primary source layer. CSV is only the practical local-import fallback.
+Do not create parallel `dbo` tables for these five final staging objects.
+
+### Customers / Products / Orders / Returns
+
+For each file:
+
+1. Data Source = `Flat File Source`.
+2. Format = `Delimited`.
+3. Column delimiter = comma.
+4. Header row contains column names = checked.
+5. Destination = `Microsoft OLE DB Driver for SQL Server`.
+6. Server = your local SQL Server instance.
+7. Authentication = the same Windows Authentication used by SSMS.
+8. Database = `ProfitTrace`.
+9. Destination = the corresponding `stg` table.
+10. Use **Append rows to the destination table**.
+11. Verify the target data types before executing.
+
+### Shipping fallback for blank dates
+
+The Shipping source contains 15,000 rows and 281 records with blank `ship_date`, `promised_delivery_date` and `delivery_date` values. A direct CSV → `stg.Shipping` import can fail when the wizard tries to convert those blank text values directly to `DATE`.
+
+Only when direct Shipping import fails:
+
+1. Use **Import Flat File** for `Shipping.csv`.
+2. Create temporary table `dbo.Shipping_Raw`.
+3. In `Modify Columns`, keep all eight fields as text (`nvarchar(50)` is acceptable).
+4. Allow nulls on the raw columns and do not define a primary key.
+5. Finish the import and verify exactly 15,000 rows were loaded.
+6. Run a validation query using `TRY_CONVERT(date, NULLIF(LTRIM(RTRIM(...)), ''))` to confirm there are no nonblank invalid dates.
+7. Insert from `dbo.Shipping_Raw` into the existing `stg.Shipping` table, converting dates to `DATE` and `shipping_cost` to `DECIMAL(12,2)`.
+8. Verify 15,000 rows and 15,000 unique `order_id` values in `stg.Shipping`.
+9. Drop `dbo.Shipping_Raw` after verification.
+
+The temporary raw table is only an import safety layer. The final project model still uses `stg.Shipping`.
 
 ## 4. Validate the raw layer
 
@@ -76,7 +105,20 @@ Run:
 03_Data_Validation.sql
 ```
 
-Review row counts, required fields, invalid quantity/price, discount outside 0% to 30%, invalid product economics, negative refund/cost, text/status variants, orphan records, duplicate order-product rows, shipment uniqueness and date validity.
+Review:
+
+- row counts
+- required fields
+- invalid quantity and price
+- discount outside 0% to 30%
+- invalid product economics
+- negative refund/cost
+- text/status variants
+- orphan records
+- duplicate order-product rows
+- shipment uniqueness
+- date validity
+- delivered-order and delivery-date consistency
 
 The intentional quality issues should be visible before cleaning.
 
@@ -98,6 +140,10 @@ analytics.vw_CustomerProfitability
 
 The raw staging tables remain unchanged. Standardization and analytical logic live in the SQL analytical layer.
 
+`vw_OrderProfitability` is kept at order-product-line grain. Approved return amounts, shipping costs and return costs are pre-aggregated at order level and allocated across lines so line-level aggregation does not double-count order-level amounts.
+
+The cleaning layer also standardizes the known casing/whitespace variants in customer, product, shipping and return fields.
+
 ## 6. Run business analysis
 
 Run:
@@ -106,7 +152,7 @@ Run:
 05_Business_Analysis.sql
 ```
 
-Use the actual query results to understand profitability, discount leakage, return behavior, delivery performance, geography and customer economics. Do not write final portfolio findings before observing the real SQL results.
+Use the actual query results to understand profitability, discount leakage, return behavior, delivery performance, geography and customer economics. Core commercial economics are scoped to delivered orders (`is_delivered = 1`). Do not write final portfolio findings before observing the real SQL results.
 
 ## 7. Run QA gates
 
@@ -117,7 +163,7 @@ Run:
 07_Final_Portfolio_QA.sql
 ```
 
-Check financial reconciliation, analytical grain, row-count expectations and other data-quality gates. Stop here if an unexpected failure appears.
+Check financial reconciliation, analytical grain, row-count expectations, delivery-status consistency and business-rule checks. Stop here if an unexpected failure appears.
 
 ## 8. Build the Power BI model
 
@@ -138,7 +184,7 @@ DimCustomer
 DimProduct
 ```
 
-Use a star schema with single-direction dimension-to-fact relationships. Do not create a direct FactProfitability ↔ FactReturns relationship.
+Use a star schema with single-direction dimension-to-fact relationships. Do not create a direct `FactProfitability` ↔ `FactReturns` relationship.
 
 Important modeling guardrail: `FactReturns` is a return-event fact and the returns source does not contain a reliable product identifier. Do not invent product/category return attribution from that fact.
 
@@ -161,6 +207,8 @@ Repeat Customer %
 Profit per Customer
 ```
 
+Core revenue, profit and customer-economic measures are scoped to delivered orders so Power BI matches the SQL analysis.
+
 Keep measures in a dedicated Measures table or display folder for organization.
 
 ## 10. Build Page 1 | Executive Profit Command Center
@@ -178,7 +226,7 @@ Use these six KPI cards:
 - Return Rate %
 - Return Leakage %
 
-Use the approved visuals from the dashboard blueprint: monthly Revenue vs Gross Profit trend, profit contribution by category, profitability leakage waterfall, revenue vs margin analysis and management-focused opportunity views.
+Use the approved visuals from the dashboard blueprint: monthly Net Revenue vs Gross Profit trend, profit contribution by category, profitability leakage waterfall, regional profitability and management-focused high-revenue/low-margin opportunity views.
 
 ## 11. Build Page 2 | Profitability Deep Dive
 
@@ -193,7 +241,7 @@ KPIs:
 - Profit Margin %
 - AOV
 
-Use category/subcategory/product drilldown, Revenue vs Gross Profit analysis, Discount Rate % vs Profit Margin % analysis and high-revenue/low-margin opportunity views.
+Use category/subcategory/product drilldown, Net Revenue vs Gross Profit analysis, Discount Rate % vs Profit Margin % analysis and high-revenue/low-margin opportunity views.
 
 ## 12. Build Page 3 | Returns & Operational Leakage
 
@@ -203,15 +251,26 @@ Business question:
 
 KPIs:
 
+- Delivered Orders
 - Returned Orders
 - Return Rate %
 - Refund Value
-- Return Leakage %
 - Late Delivery %
 
 Use `FactReturns` for return-event counts, reasons, refund values and event-level return detail. Use `FactProfitability` for order-level returned orders, return rate and late-delivery comparisons.
 
+Recommended visuals:
+
+- Refund Value by Return Reason
+- Return Event Count by Return Reason
+- Acquisition Channel × Return Reason matrix
+- Return Rate: Late vs On-time
+- Monthly Refund Value trend
+- Region × Late Delivery % table
+
 Use wording such as **"Late deliveries show a higher return rate"** rather than claiming that late delivery caused the returns.
+
+Do not create a Category × Return Reason visual. The returns source does not contain a reliable product/category key.
 
 ## 13. Build Page 4 | Customer & Commercial Intelligence
 
@@ -243,13 +302,14 @@ Before screenshots:
 - no overlaps, placeholders or blank visuals remain
 - Page 3 does not imply unsupported product-level return attribution
 - return events are not accidentally substituted for returned orders
+- SQL and Power BI core KPIs reconcile to the same delivered-order scope
 
 ## 15. SQL vs Power BI reconciliation
 
 Spot-check at least these KPIs before finalizing the report:
 
 ```text
-Orders
+Delivered Orders
 Net Revenue
 Gross Profit
 Return Rate %
