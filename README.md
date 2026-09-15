@@ -48,7 +48,7 @@ Business Analysis & QA
         ↓
 Power BI Star Schema
         ↓
-DAX Measures
+Clean Business-Facing DAX Measures
         ↓
 Executive Decision Dashboard
 ```
@@ -73,7 +73,7 @@ A small number of controlled data-quality issues are also present in the raw lay
 
 ### 1. Executive Profit Command Center
 
-A management-level view of Gross Revenue, Net Revenue, Gross Profit, Margin, Orders and Return Rate. The page highlights the monthly profit trend, category contribution, regional economics and the path from revenue to profit.
+A management-level view of Net Revenue, Gross Profit, Profit Margin, Delivered Orders, Return Rate and Return Leakage. The page highlights the monthly profit trend, category contribution and the path from revenue to profit.
 
 **Decision:** Where should management focus first to protect profit?
 
@@ -101,7 +101,7 @@ The SQL layer is deliberately separated into stages so the workflow is auditable
 
 ```text
 01  Database Setup
-02  Staging Table Definition
+02  Staging Tables
 03  Data Validation
 04  Cleaning & Analytical Views
 05  Business Analysis
@@ -176,8 +176,8 @@ ProfitTrace/
 7. Run `04_Data_Cleaning.sql` to create analytical views.
 8. Run `05_Business_Analysis.sql` for business findings.
 9. Run `06_Post_Load_QA.sql` and `07_Final_Portfolio_QA.sql`.
-10. Build the Power BI star schema and DAX measures.
-11. Capture final dashboard screenshots and document the findings.
+10. Build the Power BI star schema and clean business-facing DAX measures.
+11. Capture final dashboard screenshots and document the observed findings.
 
 For the detailed hands-on sequence, see `documentation/HANDS_ON_BUILD_GUIDE.md`.
 
