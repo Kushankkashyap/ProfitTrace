@@ -39,9 +39,7 @@ Page 4 | Customer & Commercial Intelligence: four KPI cards plus customer-segmen
 
 ## Design
 
-Theme: PROFITTRACE_THEME.json.
-
-Page backgrounds use blue-gray, lavender, warm neutral and soft green variations. Visual cards use white backgrounds.
+Design system: the final report uses manually configured page backgrounds, white visual cards and consistent business-oriented formatting. The JSON theme file is not part of the final implementation.
 
 ## Portfolio notes
 
