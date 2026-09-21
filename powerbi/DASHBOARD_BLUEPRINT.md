@@ -1,172 +1,54 @@
-# ProfitTrace | Power BI Dashboard Blueprint
+# ProfitTrace | Final Power BI Dashboard Blueprint
 
-Build the `.pbix` only after the SQL staging, cleaning and QA steps are complete.
+This document reflects the final implemented report.
 
-## 1. Semantic Model
+## Semantic model
 
-Use a simple star schema:
+FactProfitability = analytics.vw_OrderProfitability, one order-product analytical row.
+FactReturns = analytics.vw_ReturnsOperations, one return event.
+Dimensions = DimDate, DimCustomer, DimProduct.
 
-```text
-                 DimDate
-                    |
-DimCustomer ---- FactProfitability ---- DimProduct
-                    |
-                FactReturns
-```
+Relationships:
+- DimDate to FactProfitability on order_date.
+- DimDate to FactReturns on return_date.
+- DimCustomer to both facts on customer_id.
+- DimProduct to FactProfitability on product_id.
 
-### Facts
+All relationships are 1:* and single-direction. No direct fact-to-fact relationship exists.
 
-`FactProfitability` = `analytics.vw_OrderProfitability`
+## Page 1 | Executive Profit Command Center
 
-**Grain:** one order-product analytical row. The model keeps the grain explicit so profitability metrics can be aggregated safely.
+KPIs: Net Revenue, Gross Profit, Profit Margin %, Return Rate %, Delivered Orders, Return Leakage %.
+Filters: Year Month, Region, Category, Customer Segment, Acquisition Channel.
+Visuals: Revenue vs Gross Profit Trend; Profit Contribution by Category; Where Revenue Turns Into Profit; Revenue vs Margin.
 
-`FactReturns` = `analytics.vw_ReturnsOperations`
+## Page 2 | Profitability Deep Dive
 
-**Grain:** one return event. This fact is used for event-level return reasons, return dates and return financial detail.
+KPIs: Net Revenue, Gross Profit, Profit Margin %, AOV.
+Visuals: Margin by Category; Revenue Mix; High Revenue, Low Margin Opportunities; Discounting vs Profitability; Product Profitability Matrix.
 
-### Dimensions
+## Page 3 | Returns & Operational Leakage
 
-**DimDate**
-- Date
-- Year
-- Quarter
-- Month Number
-- Month
-- Year Month
+KPIs: Returned Orders, Return Rate %, Refund Value, Return Leakage %, Late Delivery %.
+Visuals: Why Customers Return; Monthly Refund Leakage; Return Reason Mix; Delivery Performance vs Returns; Return Event Detail.
 
-**DimCustomer**
-- customer_id
-- customer_name
-- customer_segment
-- region
-- state
-- city
-- acquisition_channel
+The final report intentionally avoids Category × Return Reason because the source return extract has no reliable product/category identifier.
+Late-delivery comparisons are presented as observed relationships, not proof of causation.
 
-**DimProduct**
-- product_id
-- product_name
-- category
-- subcategory
-- brand
-- product_tier
-- rating
+## Page 4 | Customer & Commercial Intelligence
 
-### Relationships
+KPIs: Customers, Orders Per Customer, Repeat Customer %, Profit per Customer.
+Visuals: Profit by Customer Segment; Commercial Performance by Acquisition Channel; Regional Profitability; Top Profit-Contributing Customers; Channel Scorecard.
 
-- `DimDate[Date]` → `FactProfitability[order_date]` 1:*, single direction
-- `DimDate[Date]` → `FactReturns[return_date]` 1:*, single direction
-- `DimCustomer[customer_id]` → `FactProfitability[customer_id]` 1:*, single direction
-- `DimCustomer[customer_id]` → `FactReturns[customer_id]` 1:*, single direction
-- `DimProduct[product_id]` → `FactProfitability[product_id]` 1:*, single direction
+The Top Profit-Contributing Customers visual is filtered to exactly 10 customers.
 
-Do not create a direct fact-to-fact relationship.
+## Design system
 
-The Returns source does not contain a reliable product identifier, so `FactReturns` must not be joined to `DimProduct`. Do not create product/category return attribution from an unsupported relationship. Product/category profitability comes from `FactProfitability`; return-event analysis comes from `FactReturns`.
+Theme: PROFITTRACE_THEME.json.
 
-## 2. Page: Executive Profit Command Center
+Page 1 canvas #EEF3F8, wallpaper #E7EDF5.
+Page 2 canvas #E5DFF0, wallpaper #C9BEDD.
+Page 3 canvas #F3EFEC, wallpaper #E7DFDA.
+Page 4 canvas #EEF5F1, wallpaper #DCE8E1.
 
-**Purpose:** answer where revenue becomes profit and where it leaks.
-
-Core economics on this page use delivered orders for a consistent realized-profit scope.
-
-### KPI cards
-- Gross Revenue
-- Net Revenue
-- Gross Profit
-- Profit Margin %
-- Delivered Orders
-- Return Rate %
-
-### Visuals
-1. Monthly Net Revenue and Gross Profit trend.
-2. Gross Profit by Category.
-3. Profit Margin by Region.
-4. Profit leakage waterfall: Gross Revenue → Discount Value → Refund Value → Product Cost → Shipping Cost → Return Cost → Gross Profit.
-5. High-Revenue / Low-Margin product or category table.
-
-### Executive callout
-Use a dynamic text/card to highlight the selected category or product with the largest profit opportunity.
-
-## 3. Page: Profitability Deep Dive
-
-**Purpose:** find products that sell well but do not create proportionate profit.
-
-### Visuals
-- Category → Subcategory → Product matrix.
-- Net Revenue vs Gross Profit scatter.
-- Discount Rate % vs Profit Margin % scatter, bubble size = Net Revenue.
-- Bottom products by margin.
-- Top products by gross profit.
-
-### Useful tooltip fields
-Revenue, discount value, refund value, net revenue, product cost, shipping cost, return cost, gross profit, margin and return rate.
-
-## 4. Page: Returns & Operational Leakage
-
-**Purpose:** connect customer returns to operational and financial leakage without overstating causality.
-
-### KPI cards
-- Delivered Orders
-- Returned Orders
-- Return Rate %
-- Refund Value
-- Late Delivery %
-
-### Visuals
-- Return reason by refund value.
-- Return reason by event count.
-- Acquisition Channel × Return Reason matrix.
-- Return Rate: Late vs On-time.
-- Monthly refund/return trend.
-- Region × Late Delivery % table.
-
-### Analytical guardrail
-Use wording such as **"Late deliveries show a higher return rate"**, not **"Late delivery causes returns"**. Do not claim product/category return attribution because the return source has no reliable product identifier.
-
-## 5. Page: Customer & Commercial Intelligence
-
-**Purpose:** understand which customers and acquisition sources create sustainable value.
-
-### KPI cards
-- Customers
-- Orders per Customer
-- Repeat Customer %
-- Profit per Customer
-
-### Visuals
-- One-Time vs Repeat economics.
-- Customer profitability distribution.
-- Region × Customer Segment matrix.
-- Acquisition Channel revenue vs profit.
-- Top customers by Gross Profit.
-
-## 6. Global Slicers
-
-Use consistently where useful:
-
-- Date
-- Region
-- Category
-- Customer Segment
-- Acquisition Channel
-
-## 7. Interaction Rules
-
-- Category selection filters product-level profitability visuals.
-- Region selection filters profitability and customer visuals.
-- Cross-page slicers should remain consistent.
-- Tooltips should explain the metric, not repeat the chart title.
-- Avoid excessive drillthrough pages. The four main pages should tell the story without navigation friction.
-
-## 8. Visual Design
-
-Aim for an executive BI report rather than a dashboard full of decorative charts.
-
-- Clear page title and one-sentence business question.
-- KPI cards aligned in one row.
-- One primary visual hierarchy per page.
-- Consistent currency and percentage formats.
-- Minimal borders and unnecessary icons.
-- Conditional formatting only where it communicates risk or opportunity.
-- Keep enough whitespace for the report to feel intentional.
+Visual cards use white backgrounds.
