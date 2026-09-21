@@ -1,220 +1,90 @@
-# ProfitTrace | DAX Measure Pack
+# ProfitTrace | Final DAX Measure Pack
 
-Recommended model:
+The final Power BI model contains 32 measures using clean business-facing names.
 
-- `FactProfitability` from `analytics.vw_OrderProfitability`
-- `FactReturns` from `analytics.vw_ReturnsOperations`
-- `DimDate`, `DimCustomer`, `DimProduct`
+## Core measures
 
-All measures use clean business-facing names. No technical prefix is required because the measures can be organized in a dedicated Measures table/display folder in Power BI.
-
-## Core KPIs
-
-Core commercial economics are measured on delivered orders so Power BI matches the SQL business-analysis and QA scope. The base `Orders` measure remains available for total transaction count.
-
-```DAX
 Orders = DISTINCTCOUNT(FactProfitability[order_id])
 
-Delivered Orders =
-CALCULATE(
-    [Orders],
-    FactProfitability[is_delivered] = 1
-)
+Delivered Orders = CALCULATE([Orders], FactProfitability[is_delivered] = 1)
 
-Gross Revenue =
-CALCULATE(
-    SUM(FactProfitability[gross_revenue]),
-    FactProfitability[is_delivered] = 1
-)
+Gross Revenue = CALCULATE(SUM(FactProfitability[gross_revenue]), FactProfitability[is_delivered] = 1)
 
-Discount Value =
-CALCULATE(
-    SUM(FactProfitability[discount_value]),
-    FactProfitability[is_delivered] = 1
-)
+Discount Value = CALCULATE(SUM(FactProfitability[discount_value]), FactProfitability[is_delivered] = 1)
 
-Net Revenue =
-CALCULATE(
-    SUM(FactProfitability[net_revenue]),
-    FactProfitability[is_delivered] = 1
-)
+Net Revenue = CALCULATE(SUM(FactProfitability[net_revenue]), FactProfitability[is_delivered] = 1)
 
-Refund Value =
-CALCULATE(
-    SUM(FactProfitability[refund_amount]),
-    FactProfitability[is_delivered] = 1
-)
+Refund Value = CALCULATE(SUM(FactProfitability[refund_amount]), FactProfitability[is_delivered] = 1)
 
-Product Cost =
-CALCULATE(
-    SUM(FactProfitability[product_cost]),
-    FactProfitability[is_delivered] = 1
-)
+Product Cost = CALCULATE(SUM(FactProfitability[product_cost]), FactProfitability[is_delivered] = 1)
 
-Shipping Cost =
-CALCULATE(
-    SUM(FactProfitability[shipping_cost]),
-    FactProfitability[is_delivered] = 1
-)
+Shipping Cost = CALCULATE(SUM(FactProfitability[shipping_cost]), FactProfitability[is_delivered] = 1)
 
-Return Cost =
-CALCULATE(
-    SUM(FactProfitability[return_cost]),
-    FactProfitability[is_delivered] = 1
-)
+Return Cost = CALCULATE(SUM(FactProfitability[return_cost]), FactProfitability[is_delivered] = 1)
 
-Gross Profit =
-CALCULATE(
-    SUM(FactProfitability[gross_profit]),
-    FactProfitability[is_delivered] = 1
-)
+Gross Profit = CALCULATE(SUM(FactProfitability[gross_profit]), FactProfitability[is_delivered] = 1)
 
 Profit Margin % = DIVIDE([Gross Profit], [Net Revenue])
 AOV = DIVIDE([Net Revenue], [Delivered Orders])
 Discount Rate % = DIVIDE([Discount Value], [Gross Revenue])
 Profit per Order = DIVIDE([Gross Profit], [Delivered Orders])
-```
 
-## Returns & Operations
+## Returns and operations
 
-Use the profitability fact for order-level return rate and delivery metrics because it has one analytical row per order-product line with order-level return costs allocated across lines. Use the return fact for event-level return reasons and return financial detail.
-
-```DAX
 Return Events = COUNTROWS(FactReturns)
 
-Approved Return Events =
-CALCULATE(
-    [Return Events],
-    FactReturns[return_status] = "Approved"
-)
+Approved Return Events = CALCULATE([Return Events], FactReturns[return_status] = Approved)
 
-Returned Orders =
-CALCULATE(
-    [Orders],
-    FactProfitability[is_returned] = 1,
-    FactProfitability[is_delivered] = 1
-)
+Returned Orders = CALCULATE([Orders], FactProfitability[is_returned] = 1, FactProfitability[is_delivered] = 1)
 
 Return Rate % = DIVIDE([Returned Orders], [Delivered Orders])
 
-Late Orders =
-CALCULATE(
-    [Orders],
-    FactProfitability[is_late_delivery] = 1,
-    FactProfitability[is_delivered] = 1
-)
+Late Orders = CALCULATE([Orders], FactProfitability[is_late_delivery] = 1, FactProfitability[is_delivered] = 1)
 
 Late Delivery % = DIVIDE([Late Orders], [Delivered Orders])
 
-Return Refund Value =
-CALCULATE(
-    SUM(FactReturns[refund_amount]),
-    FactReturns[return_status] = "Approved"
-)
+Return Refund Value = CALCULATE(SUM(FactReturns[refund_amount]), FactReturns[return_status] = Approved)
 
-Return Event Cost =
-CALCULATE(
-    SUM(FactReturns[total_return_cost]),
-    FactReturns[return_status] = "Approved"
-)
+Return Event Cost = CALCULATE(SUM(FactReturns[total_return_cost]), FactReturns[return_status] = Approved)
 
-Return Leakage % =
-DIVIDE(
-    [Refund Value] + [Return Cost],
-    [Gross Revenue]
-)
-```
+Return Leakage % = DIVIDE([Refund Value] + [Return Cost], [Gross Revenue])
 
-`Returned Orders` and `Return Rate %` are deliberately based on `FactProfitability`, preventing a multi-event return order from being counted multiple times. `Return Events` is an event count and can legitimately exceed returned orders. `Return Refund Value` and `Return Event Cost` are event-level diagnostics from `FactReturns`.
+## Customer
 
-## Customer Metrics
-
-```DAX
-Customers =
-CALCULATE(
-    DISTINCTCOUNT(FactProfitability[customer_id]),
-    FactProfitability[is_delivered] = 1
-)
+Customers = CALCULATE(DISTINCTCOUNT(FactProfitability[customer_id]), FactProfitability[is_delivered] = 1)
 
 Orders per Customer = DIVIDE([Delivered Orders], [Customers])
 
-Repeat Customers =
-COUNTROWS(
-    FILTER(
-        VALUES(FactProfitability[customer_id]),
-        CALCULATE(
-            DISTINCTCOUNT(FactProfitability[order_id]),
-            FactProfitability[is_delivered] = 1
-        ) > 1
-    )
-)
+Repeat Customers = count of customers whose delivered order count is greater than 1.
 
 Repeat Customer % = DIVIDE([Repeat Customers], [Customers])
+
 Profit per Customer = DIVIDE([Gross Profit], [Customers])
-```
 
-## Opportunity Measures
+## Opportunity
 
-```DAX
-Low Margin Revenue =
-CALCULATE(
-    [Net Revenue],
-    FILTER(
-        FactProfitability,
-        FactProfitability[is_delivered] = 1
-            && DIVIDE(
-                FactProfitability[gross_profit],
-                FactProfitability[net_revenue]
-            ) < 0.15
-    )
-)
+Low Margin Revenue = delivered Net Revenue where line-level gross profit divided by line-level net revenue is below 15%.
 
 Return Refund per Returned Order = DIVIDE([Refund Value], [Returned Orders])
-```
 
-Use these as decision-support measures, not as replacements for the underlying profitability calculations.
+## Helper tables and support
 
-## Date Table
+Waterfall Steps contains Gross Revenue, Discount Value, Refund Value, Product Cost, Shipping Cost and Return Cost.
 
-```DAX
-DimDate =
-ADDCOLUMNS(
-    CALENDAR(MIN(FactProfitability[order_date]), MAX(FactProfitability[order_date])),
-    "Year", YEAR([Date]),
-    "Month Number", MONTH([Date]),
-    "Month", FORMAT([Date], "MMM"),
-    "Year Month", FORMAT([Date], "YYYY-MM"),
-    "Quarter", "Q" & FORMAT([Date], "Q")
-)
-```
+Waterfall Value returns the positive Gross Revenue and negative downstream leakage values for the native waterfall.
 
-Sort `DimDate[Month]` by `DimDate[Month Number]` and use `Year Month` for chronological trends.
+Discount Bands are 0-5%, 5-10%, 10-15%, 15-20%, 20-25% and 25-30%.
 
-## Model Relationships
+Discount Band Profit Margin % calculates the margin for the selected discount band.
 
-```text
-                       DimDate
-                      /       \\
-                     /         \\
-DimCustomer ---- FactProfitability   FactReturns
-                     |
-                 DimProduct
-```
+## Date table
 
-Relationships:
+DimDate is built from the minimum and maximum order_date in FactProfitability and includes Year, Month Number, Month, Year Month and Quarter.
 
-- `DimDate[Date]` 1:* `FactProfitability[order_date]`
-- `DimDate[Date]` 1:* `FactReturns[return_date]`
-- `DimCustomer[customer_id]` 1:* both facts
-- `DimProduct[product_id]` 1:* `FactProfitability[product_id]`
-
-All relationships should use single-direction filtering from dimensions to facts. Do not create a direct fact-to-fact relationship.
-
-The returns source does not contain a reliable product identifier, so `FactReturns` should not be joined to `DimProduct`. Use `FactProfitability` for product/category profitability and use `FactReturns` for return-event analysis.
+Sort Month by Month Number and use Year Month for chronological trends.
 
 ## Formatting
 
-- Currency: revenue, discounts, refunds, costs, profit, AOV.
-- Percentage: margin, discount rate, return rate, late delivery rate, return leakage, repeat customer %.
-- Whole number: orders, customers, return events and returned orders.
-- Keep measure names clean and business-facing. Organize measures in a dedicated Measures table or display folder for model hygiene.
+Currency: revenue, discounts, refunds, costs, profit and AOV.
+Percentage: margin, discount rate, return rate, late delivery rate, return leakage and repeat customer percentage.
+Whole number: orders, customers, return events and returned orders.
