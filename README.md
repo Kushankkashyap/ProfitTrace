@@ -2,159 +2,230 @@
 
 > **Trace the Revenue. Find the Leakage. Protect the Profit.**
 
-ProfitTrace is an end-to-end analytics project built around a practical commercial question:
+ProfitTrace is an end-to-end analytics portfolio project built around a practical commercial question:
 
 > **Revenue looks healthy, but where is the business actually losing profit?**
 
-The project follows a realistic analyst workflow from operational source data in Excel, through SQL Server for validation and transformation, to Power BI for interactive decision support.
+The project follows a realistic analyst workflow from source data in Excel, through SQL Server for validation, cleaning and business analysis, to Power BI for a decision-focused executive dashboard.
 
-Rather than treating revenue as the final KPI, ProfitTrace follows the economics of an order from selling price to discount, refund, product cost, shipping and return-related cost.
+The final implementation includes:
+
+- SQL Server staging, validation, cleaning, analytical views, business analysis and QA
+- A Power BI star schema with two fact tables and three dimensions
+- **32 DAX measures** covering profitability, returns, operations and customer economics
+- A polished **4-page Power BI dashboard**
+- Final PBIX, PDF export and dashboard screenshots
+
+The source dataset is synthetic and intentionally includes controlled data-quality issues so the project demonstrates how an analyst handles imperfect operational data.
 
 ## 🎯 Business Case
 
-An e-commerce business wants to grow sales without quietly giving away margin. Leadership needs to understand:
+An e-commerce business wants to grow revenue without quietly giving away margin. Leadership needs to understand:
 
 - Which categories and products create the most profit?
 - Where are discounts eroding margin?
 - Which products generate strong sales but weak economics?
 - How much financial leakage is associated with returns?
-- Is late delivery associated with higher return activity?
+- How do late-delivery patterns relate to return activity?
 - Which customer segments and acquisition channels create stronger economics?
-- Are repeat customers materially more valuable than one-time buyers?
+
+## 🔄 End-to-End Workflow
+
+```text
+Raw Excel / CSV
+      ↓
+SQL Server Staging
+      ↓
+Data Quality Validation
+      ↓
+Cleaning & Standardization
+      ↓
+Analytical SQL Views
+      ↓
+Business Analysis + QA
+      ↓
+Power BI Star Schema
+      ↓
+32 DAX Measures
+      ↓
+4-Page Executive Dashboard
+```
 
 ## 🧰 Tool Stack
 
 | Tool | Purpose |
 |---|---|
-| **Excel** | Operational source data and business-friendly raw files |
+| **Excel / CSV** | Source data |
 | **SQL Server / SSMS** | Staging, validation, cleaning, transformation, QA and business analysis |
-| **Power BI** | Star-schema modeling, DAX, visualization and decision support |
-| **DAX** | KPI and interactive business measures |
-
-## 🔄 End-to-End Workflow
-
-```text
-Excel Source Workbooks
-        ↓
-SQL Server Staging
-        ↓
-Data Quality Validation
-        ↓
-Cleaning & Standardization
-        ↓
-Analytical Views
-        ↓
-Business Analysis & QA
-        ↓
-Power BI Star Schema
-        ↓
-Clean Business-Facing DAX Measures
-        ↓
-Executive Decision Dashboard
-```
+| **Power BI** | Data modeling, DAX and dashboarding |
+| **DAX** | KPI calculations and interactive business metrics |
+| **GitHub** | Versioned portfolio evidence and documentation |
 
 ## 📊 Source Data
-
-The portfolio dataset contains connected business entities and behavioral patterns designed to support meaningful commercial analysis.
 
 | Entity | Records | Purpose |
 |---|---:|---|
 | Customers | 1,000 | Customer identity, geography, segment and acquisition source |
 | Products | 300 | Product, category, brand, tier, price, cost and rating |
-| Orders | 15,000 | 2025 order-product transactions and commercial attributes |
-| Shipping | 15,000 | Shipment timing, promised delivery, carrier and shipping cost |
+| Orders | 15,000 | Order-product transactions and commercial attributes |
+| Shipping | 15,000 | Shipment timing, delivery status, carrier and shipping cost |
 | Returns | 1,155 | Return events, reasons and financial impact |
 
-The source data is synthetic, but it is **behaviorally structured rather than purely random**. Examples include higher return propensity for Fashion, elevated return likelihood after late delivery, different discount intensity by category and customer segment, and different product economics across tiers.
+The data contains controlled quality issues such as inconsistent text casing/whitespace, one discount above the approved 0%–30% business range, and incomplete shipping dates. These issues are surfaced during validation and handled in the SQL cleaning layer.
 
-A small number of controlled data-quality issues are also present in the raw layer, including inconsistent text casing/whitespace, one discount above the approved 0% to 30% business range, and incomplete delivery-date information on a small subset of shipping records. These issues create a genuine reason to perform SQL validation and cleaning.
+## 🗄️ SQL Architecture
 
-## 📈 Power BI Dashboard
-
-### 1. Executive Profit Command Center
-
-A management-level view of Net Revenue, Gross Profit, Profit Margin, Delivered Orders, Return Rate and Return Leakage. Core commercial economics are scoped to delivered orders so the dashboard represents realized order economics consistently with the SQL layer.
-
-**Decision:** Where should management focus first to protect profit?
-
-### 2. Profitability Deep Dive
-
-Category, subcategory and product analysis with revenue, discount, refund, profit and margin. Scatter analysis helps identify high-sales products with weak profitability and high-discount products with compressed margins.
-
-**Decision:** Which products are commercially attractive but economically weak?
-
-### 3. Returns & Operational Leakage
-
-Return reasons, refund value, return rate, late delivery and delivery performance are brought together to quantify operational leakage. Return-event analysis uses a separate return fact because the source does not provide a reliable product identifier.
-
-**Decision:** Which operational problems deserve investigation because they coincide with financial leakage?
-
-### 4. Customer & Commercial Intelligence
-
-Customer profitability, one-time versus repeat economics, acquisition-channel performance and customer segments provide a commercial view beyond transaction volume.
-
-**Decision:** Which customer groups and acquisition sources create sustainable value?
-
-## 🗄️ SQL Engineering & Analysis
-
-The SQL layer is deliberately separated into stages so the workflow is auditable:
+The SQL workflow is intentionally split into seven auditable scripts:
 
 ```text
-01  Database Setup
-02  Staging Tables
-03  Data Validation
-04  Cleaning & Analytical Views
-05  Business Analysis
-06  Post-Load QA
-07  Final Portfolio QA
+01_Database_Setup.sql
+02_Import_Raw_Data.sql
+03_Data_Validation.sql
+04_Data_Cleaning.sql
+05_Business_Analysis.sql
+06_Post_Load_QA.sql
+07_Final_Portfolio_QA.sql
 ```
 
-The project demonstrates practical SQL skills including joins, CTEs, conditional logic, aggregations, window functions, date analysis, data-quality checks, financial reconciliation and customer/product profitability analysis.
+Key SQL practices demonstrated:
 
-The cleaned profitability view is kept at **order-product-line grain**. Order-level refunds, shipping and return costs are allocated across lines so aggregation does not accidentally double-count order-level amounts.
+- Typed staging tables
+- Raw-data quality checks
+- Text standardization
+- TRY_CONVERT / NULLIF handling for imperfect source values
+- CTEs and aggregations
+- Order-level financial allocation to preserve analytical grain
+- Profitability and return analysis
+- Post-load reconciliation and final portfolio QA
 
 ### Delivered-order scope
 
-`is_delivered = 1` is the project’s operational definition for delivered commercial scope. Core SQL profitability metrics and core Power BI revenue/profit measures use this flag so the two layers reconcile to the same realized-order population. The raw `order_status` field is retained and normalized separately for data-quality analysis.
+`is_delivered = 1` is the project definition for delivered commercial scope. Core SQL profitability metrics and the corresponding Power BI measures use this same flag so the two layers analyze the same realized-order population.
 
-## 💡 Core Metric Definitions
+## ⭐ Power BI Model
 
-| Metric | Definition |
-|---|---|
-| Gross Revenue | Quantity × Unit Price on delivered orders |
-| Discount Value | Gross Revenue × Discount % on delivered orders |
-| Sales After Discount | Gross Revenue − Discount Value |
-| Refund Value | Approved refund allocated to the analytical line |
-| Net Revenue | Sales After Discount − Refund Value |
-| Product Cost | Quantity × Unit Cost |
-| Gross Profit | Net Revenue − Product Cost − Shipping Cost − Return Cost |
-| Profit Margin | Gross Profit ÷ Net Revenue |
-| Return Rate | Returned delivered orders ÷ delivered orders |
-| AOV | Net Revenue ÷ delivered orders |
-| Late Delivery Rate | Late delivered orders ÷ delivered orders |
+The final semantic model uses a simple star schema:
 
-## ⚠️ Analytical Discipline
+```text
+                         DimDate
+                        /       \
+                       /         \
+DimCustomer ---- FactProfitability ---- DimProduct
+                       |
+                   FactReturns
+```
 
-ProfitTrace distinguishes **association from causation**. For example, if late-delivery orders show a higher return rate, that is evidence of an observed relationship in the dataset, not proof that late delivery caused every return.
+### Tables
 
-The return source contains return events but no reliable product identifier. Therefore, return-event analysis is intentionally kept at return/customer/channel/region level rather than inventing product or category return attribution.
+**Facts**
 
-The dataset is synthetic and the findings are portfolio examples, not claims about a real company.
+- `FactProfitability` from `analytics.vw_OrderProfitability`
+- `FactReturns` from `analytics.vw_ReturnsOperations`
+
+**Dimensions**
+
+- `DimDate`
+- `DimCustomer`
+- `DimProduct`
+
+The model uses 1:* single-direction relationships from dimensions to facts. There is no direct fact-to-fact relationship.
+
+The returns source does not contain a reliable product identifier, so return-event visuals are intentionally kept at return/customer/channel/region level rather than creating unsupported product/category attribution.
+
+## 📈 Final Dashboard
+
+### 1. Executive Profit Command Center
+
+A management view of the core economics with KPI cards for:
+
+- Net Revenue
+- Gross Profit
+- Profit Margin %
+- Return Rate %
+- Delivered Orders
+- Return Leakage %
+
+Supporting visuals include monthly revenue vs profit, category profit contribution, the revenue-to-profit waterfall and revenue-vs-margin analysis.
+
+### 2. Profitability Deep Dive
+
+A product and category profitability view with:
+
+- Margin by Category
+- Revenue Mix
+- High Revenue, Low Margin Opportunities
+- Discounting vs Profitability
+- Product Profitability Matrix
+
+### 3. Returns & Operational Leakage
+
+A focused view of operational and financial leakage with:
+
+- Returned Orders
+- Return Rate %
+- Refund Value
+- Return Leakage %
+- Late Delivery %
+
+Visuals cover return reasons, monthly refund leakage, return-reason mix, delivery performance vs returns and return-event detail.
+
+### 4. Customer & Commercial Intelligence
+
+A commercial view with:
+
+- Customers
+- Orders per Customer
+- Repeat Customer %
+- Profit per Customer
+
+Visuals cover customer segments, acquisition channels, regional profitability, top profit-contributing customers and a channel scorecard.
+
+## 📌 Observed Dashboard Snapshot
+
+The final report currently shows these headline values in the delivered-order analytical scope:
+
+| KPI | Dashboard value |
+|---|---:|
+| Net Revenue | 147.92M |
+| Gross Profit | 59.33M |
+| Profit Margin | 40% |
+| AOV | 10.05K |
+| Customers | 1K |
+| Orders per Customer | 14.72 |
+| Repeat Customer % | 100% |
+| Profit per Customer | 59.33K |
+
+Because the dataset is synthetic, these values demonstrate the model and analytical workflow rather than representing a real business.
+
+## 🖼️ Dashboard Preview
+
+### Executive Profit Command Center
+![Executive Profit Command Center](screenshots/executive_profit_command_center.png)
+
+### Profitability Deep Dive
+![Profitability Deep Dive](screenshots/profitability_deep_dive.png)
+
+### Returns & Operational Leakage
+![Returns & Operational Leakage](screenshots/returns_operational_leakage.png)
+
+### Customer & Commercial Intelligence
+![Customer & Commercial Intelligence](screenshots/customer_commercial_intelligence.png)
+
+## 📥 Final Portfolio Files
+
+- [Download the final Power BI report (PBIX)](powerbi/ProfitTrace_Dashboard.pbix)
+- [View the exported dashboard PDF](ProfitTrace_Dashboard.pdf)
+- [View the SQL scripts](sql/)
+- [View the dashboard documentation](powerbi/)
+- [View the final screenshots](screenshots/)
 
 ## 📁 Repository Structure
 
 ```text
 ProfitTrace/
+├── ProfitTrace_Dashboard.pdf
+├── README.md
 ├── data/
-│   └── README.md
-├── sql/
-│   ├── 01_Database_Setup.sql
-│   ├── 02_Import_Raw_Data.sql
-│   ├── 03_Data_Validation.sql
-│   ├── 04_Data_Cleaning.sql
-│   ├── 05_Business_Analysis.sql
-│   ├── 06_Post_Load_QA.sql
-│   └── 07_Final_Portfolio_QA.sql
 ├── documentation/
 │   ├── PROJECT_BRIEF.md
 │   ├── DATA_DICTIONARY.md
@@ -165,48 +236,49 @@ ProfitTrace/
 │   ├── POWERBI_BUILD_CHECKLIST.md
 │   └── RECRUITER_REVIEW.md
 ├── powerbi/
+│   ├── ProfitTrace_Dashboard.pbix
 │   ├── DASHBOARD_BLUEPRINT.md
 │   ├── BUILD_HANDOFF.md
 │   ├── DAX_MEASURES.md
 │   └── PROFITTRACE_THEME.json
 ├── screenshots/
-└── README.md
+│   ├── executive_profit_command_center.png
+│   ├── profitability_deep_dive.png
+│   ├── returns_operational_leakage.png
+│   └── customer_commercial_intelligence.png
+└── sql/
+    ├── 01_Database_Setup.sql
+    ├── 02_Import_Raw_Data.sql
+    ├── 03_Data_Validation.sql
+    ├── 04_Data_Cleaning.sql
+    ├── 05_Business_Analysis.sql
+    ├── 06_Post_Load_QA.sql
+    └── 07_Final_Portfolio_QA.sql
 ```
 
-## 🚀 Build Order
+## ✅ Project Status
 
-1. Keep the Excel workbooks as the primary source layer.
-2. Use the CSV copies when the local SQL Server environment cannot read Excel directly.
-3. Run `01_Database_Setup.sql`.
-4. Run `02_Import_Raw_Data.sql` to create staging tables.
-5. Load the five source files into `stg`.
-6. Run `03_Data_Validation.sql` and inspect the intentional quality issues.
-7. Run `04_Data_Cleaning.sql` to create analytical views.
-8. Run `05_Business_Analysis.sql` for business findings.
-9. Run `06_Post_Load_QA.sql` and `07_Final_Portfolio_QA.sql`.
-10. Build the Power BI star schema and clean business-facing DAX measures.
-11. Capture final dashboard screenshots and document the observed findings.
+**Portfolio build complete.**
 
-For the detailed hands-on sequence, see `documentation/HANDS_ON_BUILD_GUIDE.md`.
-
-## 📌 Project Status
-
-**Foundation is complete. Local SQL execution and the Power BI implementation are the remaining hands-on stages.**
-
-- [x] Business case and recruiter-oriented scope
-- [x] Source dataset design and Excel-first workflow
-- [x] SQL staging model
+- [x] Business case and scope
+- [x] Source dataset and data-quality issues
+- [x] SQL staging and import workflow
 - [x] Validation and cleaning logic
 - [x] Business analysis queries
 - [x] Post-load and final QA
-- [x] Power BI model specification
-- [x] DAX measure plan
-- [x] Four-page dashboard blueprint
-- [x] Hands-on build guide
-- [ ] SQL Server import and QA execution on local machine
-- [ ] Power BI star schema implementation
-- [ ] Dashboard pages, interactions and final styling
-- [ ] Final screenshots and PBIX evidence
+- [x] Power BI star schema
+- [x] 32 DAX measures
+- [x] Four-page dashboard
+- [x] Final screenshots
+- [x] PDF export
+- [x] PBIX portfolio file
+- [x] GitHub repository evidence
+
+## ⚠️ Analytical Discipline
+
+ProfitTrace distinguishes **observed association from causation**. For example, a higher return rate among late-delivery orders is an observed relationship in the synthetic dataset; it is not proof that late delivery caused every return.
+
+The return source has no reliable product identifier, so the project does not invent product/category return attribution.
 
 ## 👤 Author
 
