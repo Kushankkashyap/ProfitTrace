@@ -61,13 +61,15 @@ ORDER BY gross_profit ASC;
 GO
 
 -- 5. Discount leakage by band
+-- Bands intentionally mirror the Power BI Discount Bands helper table.
 SELECT
     CASE
-        WHEN discount_pct<0.05 THEN '<5%'
-        WHEN discount_pct<0.10 THEN '5-10%'
-        WHEN discount_pct<0.15 THEN '10-15%'
-        WHEN discount_pct<0.20 THEN '15-20%'
-        ELSE '20%+'
+        WHEN discount_pct < 0.05 THEN '0-5%'
+        WHEN discount_pct < 0.10 THEN '5-10%'
+        WHEN discount_pct < 0.15 THEN '10-15%'
+        WHEN discount_pct < 0.20 THEN '15-20%'
+        WHEN discount_pct < 0.25 THEN '20-25%'
+        ELSE '25-30%'
     END AS discount_band,
     COUNT(DISTINCT CASE WHEN is_delivered=1 THEN order_id END) AS delivered_orders,
     SUM(CASE WHEN is_delivered=1 THEN discount_value ELSE 0 END) AS discount_value,
@@ -77,11 +79,12 @@ SELECT
         /NULLIF(SUM(CASE WHEN is_delivered=1 THEN net_revenue ELSE 0 END),0) AS DECIMAL(10,2)) AS margin_pct
 FROM analytics.vw_OrderProfitability
 GROUP BY CASE
-    WHEN discount_pct<0.05 THEN '<5%'
-    WHEN discount_pct<0.10 THEN '5-10%'
-    WHEN discount_pct<0.15 THEN '10-15%'
-    WHEN discount_pct<0.20 THEN '15-20%'
-    ELSE '20%+'
+    WHEN discount_pct < 0.05 THEN '0-5%'
+    WHEN discount_pct < 0.10 THEN '5-10%'
+    WHEN discount_pct < 0.15 THEN '10-15%'
+    WHEN discount_pct < 0.20 THEN '15-20%'
+    WHEN discount_pct < 0.25 THEN '20-25%'
+    ELSE '25-30%'
 END
 ORDER BY MIN(discount_pct);
 GO
