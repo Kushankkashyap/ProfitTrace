@@ -209,9 +209,9 @@ Includes:
 - Return Leakage %
 - Late Delivery %
 - Return reasons
-- Monthly refund leakage
-- Return reason mix
-- Delivery performance vs returns
+- Monthly refund leakage by return month
+- Return rate by category
+- Return rate by delivery status
 - Return-event detail
 
 ### 04 | Customer & Commercial Intelligence
@@ -222,7 +222,7 @@ Includes:
 
 - Customers
 - Orders Per Customer
-- Repeat Customer %
+- Profit per Order
 - Profit per Customer
 - Customer segment profitability
 - Acquisition-channel economics
@@ -239,15 +239,25 @@ Includes:
 | Net Revenue | 147.92M |
 | Gross Profit | 59.33M |
 | Profit Margin | 40% |
-| AOV | 10.05K |
-| Customers | 1K |
+| AOV | ₹10,049.36 |
+| Customers | 1,000 |
 | Orders per Customer | 14.72 |
-| Repeat Customer % | 100% |
-| Profit per Customer | 59.33K |
+| Profit per Order | ₹4,030.61 |
+| Profit per Customer | ₹59,326.55 |
 
-These values are from the completed synthetic portfolio dataset and are included to demonstrate the final analytical output.
+These values are from the completed synthetic portfolio dataset and represent the final dashboard output.
+
+> **Note:** The synthetic dataset produces multiple delivered orders for all customers, so repeat-customer percentage is not used as a final KPI because it does not provide useful differentiation in this dataset.
 
 ---
+
+## 🔎 Key Findings
+
+- **₹147.92M net revenue generated ₹59.33M gross profit**, representing a **40% profit margin** on delivered-order economics.
+- **Electronics contributed ₹33.8M of profit**, the largest category contribution in the final dashboard.
+- **Fashion recorded a 12% return rate**, while Sports was 7% and Electronics, Beauty and Home were each 6%.
+- **Late-delivery orders had an 11% return rate versus 7% for on-time orders** in the synthetic dataset. This is an observed relationship, not proof of causation.
+- **Profit margin declined as discounting increased**, from 45% in the 0-5% discount band to 19% in the 25-30% band.
 
 ## 🖼️ Dashboard Preview
 
@@ -310,8 +320,7 @@ ProfitTrace/
 │   ├── ProfitTrace_Dashboard.pbix
 │   ├── DASHBOARD_BLUEPRINT.md
 │   ├── BUILD_HANDOFF.md
-│   ├── DAX_MEASURES.md
-│   └── PROFITTRACE_THEME.json
+│   └── DAX_MEASURES.md
 ├── screenshots/
 │   ├── customer_commercial_intelligence.png
 │   ├── executive_profit_command_center.png
