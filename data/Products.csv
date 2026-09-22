@@ -1,0 +1,301 @@
+product_id,product_name,category,subcategory,brand,product_tier,list_price,unit_cost,launch_date,rating
+PROD0001,Sony Wireless Earbuds Lite,Electronics,Audio,Sony,Core,22600,7410,2023-09-13,3.1
+PROD0002,Sony Bluetooth Speaker Plus,Electronics,Audio,Sony,Premium,32450,14380,2025-05-26,4.7
+PROD0003,JBL Smartwatch Pro,Electronics,Wearables,JBL,Premium,34850,16000,2025-05-09,4.2
+PROD0004,Apple Mechanical Keyboard Max,Electronics,Computer Accessories,Apple,Premium,29950,10750,2024-02-29,4.8
+PROD0005,Philips Wireless Mouse Classic,Electronics,Computer Accessories,Philips,Premium,31400,15010,2024-09-24,4.6
+PROD0006,JBL USB-C Hub Prime,Electronics,Computer Accessories,JBL,Core,20300,11540,2025-07-16,4.1
+PROD0007,Samsung Power Bank 20000mAh Air,Electronics,Mobile Accessories,Samsung,Value,10450,5710,2023-04-11,3.9
+PROD0008,Sony Fast Charger 65W Elite,Electronics,Mobile Accessories,Sony,Core,20150,11590,2025-02-24,3.1
+PROD0009,Sony Noise Cancelling Headphones Essential,Electronics,Audio,Sony,Value,10950,4620,2025-07-29,4.2
+PROD0010,Sony 4K Streaming Stick Studio,Electronics,Smart Devices,Sony,Core,18200,6020,2024-01-25,3.8
+PROD0011,Apple Smart LED Bulb 2-Pack Lite,Electronics,Smart Home,Apple,Premium,27700,14650,2024-09-26,5
+PROD0012,Apple Portable SSD 1TB Plus,Electronics,Storage,Apple,Value,1350,550,2024-03-23,4.4
+PROD0013,JBL Wireless Earbuds Pro,electronics,Audio,JBL,Premium,28500,18090,2023-03-01,3.9
+PROD0014,Apple Bluetooth Speaker Max,Electronics,Audio,Apple,Core,20350,8650,2023-09-06,4.1
+PROD0015,Samsung Smartwatch Classic,Electronics,Wearables,Samsung,Core,19700,10000,2023-12-04,4.1
+PROD0016,Logitech Mechanical Keyboard Prime,Electronics,Computer Accessories,Logitech,Core,19050,6640,2025-01-13,4.9
+PROD0017,Samsung Wireless Mouse Air,Electronics,Computer Accessories,Samsung,Core,22600,13670,2024-09-02,4
+PROD0018,JBL USB-C Hub Elite,Electronics,Computer Accessories,JBL,Core,17950,10630,2025-06-03,4
+PROD0019,Samsung Power Bank 20000mAh Essential,Electronics,Mobile Accessories,Samsung,Premium,30300,15760,2025-06-19,4.4
+PROD0020,OnePlus Fast Charger 65W Studio,Electronics,Mobile Accessories,OnePlus,Value,10700,4680,2024-07-05,3.9
+PROD0021,Philips Noise Cancelling Headphones Lite,Electronics,Audio,Philips,Premium,30850,18910,2025-06-01,3.9
+PROD0022,OnePlus 4K Streaming Stick Plus,Electronics,Smart Devices,OnePlus,Premium,34100,11980,2023-06-15,4.2
+PROD0023,boAt Smart LED Bulb 2-Pack Pro,Electronics,Smart Home,boAt,Value,5900,2710,2023-04-03,4.4
+PROD0024,Sony Portable SSD 1TB Max,Electronics,Storage,Sony,Core,19600,11500,2025-03-17,4
+PROD0025,boAt Wireless Earbuds Classic,Electronics,Audio,boAt,Core,25000,14170,2024-06-14,4.9
+PROD0026,boAt Bluetooth Speaker Prime,Electronics,Audio,boAt,Value,8400,2950,2025-02-17,4.3
+PROD0027,Sony Smartwatch Air,Electronics,Wearables,Sony,Value,7800,4980,2024-05-12,4.2
+PROD0028,Apple Mechanical Keyboard Elite,Electronics,Computer Accessories,Apple,Core,23350,14080,2025-03-03,3.6
+PROD0029,boAt Wireless Mouse Essential,Electronics,Computer Accessories,boAt,Premium,25650,9600,2024-06-15,4.3
+PROD0030,Sony USB-C Hub Studio,Electronics,Computer Accessories,Sony,Core,15400,5700,2024-04-09,3.9
+PROD0031,JBL Power Bank 20000mAh Lite,Electronics,Mobile Accessories,JBL,Core,12450,4900,2023-07-27,4.7
+PROD0032,OnePlus Fast Charger 65W Plus,Electronics,Mobile Accessories,OnePlus,Core,14500,5980,2024-12-26,4.5
+PROD0033,Apple Noise Cancelling Headphones Pro,Electronics,Audio,Apple,Premium,30800,18690,2024-10-10,3.5
+PROD0034,Samsung 4K Streaming Stick Max,Electronics,Smart Devices,Samsung,Value,1950,1030,2024-04-15,4.6
+PROD0035,Apple Smart LED Bulb 2-Pack Classic,Electronics,Smart Home,Apple,Core,17800,7730,2024-03-23,4.2
+PROD0036,Philips Portable SSD 1TB Prime,Electronics,Storage,Philips,Core,18050,8860,2024-07-13,4.2
+PROD0037,Sony Wireless Earbuds Air,Electronics,Audio,Sony,Core,20250,6800,2023-06-26,4.3
+PROD0038,OnePlus Bluetooth Speaker Elite,Electronics,Audio,OnePlus,Core,23350,11860,2023-12-05,4.2
+PROD0039,Apple Smartwatch Essential,Electronics,Wearables,Apple,Value,3850,1860,2024-07-20,4.6
+PROD0040,Samsung Mechanical Keyboard Studio,Electronics,Computer Accessories,Samsung,Core,16400,7560,2023-12-14,4.7
+PROD0041,Samsung Wireless Mouse Lite,Electronics,Computer Accessories,Samsung,Core,25300,15230,2023-09-25,4.1
+PROD0042,Samsung USB-C Hub Plus,Electronics,Computer Accessories,Samsung,Premium,30050,16360,2023-03-20,4
+PROD0043,Apple Power Bank 20000mAh Pro,Electronics,Mobile Accessories,Apple,Value,10000,5750,2024-07-07,4.4
+PROD0044,Logitech Fast Charger 65W Max,Electronics,Mobile Accessories,Logitech,Core,15700,8820,2024-08-02,4.1
+PROD0045,Philips Noise Cancelling Headphones Classic,Electronics,Audio,Philips,Premium,26400,13080,2024-08-23,3.6
+PROD0046,Sony 4K Streaming Stick Prime,Electronics,Smart Devices,Sony,Premium,29400,11940,2025-07-15,4.9
+PROD0047,Samsung Smart LED Bulb 2-Pack Air,Electronics,Smart Home,Samsung,Core,15600,6110,2025-01-17,4.4
+PROD0048,Philips Portable SSD 1TB Elite,Electronics,Storage,Philips,Premium,32250,16930,2023-08-17,4
+PROD0049,Philips Wireless Earbuds Essential,Electronics,Audio,Philips,Premium,32850,12830,2025-08-24,3.9
+PROD0050,Samsung Bluetooth Speaker Studio,Electronics,Audio,Samsung,Core,19950,8570,2023-05-09,3.6
+PROD0051,boAt Smartwatch Lite,Electronics,Wearables,boAt,Core,25200,8940,2025-08-02,4.2
+PROD0052,Philips Mechanical Keyboard Plus,Electronics,Computer Accessories,Philips,Value,11600,7270,2024-06-03,4.2
+PROD0053,Sony Wireless Mouse Pro,Electronics,Computer Accessories,Sony,Value,9650,5340,2025-06-09,3.5
+PROD0054,Philips USB-C Hub Max,Electronics,Computer Accessories,Philips,Core,22150,13640,2025-02-21,4.4
+PROD0055,Logitech Power Bank 20000mAh Classic,Electronics,Mobile Accessories,Logitech,Core,15000,5740,2023-03-17,4.3
+PROD0056,Apple Fast Charger 65W Prime,Electronics, Home Appliances ,Apple,Core,14100,4980,2023-02-10,5
+PROD0057,boAt Noise Cancelling Headphones Air,Electronics,Audio,boAt,Value,1850,1020,2025-07-20,3.9
+PROD0058,JBL 4K Streaming Stick Elite,Electronics,Smart Devices,JBL,Value,6200,3740,2023-02-08,3.9
+PROD0059,boAt Smart LED Bulb 2-Pack Essential,Electronics,Smart Home,boAt,Premium,28800,15080,2023-05-12,4.3
+PROD0060,Sony Portable SSD 1TB Studio,Electronics,Storage,Sony,Core,12800,7470,2025-09-01,4.8
+PROD0061,Prestige Air Fryer 4.2L Lite,Home,Kitchen Appliances,Prestige,Core,8700,3430,2023-07-31,4.2
+PROD0062,Havells Mixer Grinder 750W Plus,Home,Kitchen Appliances,Havells,Core,7150,2770,2025-02-20,4
+PROD0063,Wonderchef Electric Kettle 1.5L Pro,Home,Kitchen Appliances,Wonderchef,Premium,10650,4380,2023-04-09,4.6
+PROD0064,SleepyCat Vacuum Cleaner Max,Home,Cleaning,SleepyCat,Value,700,280,2023-07-04,4.3
+PROD0065,Philips Bedside Lamp Classic,Home,Lighting,Philips,Value,2650,1140,2024-04-07,4.2
+PROD0066,IKEA Cotton Bedsheet Set Prime,Home,Bedding,IKEA,Core,7000,4040,2024-11-04,4.1
+PROD0067,IKEA Memory Foam Pillow Air,Home,Bedding,IKEA,Core,5200,1690,2025-08-28,4.5
+PROD0068,Milton Non-Stick Cookware Set Elite,Home,Cookware,Milton,Core,6550,3660,2025-06-14,4.2
+PROD0069,Milton Water Bottle 1L Essential,Home,Kitchenware,Milton,Premium,9600,3780,2025-09-14,3.8
+PROD0070,Wonderchef Storage Organizer Set Studio,Home,Storage,Wonderchef,Value,1300,460,2023-10-13,4.4
+PROD0071,IKEA Table Fan Lite,Home,Home Appliances,IKEA,Core,7450,3050,2025-03-28,4.6
+PROD0072,Philips Insulated Flask 1L Plus,Home,Kitchenware,Philips,Core,9450,3350,2024-02-17,3.6
+PROD0073,IKEA Air Fryer 4.2L Pro,Home,Kitchen Appliances,IKEA,Core,6600,2520,2023-06-15,3.9
+PROD0074,IKEA Mixer Grinder 750W Max,Home,Kitchen Appliances,IKEA,Premium,12400,4870,2025-03-21,3.9
+PROD0075,Wonderchef Electric Kettle 1.5L Classic,Home,Kitchen Appliances,Wonderchef,Core,7300,2570,2024-11-14,4.3
+PROD0076,Wonderchef Vacuum Cleaner Prime,Home,Cleaning,Wonderchef,Value,950,310,2024-05-19,4.1
+PROD0077,SleepyCat Bedside Lamp Air,Home,Lighting,SleepyCat,Value,3400,1380,2023-07-21,4.4
+PROD0078,Borosil Cotton Bedsheet Set Elite,Home,Bedding,Borosil,Core,6600,3970,2025-02-14,3.5
+PROD0079,IKEA Memory Foam Pillow Essential,Home,Bedding,IKEA,Value,1250,620,2023-07-18,3.9
+PROD0080,Milton Non-Stick Cookware Set Studio,Home,Cookware,Milton,Value,1850,680,2025-01-22,4.1
+PROD0081,Milton Water Bottle 1L Lite,Home,Kitchenware,Milton,Value,650,230,2023-09-02,3.7
+PROD0082,Havells Storage Organizer Set Plus,Home,Storage,Havells,Core,5850,1980,2025-08-11,4.5
+PROD0083,Havells Table Fan Pro,Home,Home Appliances,Havells,Premium,10700,3740,2023-11-01,4
+PROD0084,Philips Insulated Flask 1L Max,Home,Kitchenware,Philips,Core,9250,5220,2023-12-10,3.8
+PROD0085,Havells Air Fryer 4.2L Classic,Home,Kitchen Appliances,Havells,Value,1900,760,2024-11-03,4.5
+PROD0086,Prestige Mixer Grinder 750W Prime,Home,Kitchen Appliances,Prestige,Value,3900,2460,2024-03-03,4
+PROD0087,SleepyCat Electric Kettle 1.5L Air,Home,Kitchen Appliances,SleepyCat,Core,6000,2380,2024-05-28,4.4
+PROD0088,Philips Vacuum Cleaner Elite,Home,Cleaning,Philips,Value,2500,1430,2023-02-25,4.8
+PROD0089,Havells Bedside Lamp Essential,Home,Lighting,Havells,Core,7100,3690,2024-03-19,4.3
+PROD0090,Borosil Cotton Bedsheet Set Studio,Home,Bedding,Borosil,Value,950,420,2024-12-02,3.1
+PROD0091,Havells Memory Foam Pillow Lite,Home,Bedding,Havells,Premium,11150,5000,2023-04-17,3.7
+PROD0092,SleepyCat Non-Stick Cookware Set Plus,Home,Cookware,SleepyCat,Core,5200,1920,2025-06-05,3.9
+PROD0093,SleepyCat Water Bottle 1L Pro,Home,Kitchenware,SleepyCat,Core,7750,2990,2023-02-24,4.2
+PROD0094,Philips Storage Organizer Set Max,Home,Storage,Philips,Premium,13000,5520,2023-09-04,4.3
+PROD0095,Milton Table Fan Classic,Home,Home Appliances,Milton,Value,3200,1750,2024-02-25,5
+PROD0096,Milton Insulated Flask 1L Prime,Home,Kitchenware,Milton,Value,3250,1410,2023-01-14,4.1
+PROD0097,Havells Air Fryer 4.2L Air,Home,Kitchen Appliances,Havells,Core,6850,3080,2024-12-24,4
+PROD0098,Wonderchef Mixer Grinder 750W Elite,Home,Kitchen Appliances,Wonderchef,Premium,10050,4520,2025-08-06,4.3
+PROD0099,Philips Electric Kettle 1.5L Essential,Home,Kitchen Appliances,Philips,Core,9150,4310,2023-03-15,4.3
+PROD0100,Prestige Vacuum Cleaner Studio,Home,Cleaning,Prestige,Core,5450,2400,2024-12-10,4.6
+PROD0101,Havells Bedside Lamp Lite,Home,Lighting,Havells,Core,4800,2600,2024-02-22,4.5
+PROD0102,SleepyCat Cotton Bedsheet Set Plus,Home,Bedding,SleepyCat,Premium,10800,5060,2024-12-31,4.2
+PROD0103,Borosil Memory Foam Pillow Pro,Home,Bedding,Borosil,Value,1000,570,2024-03-21,4
+PROD0104,Havells Non-Stick Cookware Set Max,Home,Cookware,Havells,Core,4750,2800,2023-04-06,4.4
+PROD0105,Prestige Water Bottle 1L Classic,Home,Kitchenware,Prestige,Premium,10000,5050,2023-08-16,4.1
+PROD0106,IKEA Storage Organizer Set Prime,Home,Storage,IKEA,Value,2650,1380,2023-12-11,4.1
+PROD0107,Borosil Table Fan Air,Home,Home Appliances,Borosil,Core,5100,3030,2024-03-03,3.5
+PROD0108,Borosil Insulated Flask 1L Elite,Home,Kitchenware,Borosil,Premium,10650,4750,2024-04-07,4.8
+PROD0109,Philips Air Fryer 4.2L Essential,Home,Kitchen Appliances,Philips,Core,7250,4340,2023-07-24,5
+PROD0110,Prestige Mixer Grinder 750W Studio,Home,Kitchen Appliances,Prestige,Premium,11850,5090,2024-11-10,4
+PROD0111,SleepyCat Electric Kettle 1.5L Lite,Home,Kitchen Appliances,SleepyCat,Core,5950,2400,2023-06-04,3.9
+PROD0112,Philips Vacuum Cleaner Plus,Home,Cleaning,Philips,Value,3150,1780,2023-09-10,4
+PROD0113,Borosil Bedside Lamp Pro,Home,Lighting,Borosil,Value,3200,1890,2024-10-24,4.5
+PROD0114,SleepyCat Cotton Bedsheet Set Max,Home,Bedding,SleepyCat,Premium,11150,4870,2023-10-31,4.2
+PROD0115,Borosil Memory Foam Pillow Classic,Home,Bedding,Borosil,Value,2600,990,2024-07-19,4.7
+PROD0116,Philips Non-Stick Cookware Set Prime,Home,Cookware,Philips,Premium,11850,6100,2024-04-16,3.7
+PROD0117,Wonderchef Water Bottle 1L Air,Home,Kitchenware,Wonderchef,Premium,12100,7540,2024-12-28,4.6
+PROD0118,Philips Storage Organizer Set Elite,Home,Storage,Philips,Core,7750,2590,2024-02-06,3.7
+PROD0119,Wonderchef Table Fan Essential,Home,Home Appliances,Wonderchef,Value,3500,1940,2025-01-11,4.3
+PROD0120,Wonderchef Insulated Flask 1L Studio,Home,Kitchenware,Wonderchef,Core,5900,2780,2025-01-17,3.7
+PROD0121,Roadster Slim Fit Jeans Lite,Fashion,Menswear,Roadster,Core,5600,2860,2024-12-21,4.5
+PROD0122,H&M Oversized T-Shirt Plus,Fashion,Menswear,H&M,Core,6100,2160,2023-10-13,3.6
+PROD0123,Nike Running Shoes Pro,Fashion,Footwear,Nike,Value,2400,1480,2025-04-29,4.5
+PROD0124,Levi's Casual Sneakers Max,Fashion,Footwear,Levi's,Value,750,270,2023-10-12,4.6
+PROD0125,Roadster Cotton Kurta Classic,Fashion,Ethnicwear,Roadster,Premium,8350,3490,2025-04-19,3.6
+PROD0126,Levi's Everyday Hoodie Prime,Fashion,Menswear,Levi's,Premium,7050,3790,2024-08-23,3.8
+PROD0127,Nike Straight Fit Trousers Air,Fashion,Womenswear,Nike,Value,2350,1150,2023-12-16,4.2
+PROD0128,Levi's Floral Dress Elite,Fashion,Womenswear,Levi's,Premium,7900,4870,2024-08-27,4.1
+PROD0129,Levi's Crossbody Bag Essential,Fashion,Accessories,Levi's,Value,2850,1780,2024-07-25,4.3
+PROD0130,Biba Leather Wallet Studio,Fashion,Accessories,Biba,Core,4400,2550,2023-03-07,3.5
+PROD0131,Puma Sports Leggings Lite,Fashion,Womenswear,Puma,Premium,6650,2850,2024-08-24,3.7
+PROD0132,Puma Denim Jacket Plus,Fashion,Outerwear,Puma,Premium,7450,3110,2023-03-25,4.7
+PROD0133,Van Heusen Slim Fit Jeans Pro,Fashion,Menswear,Van Heusen,Premium,8050,3170,2023-07-29,4
+PROD0134,H&M Oversized T-Shirt Max,Fashion,Menswear,H&M,Value,2500,1190,2023-05-02,4
+PROD0135,Roadster Running Shoes Classic,Fashion,Footwear,Roadster,Core,3550,2270,2023-01-28,4.3
+PROD0136,Biba Casual Sneakers Prime,Fashion,Footwear,Biba,Premium,8500,4540,2024-03-07,3.2
+PROD0137,Puma Cotton Kurta Air,Fashion,Ethnicwear,Puma,Core,4750,1900,2024-03-15,3.9
+PROD0138,Nike Everyday Hoodie Elite,Fashion,Menswear,Nike,Core,3400,1620,2025-07-01,4.9
+PROD0139,Roadster Straight Fit Trousers Essential,Fashion,Womenswear,Roadster,Premium,8100,5050,2025-04-04,4.4
+PROD0140,Levi's Floral Dress Studio,Fashion,Womenswear,Levi's,Core,4550,2800,2024-09-18,3.7
+PROD0141,Levi's Crossbody Bag Lite,Fashion,Accessories,Levi's,Value,1950,980,2024-09-14,4.2
+PROD0142,Biba Leather Wallet Plus,Fashion,Accessories,Biba,Premium,6650,3400,2024-06-01,4.5
+PROD0143,Nike Sports Leggings Pro,Fashion,Womenswear,Nike,Core,3950,1460,2025-04-21,4.1
+PROD0144,H&M Denim Jacket Max,Fashion,Outerwear,H&M,Value,1800,640,2024-08-21,4.7
+PROD0145,Nike Slim Fit Jeans Classic,Fashion,Menswear,Nike,Value,1400,450,2024-12-14,3.5
+PROD0146,H&M Oversized T-Shirt Prime,Fashion,Menswear,H&M,Core,5300,2730,2023-09-04,4.5
+PROD0147,Puma Running Shoes Air,Fashion,Footwear,Puma,Value,3000,1570,2023-09-22,3.7
+PROD0148,Van Heusen Casual Sneakers Elite,Fashion,Footwear,Van Heusen,Value,1900,730,2025-08-22,4.5
+PROD0149,Van Heusen Cotton Kurta Essential,Fashion,Ethnicwear,Van Heusen,Core,3400,1260,2024-08-31,4.2
+PROD0150,Nike Everyday Hoodie Studio,Fashion,Menswear,Nike,Value,1950,1040,2024-03-12,3.7
+PROD0151,Puma Straight Fit Trousers Lite,Fashion,Womenswear,Puma,Premium,6800,3100,2023-11-16,4.2
+PROD0152,Van Heusen Floral Dress Plus,Fashion,Womenswear,Van Heusen,Premium,8850,5410,2023-12-28,4.5
+PROD0153,Nike Crossbody Bag Pro,Fashion,Accessories,Nike,Value,2850,1380,2025-07-14,4.4
+PROD0154,Allen Solly Leather Wallet Max,Fashion,Accessories,Allen Solly,Premium,7150,4260,2025-02-02,3.5
+PROD0155,Puma Sports Leggings Classic,Fashion,Womenswear,Puma,Value,1650,970,2024-08-08,4.3
+PROD0156,Nike Denim Jacket Prime,Fashion,Outerwear,Nike,Value,3000,1090,2024-01-23,4.1
+PROD0157,Van Heusen Slim Fit Jeans Air,Fashion,Menswear,Van Heusen,Core,3700,1520,2023-10-25,5
+PROD0158,Puma Oversized T-Shirt Elite,Fashion,Menswear,Puma,Core,6450,2120,2025-09-20,4.2
+PROD0159,Levi's Running Shoes Essential,Fashion,Footwear,Levi's,Value,3050,1580,2025-07-04,5
+PROD0160,Puma Casual Sneakers Studio,Fashion,Footwear,Puma,Premium,8050,3890,2023-04-14,3.7
+PROD0161,Nike Cotton Kurta Lite,Fashion,Ethnicwear,Nike,Core,4750,2780,2024-06-27,4.3
+PROD0162,Van Heusen Everyday Hoodie Plus,Fashion,Menswear,Van Heusen,Value,600,330,2024-03-17,4.1
+PROD0163,Puma Straight Fit Trousers Pro,Fashion,Womenswear,Puma,Core,3550,1490,2025-05-05,3.8
+PROD0164,Roadster Floral Dress Max,Fashion,Womenswear,Roadster,Value,2150,940,2024-03-31,4.2
+PROD0165,Biba Crossbody Bag Classic,Fashion,Accessories,Biba,Core,4350,2260,2025-06-14,4.1
+PROD0166,Levi's Leather Wallet Prime,Fashion,Accessories,Levi's,Premium,8950,3590,2024-12-04,4.5
+PROD0167,H&M Sports Leggings Air,Fashion,Womenswear,H&M,Value,3000,1010,2024-03-01,4.7
+PROD0168,Allen Solly Denim Jacket Elite,Fashion,Outerwear,Allen Solly,Premium,7500,3110,2023-05-30,4.1
+PROD0169,Puma Slim Fit Jeans Essential,Fashion,Menswear,Puma,Value,1750,600,2024-07-23,4.2
+PROD0170,Roadster Oversized T-Shirt Studio,Fashion,Menswear,Roadster,Value,800,470,2023-10-03,4.3
+PROD0171,Biba Running Shoes Lite,Fashion,Footwear,Biba,Premium,8850,4030,2025-01-10,5
+PROD0172,Biba Casual Sneakers Plus,Fashion,Footwear,Biba,Premium,6650,2690,2024-04-08,3.6
+PROD0173,Levi's Cotton Kurta Pro,Fashion,Ethnicwear,Levi's,Core,5150,2800,2024-12-03,4.2
+PROD0174,Puma Everyday Hoodie Max,Fashion,Menswear,Puma,Value,3100,1230,2023-09-08,4.7
+PROD0175,Roadster Straight Fit Trousers Classic,Fashion,Womenswear,Roadster,Core,6150,2960,2025-05-04,3.8
+PROD0176,Nike Floral Dress Prime,Fashion,Womenswear,Nike,Premium,8150,4810,2025-03-11,3.8
+PROD0177,H&M Crossbody Bag Air,Fashion,Accessories,H&M,Core,4200,2220,2023-03-05,4
+PROD0178,Van Heusen Leather Wallet Elite,Fashion,Accessories,Van Heusen,Premium,8000,3440,2023-03-21,4.1
+PROD0179,Levi's Sports Leggings Essential,Fashion,Womenswear,Levi's,Core,4150,1860,2023-02-23,3.3
+PROD0180,Puma Denim Jacket Studio,Fashion,Outerwear,Puma,Core,5550,3390,2023-09-06,4.2
+PROD0181,The Derma Co Vitamin C Face Serum Lite,Beauty,Skincare,The Derma Co,Value,1650,570,2023-10-31,4.4
+PROD0182,Lakme Niacinamide Serum Plus,Beauty,Skincare,Lakme,Core,3600,1500,2023-05-21,4.4
+PROD0183,Mamaearth Matte Lipstick Pro,Beauty,Makeup,Mamaearth,Premium,4400,1600,2023-02-04,4.1
+PROD0184,Minimalist Hydrating Moisturizer Max,Beauty,Skincare,Minimalist,Core,2450,1460,2023-03-09,3.4
+PROD0185,Lakme Sunscreen SPF 50 Classic,Beauty,Skincare,Lakme,Premium,4950,2080,2024-02-27,4.7
+PROD0186,Maybelline Shampoo 650ml Prime,Beauty,Haircare,Maybelline,Core,2600,1470,2024-11-26,4.4
+PROD0187,L'Oreal Conditioner 650ml Air,Beauty,Haircare,L'Oreal,Core,2750,1550,2025-04-25,4.4
+PROD0188,Maybelline Body Lotion Elite,Beauty,Bodycare,Maybelline,Core,2600,1100,2024-06-16,4.8
+PROD0189,Nivea Face Wash Essential,Beauty,Skincare,Nivea,Core,2300,1360,2023-01-24,4.4
+PROD0190,Mamaearth Perfume 50ml Studio,Beauty,Fragrance,Mamaearth,Value,1100,380,2023-02-23,4
+PROD0191,Nykaa Hair Dryer Lite,Beauty,Beauty Tools,Nykaa,Premium,3850,2230,2023-07-14,3.7
+PROD0192,Mamaearth Makeup Brush Set Plus,Beauty,Beauty Tools,Mamaearth,Value,550,240,2023-01-22,4.6
+PROD0193,Lakme Vitamin C Face Serum Pro,Beauty,Skincare,Lakme,Value,500,190,2023-12-19,3.5
+PROD0194,Nivea Niacinamide Serum Max,Beauty,Skincare,Nivea,Value,950,500,2025-05-25,3.9
+PROD0195,Lakme Matte Lipstick Classic,Beauty,Makeup,Lakme,Premium,4050,1700,2023-02-27,4.2
+PROD0196,Minimalist Hydrating Moisturizer Prime,Beauty,Skincare,Minimalist,Value,850,460,2024-08-19,4.6
+PROD0197,Minimalist Sunscreen SPF 50 Air,Beauty,Skincare,Minimalist,Value,350,120,2024-10-26,3.9
+PROD0198,The Derma Co Shampoo 650ml Elite,Beauty,Haircare,The Derma Co,Premium,4550,1490,2025-01-18,3.8
+PROD0199,Mamaearth Conditioner 650ml Essential,Beauty,Haircare,Mamaearth,Core,2100,1070,2023-04-25,4
+PROD0200,Lakme Body Lotion Studio,Beauty,Bodycare,Lakme,Premium,4300,2470,2024-03-20,4.3
+PROD0201,The Derma Co Face Wash Lite,Beauty,Skincare,The Derma Co,Value,1550,980,2024-01-04,4.7
+PROD0202,Minimalist Perfume 50ml Plus,Beauty,Fragrance,Minimalist,Core,3500,1430,2025-09-15,3.9
+PROD0203,The Derma Co Hair Dryer Pro,Beauty,Beauty Tools,The Derma Co,Core,2700,1690,2024-01-07,4
+PROD0204,Maybelline Makeup Brush Set Max,Beauty,Beauty Tools,Maybelline,Value,400,250,2025-02-28,4.1
+PROD0205,L'Oreal Vitamin C Face Serum Classic,Beauty,Skincare,L'Oreal,Core,3650,1740,2025-01-18,4.3
+PROD0206,L'Oreal Niacinamide Serum Prime,Beauty,Skincare,L'Oreal,Premium,4350,1870,2023-05-12,4.5
+PROD0207,Nykaa Matte Lipstick Air,Beauty,Makeup,Nykaa,Value,350,200,2025-06-18,4.5
+PROD0208,Nykaa Hydrating Moisturizer Elite,Beauty,Skincare,Nykaa,Core,3600,1710,2023-02-23,5
+PROD0209,L'Oreal Sunscreen SPF 50 Essential,Beauty,Skincare,L'Oreal,Premium,4900,2850,2023-04-11,4.7
+PROD0210,Nivea Shampoo 650ml Studio,Beauty,Haircare,Nivea,Value,1300,640,2025-04-02,4.1
+PROD0211,Lakme Conditioner 650ml Lite,Beauty,Haircare,Lakme,Value,1100,470,2023-10-04,3.3
+PROD0212,Minimalist Body Lotion Plus,Beauty,Bodycare,Minimalist,Core,2700,1330,2024-10-04,5
+PROD0213,Nykaa Face Wash Pro,Beauty,Skincare,Nykaa,Value,600,280,2023-09-21,4.3
+PROD0214,Nykaa Perfume 50ml Max,Beauty,Fragrance,Nykaa,Value,1200,760,2025-03-03,3.7
+PROD0215,Nivea Hair Dryer Classic,Beauty,Beauty Tools,Nivea,Core,2300,760,2025-03-05,4.4
+PROD0216,Maybelline Makeup Brush Set Prime,Beauty,Beauty Tools,Maybelline,Core,3100,1160,2023-06-26,3.5
+PROD0217,Maybelline Vitamin C Face Serum Air,Beauty,Skincare,Maybelline,Core,3650,2090,2024-05-01,4.6
+PROD0218,Lakme Niacinamide Serum Elite,Beauty,Skincare,Lakme,Value,850,330,2025-03-19,4
+PROD0219,The Derma Co Matte Lipstick Essential,Beauty,Makeup,The Derma Co,Premium,4900,2420,2025-02-25,4.2
+PROD0220,Mamaearth Hydrating Moisturizer Studio,Beauty,Skincare,Mamaearth,Value,1050,500,2024-04-04,3.9
+PROD0221,The Derma Co Sunscreen SPF 50 Lite,Beauty,Skincare,The Derma Co,Core,2250,1250,2023-12-03,3.7
+PROD0222,Nykaa Shampoo 650ml Plus,Beauty,Haircare,Nykaa,Core,2500,1110,2024-12-12,4.4
+PROD0223,Nivea Conditioner 650ml Pro,Beauty,Haircare,Nivea,Value,750,390,2023-05-11,3.6
+PROD0224,Nivea Body Lotion Max,Beauty,Bodycare,Nivea,Premium,4950,2630,2023-08-15,5
+PROD0225,The Derma Co Face Wash Classic,Beauty,Skincare,The Derma Co,Value,1050,510,2023-10-09,3.7
+PROD0226,Nykaa Perfume 50ml Prime,Beauty,Fragrance,Nykaa,Value,1400,460,2025-05-12,4.6
+PROD0227,Maybelline Hair Dryer Air,Beauty,Beauty Tools,Maybelline,Premium,4150,2170,2023-05-10,4
+PROD0228,Nykaa Makeup Brush Set Elite,Beauty,Beauty Tools,Nykaa,Value,1700,690,2024-06-01,4
+PROD0229,Lakme Vitamin C Face Serum Essential,Beauty,Skincare,Lakme,Premium,4650,2900,2024-01-23,3
+PROD0230,Mamaearth Niacinamide Serum Studio,Beauty,Skincare,Mamaearth,Premium,4750,1970,2024-07-26,3.4
+PROD0231,Lakme Matte Lipstick Lite,Beauty,Makeup,Lakme,Value,1550,710,2024-04-25,4.1
+PROD0232,Nykaa Hydrating Moisturizer Plus,Beauty,Skincare,Nykaa,Value,1250,680,2024-11-10,3.4
+PROD0233,Minimalist Sunscreen SPF 50 Pro,Beauty,Skincare,Minimalist,Premium,3850,2350,2024-10-01,3.5
+PROD0234,Minimalist Shampoo 650ml Max,Beauty,Haircare,Minimalist,Premium,4300,2750,2025-02-07,2.9
+PROD0235,Maybelline Conditioner 650ml Classic,Beauty,Haircare,Maybelline,Value,700,380,2024-06-24,4.1
+PROD0236,Mamaearth Body Lotion Prime,Beauty,Bodycare,Mamaearth,Value,1250,620,2025-08-20,4.1
+PROD0237,Nykaa Face Wash Air,Beauty,Skincare,Nykaa,Core,3600,2020,2024-12-19,3.7
+PROD0238,The Derma Co Perfume 50ml Elite,Beauty,Fragrance,The Derma Co,Premium,4950,1870,2024-11-17,4.3
+PROD0239,Minimalist Hair Dryer Essential,Beauty,Beauty Tools,Minimalist,Premium,4000,2190,2024-09-29,4.5
+PROD0240,Maybelline Makeup Brush Set Studio,Beauty,Beauty Tools,Maybelline,Value,1650,740,2023-01-24,4.2
+PROD0241,Nivia Yoga Mat Lite,Sports,Fitness,Nivia,Core,7400,3260,2024-04-04,3.6
+PROD0242,Nike Adjustable Dumbbells Plus,Sports,Strength Training,Nike,Core,7200,3610,2025-01-15,3.2
+PROD0243,Strauss Resistance Band Set Pro,Sports,Fitness,Strauss,Core,6450,3690,2024-01-22,4
+PROD0244,Cosco Badminton Racket Max,Sports,Racquet Sports,Cosco,Value,500,300,2023-12-19,3.6
+PROD0245,Yonex Cricket Bat Classic,Sports,Cricket,Yonex,Premium,10700,5430,2025-08-09,3.6
+PROD0246,Puma Football Prime,Sports,Team Sports,Puma,Value,1400,500,2025-06-30,5
+PROD0247,Cosco Running Backpack Air,Sports,Running,Cosco,Value,2200,980,2023-03-03,3.7
+PROD0248,Decathlon Gym Gloves Elite,Sports,Fitness,Decathlon,Core,8700,2900,2023-03-04,3.9
+PROD0249,Adidas Skipping Rope Essential,Sports,Fitness,Adidas,Value,3300,1160,2024-02-26,3.7
+PROD0250,Cosco Cycling Helmet Studio,Sports,Cycling,Cosco,Core,8200,3160,2024-05-01,4.2
+PROD0251,Adidas Tennis Balls 3-Pack Lite,Sports,Racquet Sports,Adidas,Value,550,230,2023-06-28,5
+PROD0252,Nivia Foam Roller Plus,Sports,Recovery,Nivia,Value,850,410,2023-09-02,3.6
+PROD0253,Yonex Yoga Mat Pro,Sports,Fitness,Yonex,Core,6750,3110,2023-01-18,4.3
+PROD0254,Nike Adjustable Dumbbells Max,Sports,Strength Training,Nike,Core,6500,3350,2025-01-27,4.7
+PROD0255,Puma Resistance Band Set Classic,Sports,Fitness,Puma,Value,2300,1040,2023-12-16,4.5
+PROD0256,Cosco Badminton Racket Prime,Sports,Racquet Sports,Cosco,Value,3750,2160,2023-09-10,3.8
+PROD0257,Strauss Cricket Bat Air,Sports,Cricket,Strauss,Value,750,310,2025-08-24,3.3
+PROD0258,Nike Football Elite,Sports,Team Sports,Nike,Premium,8900,5370,2024-01-21,4.2
+PROD0259,Strauss Running Backpack Essential,Sports,Running,Strauss,Core,7300,3950,2023-01-03,4.8
+PROD0260,Puma Gym Gloves Studio,Sports,Fitness,Puma,Premium,10300,5000,2024-03-11,4.3
+PROD0261,Decathlon Skipping Rope Lite,Sports,Fitness,Decathlon,Value,2350,1360,2025-09-20,4.3
+PROD0262,Cosco Cycling Helmet Plus,Sports,Cycling,Cosco,Core,8050,5090,2023-02-03,3.7
+PROD0263,Decathlon Tennis Balls 3-Pack Pro,Sports,Racquet Sports,Decathlon,Premium,11850,4160,2023-08-08,4
+PROD0264,Nike Foam Roller Max,Sports,Recovery,Nike,Core,7150,4480,2023-05-29,4.3
+PROD0265,Yonex Yoga Mat Classic,Sports,Fitness,Yonex,Premium,9300,5420,2025-01-19,4.1
+PROD0266,Nike Adjustable Dumbbells Prime,Sports,Strength Training,Nike,Core,4200,1390,2023-08-25,4.3
+PROD0267,Decathlon Resistance Band Set Air,Sports,Fitness,Decathlon,Value,3950,1730,2023-03-18,4.2
+PROD0268,Nivia Badminton Racket Elite,Sports,Racquet Sports,Nivia,Value,1850,740,2025-03-29,4
+PROD0269,Strauss Cricket Bat Essential,Sports,Cricket,Strauss,Value,700,440,2024-05-04,4.7
+PROD0270,Yonex Football Studio,Sports,Team Sports,Yonex,Core,8700,3770,2023-12-21,4
+PROD0271,Yonex Running Backpack Lite,Sports,Running,Yonex,Core,6750,3880,2023-05-22,3.8
+PROD0272,Strauss Gym Gloves Plus,Sports,Fitness,Strauss,Value,2550,1170,2024-10-18,4.1
+PROD0273,Nivia Skipping Rope Pro,Sports,Fitness,Nivia,Core,6950,4300,2024-04-02,5
+PROD0274,Cosco Cycling Helmet Max,Sports,Cycling,Cosco,Value,1700,1050,2023-02-17,4
+PROD0275,Strauss Tennis Balls 3-Pack Classic,Sports,Racquet Sports,Strauss,Value,1250,540,2024-10-12,4.5
+PROD0276,Puma Foam Roller Prime,Sports,Recovery,Puma,Core,7300,3440,2024-11-07,4.3
+PROD0277,Nivia Yoga Mat Air,Sports,Fitness,Nivia,Premium,11750,5660,2023-04-29,3.7
+PROD0278,Puma Adjustable Dumbbells Elite,Sports,Strength Training,Puma,Core,4650,2360,2023-12-10,4.6
+PROD0279,Nivia Resistance Band Set Essential,Sports,Fitness,Nivia,Value,1450,820,2023-10-28,4.5
+PROD0280,Puma Badminton Racket Studio,Sports,Racquet Sports,Puma,Core,8700,5030,2024-11-29,4.8
+PROD0281,Yonex Cricket Bat Lite,Sports,Cricket,Yonex,Core,6500,3420,2023-05-19,4.8
+PROD0282,Nike Football Plus,Sports,Team Sports,Nike,Premium,11750,6640,2024-08-18,4.2
+PROD0283,Puma Running Backpack Pro,Sports,Running,Puma,Value,1800,1000,2024-06-12,4.6
+PROD0284,Decathlon Gym Gloves Max,Sports,Fitness,Decathlon,Value,2550,1520,2025-01-30,3.8
+PROD0285,Adidas Skipping Rope Classic,Sports,Fitness,Adidas,Core,6050,3210,2023-04-03,4.1
+PROD0286,Strauss Cycling Helmet Prime,Sports,Cycling,Strauss,Premium,11350,3670,2024-07-17,4.5
+PROD0287,Puma Tennis Balls 3-Pack Air,Sports,Racquet Sports,Puma,Core,6050,3090,2023-03-13,3.5
+PROD0288,Yonex Foam Roller Elite,Sports,Recovery,Yonex,Premium,11450,4170,2024-01-21,4.4
+PROD0289,Nike Yoga Mat Essential,Sports,Fitness,Nike,Value,850,340,2025-04-23,4.1
+PROD0290,Decathlon Adjustable Dumbbells Studio,Sports,Strength Training,Decathlon,Core,6300,2900,2024-07-02,4.3
+PROD0291,Nike Resistance Band Set Lite,Sports,Fitness,Nike,Premium,10400,5530,2024-11-13,4.6
+PROD0292,Yonex Badminton Racket Plus,Sports,Racquet Sports,Yonex,Core,7050,3290,2025-08-25,4.4
+PROD0293,Strauss Cricket Bat Pro,Sports,Cricket,Strauss,Value,1500,710,2023-06-07,4.4
+PROD0294,Cosco Football Max,Sports,Team Sports,Cosco,Value,1500,610,2025-07-13,3.6
+PROD0295,Cosco Running Backpack Classic,Sports,Running,Cosco,Value,1600,1000,2024-06-06,3.9
+PROD0296,Strauss Gym Gloves Prime,Sports,Fitness,Strauss,Core,8600,5500,2024-07-28,4.5
+PROD0297,Adidas Skipping Rope Air,Sports,Fitness,Adidas,Core,4600,2510,2025-03-31,4
+PROD0298,Puma Cycling Helmet Elite,Sports,Cycling,Puma,Core,5050,1730,2025-01-22,3.9
+PROD0299,Decathlon Tennis Balls 3-Pack Essential,Sports,Racquet Sports,Decathlon,Value,2650,850,2024-04-14,3.9
+PROD0300,Puma Foam Roller Studio,Sports,Recovery,Puma,Value,3650,1830,2024-12-22,4.5

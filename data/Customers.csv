@@ -1,0 +1,1001 @@
+customer_id,customer_name,customer_segment,region,state,city,signup_date,acquisition_channel
+CUST00001,Karan Iyer,Core,South,Telangana,Hyderabad,2024-10-31,Email
+CUST00002,Siddharth Khanna,Core,Central,Madhya Pradesh,Indore,2023-08-10,Referral
+CUST00003,Avni Kapoor,Core,South,Tamil Nadu,Chennai,2024-09-04,Referral
+CUST00004,Reyansh Tiwari,Value,North,Uttar Pradesh,Noida,2024-01-31,Paid Search
+CUST00005,Karan Mishra,Core,East,Bihar,Patna,2024-02-04,Organic Search
+CUST00006,Aarav Sethi,Premium,West,Gujarat,Ahmedabad,2023-01-18,Paid Social
+CUST00007,Siddharth Jain,Premium,South,Kerala,Kochi,2024-01-08,Direct
+CUST00008,Rahul Tiwari,Core, north ,Madhya Pradesh,Indore,2024-12-03,Email
+CUST00009,Aarav Bansal,Core,North,Uttar Pradesh,Noida,2023-11-27,Referral
+CUST00010,Siddharth Kapoor,Core,West,Maharashtra,Mumbai,2024-03-27,Paid Search
+CUST00011,Aditya Sharma,Premium,North,Uttar Pradesh,Lucknow,2025-01-11,Organic Search
+CUST00012,Rahul Verma,Core,Central,Madhya Pradesh,Indore,2023-01-27,Email
+CUST00013,Shreya Shah,Premium,West,Gujarat,Ahmedabad,2024-12-10,Organic Search
+CUST00014,Ishaan Reddy,Core,South,Tamil Nadu,Chennai,2024-04-07,Affiliate
+CUST00015,Rahul Bansal,Value,East,West Bengal,Kolkata,2025-06-05,Paid Search
+CUST00016,Tanya Patel,Premium,East,Bihar,Patna,2023-02-28,Email
+CUST00017,Diya Malhotra,Premium,West,Gujarat,Ahmedabad,2024-06-07,Direct
+CUST00018,Ishaan Reddy,Core,East,West Bengal,Kolkata,2025-02-09,Referral
+CUST00019,Varun Reddy,Core,North,Delhi,Delhi,2025-02-15,Paid Social
+CUST00020,Naina Malhotra,core,North,Uttar Pradesh,Lucknow,2023-09-29,Organic Search
+CUST00021,Karan Joshi,Core,South,Karnataka,Bengaluru,2024-08-20,Paid Search
+CUST00022,Neel Das,Core,West,Maharashtra,Pune,2025-02-05,Organic Search
+CUST00023,Diya Iyer,Premium,South,Kerala,Kochi,2024-11-18,Email
+CUST00024,Sana Kapoor,Premium,East,Odisha,Bhubaneswar,2024-05-03,Organic Search
+CUST00025,Kiara Singh,Value,South,Tamil Nadu,Chennai,2023-02-11,Affiliate
+CUST00026,Tanya Verma,Value,South,Tamil Nadu,Chennai,2024-10-23,Direct
+CUST00027,Meera Kohli,Core,North,Uttar Pradesh,Noida,2023-08-30,Organic Search
+CUST00028,Kiara Sethi,Premium,North,Delhi,Delhi,2023-12-16,Direct
+CUST00029,Nikhil Chawla,Premium,East,Bihar,Patna,2023-12-22,Direct
+CUST00030,Sneha Patel,Value,East,Bihar,Patna,2024-02-29,Paid Search
+CUST00031,Mahi Patel,Core,East,West Bengal,Kolkata,2024-03-17,Organic Search
+CUST00032,Shreya Mehta,Value,West,Gujarat,Ahmedabad,2024-03-08,paid social
+CUST00033,Dev Reddy,Core,South,Karnataka,Bengaluru,2023-03-14,Paid Social
+CUST00034,Aarav Chawla,Core,East,West Bengal,Kolkata,2024-05-29,Affiliate
+CUST00035,Rahul Arora,Core,West,Maharashtra,Mumbai,2025-01-28,Email
+CUST00036,Yash Malhotra,Core,South,Kerala,Kochi,2024-01-12,Paid Search
+CUST00037,Vivaan Mehta,Core,East,Odisha,Bhubaneswar,2024-08-09,Direct
+CUST00038,Aditya Malhotra,Value,North,Uttar Pradesh,Noida,2023-05-21,Direct
+CUST00039,Dhruv Kohli,Core,North,Uttar Pradesh,Lucknow,2023-02-22,Direct
+CUST00040,Siddharth Verma,Core,Central,Madhya Pradesh,Indore,2023-06-11,Organic Search
+CUST00041,Pooja Kapoor,Premium,East,Odisha,Bhubaneswar,2024-11-23,Paid Search
+CUST00042,Meera Nair,Core,South,Telangana,Hyderabad,2023-10-12,Paid Search
+CUST00043,Aditi Malhotra,Premium,South,Karnataka,Bengaluru,2023-05-03,Affiliate
+CUST00044,Karan Sharma,Premium,Central,Maharashtra,Nagpur,2023-05-31,Organic Search
+CUST00045,Ananya Arora,Core,North,Uttar Pradesh,Lucknow,2024-05-07,Organic Search
+CUST00046,Avni Gupta,Core,East,West Bengal,Kolkata,2023-10-20,Affiliate
+CUST00047,Navya Nair,Value,Central,Madhya Pradesh,Indore,2023-02-21,Paid Search
+CUST00048,Navya Kohli,Core,West,Maharashtra,Mumbai,2023-08-24,Paid Search
+CUST00049,Yash Patel,Core,East,Odisha,Bhubaneswar,2023-03-03,Direct
+CUST00050,Riya Arora,Value,East,West Bengal,Kolkata,2025-05-24,Email
+CUST00051,Kavya Chawla,Core,East,Bihar,Patna,2025-05-09,Paid Social
+CUST00052,Pooja Mishra,Core,Central,Madhya Pradesh,Indore,2024-01-04,Paid Search
+CUST00053,Navya Khanna,Core,North,Uttar Pradesh,Lucknow,2023-02-19,Paid Social
+CUST00054,Kabir Joshi,Core,West,Maharashtra,Pune,2024-03-07,Email
+CUST00055,Manav Agarwal,Core,South,Telangana,Hyderabad,2023-06-16,Direct
+CUST00056,Arjun Agarwal,Core,North,Chandigarh,Chandigarh,2024-11-25,Email
+CUST00057,Ishaan Kapoor,Core,South,Tamil Nadu,Chennai,2023-08-07,Paid Search
+CUST00058,Ayaan Chopra,Value,North,Uttar Pradesh,Noida,2023-02-11,Organic Search
+CUST00059,Dhruv Nair,Value,South,Karnataka,Bengaluru,2023-08-30,Direct
+CUST00060,Simran Bansal,Premium,East,Odisha,Bhubaneswar,2024-02-19,Paid Search
+CUST00061,Simran Kulkarni,Core,North,Uttar Pradesh,Lucknow,2024-02-28,Referral
+CUST00062,Ankit Bansal,Value,North,Chandigarh,Chandigarh,2023-02-17,Paid Social
+CUST00063,Shreya Mishra,Core,North,Uttar Pradesh,Noida,2023-02-15,Paid Social
+CUST00064,Mahi Joshi,Value,North,Uttar Pradesh,Lucknow,2025-05-17,Paid Social
+CUST00065,Riya Kapoor,Core,North,Delhi,Delhi,2023-04-10,Referral
+CUST00066,Nikhil Chawla,Value,East,West Bengal,Kolkata,2023-02-28,Affiliate
+CUST00067,Aarav Patel,Core,East,Bihar,Patna,2023-08-01,Email
+CUST00068,Naina Kulkarni,Premium,South,Telangana,Hyderabad,2024-01-29,Paid Social
+CUST00069,Naina Saxena,Premium,Central,Maharashtra,Nagpur,2024-01-04,Affiliate
+CUST00070,Reyansh Sethi,Value,Central,Madhya Pradesh,Indore,2023-02-22,Direct
+CUST00071,Meera Joshi,Value,South,Karnataka,Bengaluru,2023-10-18,Paid Social
+CUST00072,Diya Sharma,Core,North,Chandigarh,Chandigarh,2024-07-16,Organic Search
+CUST00073,Dhruv Chawla,Value,North,Uttar Pradesh,Noida,2025-03-29,Paid Search
+CUST00074,Mahi Bansal,Core,South,Telangana,Hyderabad,2023-10-21,Paid Search
+CUST00075,Dev Rao,Value,South,Telangana,Hyderabad,2024-02-25,Paid Social
+CUST00076,Nikhil Menon,Core,South,Kerala,Kochi,2023-06-28,Organic Search
+CUST00077,Kabir Mishra,Value,West,Gujarat,Ahmedabad,2024-07-16,Direct
+CUST00078,Vivaan Sharma,Core,West,Gujarat,Ahmedabad,2023-11-01,Paid Search
+CUST00079,Naina Kulkarni,Premium,South,Kerala,Kochi,2023-08-19,Paid Search
+CUST00080,Ankit Joshi,Value,South,Tamil Nadu,Chennai,2023-08-23,Affiliate
+CUST00081,Aditi Chawla,Core,Central,Maharashtra,Nagpur,2023-02-04,Paid Social
+CUST00082,Isha Saxena,Core,West,Maharashtra,Pune,2024-01-27,Organic Search
+CUST00083,Navya Jain,Core,North,Delhi,Delhi,2023-02-03,Affiliate
+CUST00084,Rahul Joshi,Core,South,Telangana,Hyderabad,2025-02-27,Affiliate
+CUST00085,Ayaan Mishra,Value,North,Rajasthan,Jaipur,2024-05-17,Referral
+CUST00086,Riya Joshi,Premium,East,West Bengal,Kolkata,2023-07-23,Paid Search
+CUST00087,Meera Rao,Core,North,Uttar Pradesh,Noida,2023-05-13,Paid Search
+CUST00088,Kiara Chopra,Core,South,Kerala,Kochi,2025-05-03,Paid Social
+CUST00089,Isha Sethi,Core,North,Rajasthan,Jaipur,2023-07-20,Referral
+CUST00090,Karan Joshi,Value,North,Uttar Pradesh,Noida,2024-08-19,Email
+CUST00091,Sana Saxena,Core,South,Kerala,Kochi,2023-08-16,Referral
+CUST00092,Nikhil Gupta,Premium,North,Uttar Pradesh,Noida,2023-10-03,Paid Search
+CUST00093,Avni Gupta,Premium,East,Odisha,Bhubaneswar,2023-05-09,Paid Search
+CUST00094,Aditi Agarwal,Value,East,Bihar,Patna,2024-05-10,Direct
+CUST00095,Yash Kulkarni,Value,North,Delhi,Delhi,2023-09-01,Organic Search
+CUST00096,Dhruv Bansal,Value,Central,Madhya Pradesh,Indore,2024-06-09,Email
+CUST00097,Dev Sethi,Core,North,Rajasthan,Jaipur,2023-10-05,Referral
+CUST00098,Priya Sethi,Core,East,West Bengal,Kolkata,2023-02-04,Organic Search
+CUST00099,Avni Agarwal,Core,West,Maharashtra,Mumbai,2025-05-12,Paid Search
+CUST00100,Siddharth Kapoor,Core,South,Tamil Nadu,Chennai,2023-06-24,Organic Search
+CUST00101,Ankit Joshi,Premium,West,Maharashtra,Mumbai,2024-03-14,Direct
+CUST00102,Navya Malhotra,Value,West,Maharashtra,Pune,2023-06-10,Affiliate
+CUST00103,Rohan Kapoor,Value,West,Maharashtra,Pune,2024-01-29,Paid Social
+CUST00104,Rohan Chopra,Premium,West,Maharashtra,Mumbai,2025-05-10,Organic Search
+CUST00105,Manav Saxena,Core,South,Telangana,Hyderabad,2024-02-20,Paid Social
+CUST00106,Aarav Kapoor,Core,East,Bihar,Patna,2024-02-29,Email
+CUST00107,Ira Saxena,Core,North,Uttar Pradesh,Noida,2023-04-29,Organic Search
+CUST00108,Neel Mishra,Core,East,Bihar,Patna,2023-10-08,Organic Search
+CUST00109,Ira Sethi,Core,North,Delhi,Delhi,2024-04-12,Organic Search
+CUST00110,Meera Kohli,Premium,South,Tamil Nadu,Chennai,2023-06-26,Organic Search
+CUST00111,Dev Reddy,Value,Central,Maharashtra,Nagpur,2024-10-29,Email
+CUST00112,Reyansh Verma,Value,North,Delhi,Delhi,2023-05-13,Organic Search
+CUST00113,Tanya Mishra,Premium,West,Maharashtra,Mumbai,2024-08-05,Organic Search
+CUST00114,Manav Nair,Core,Central,Madhya Pradesh,Indore,2023-05-10,Organic Search
+CUST00115,Sneha Arora,Core,South,Tamil Nadu,Chennai,2023-11-24,Email
+CUST00116,Yash Kohli,Core,South,Karnataka,Bengaluru,2025-05-28,Referral
+CUST00117,Dev Saxena,Core,North,Delhi,Delhi,2024-08-24,Paid Search
+CUST00118,Tanya Kulkarni,Core,North,Delhi,Delhi,2024-11-28,Organic Search
+CUST00119,Avni Chawla,Core,North,Delhi,Delhi,2023-03-15,Email
+CUST00120,Aarav Patel,Core,East,West Bengal,Kolkata,2024-07-24,Paid Social
+CUST00121,Aditi Saxena,Core,West,Maharashtra,Pune,2024-11-22,Affiliate
+CUST00122,Ananya Khanna,Premium,North,Rajasthan,Jaipur,2023-02-21,Paid Social
+CUST00123,Ira Nair,Core,East,Odisha,Bhubaneswar,2024-01-13,Paid Social
+CUST00124,Avni Sethi,Premium,West,Maharashtra,Pune,2024-12-21,Paid Search
+CUST00125,Arjun Jain,Core,East,Bihar,Patna,2023-10-15,Organic Search
+CUST00126,Arjun Chawla,Core,East,West Bengal,Kolkata,2024-08-06,Paid Search
+CUST00127,Priya Mehta,Core,West,Gujarat,Ahmedabad,2025-03-19,Organic Search
+CUST00128,Tanya Agarwal,Core,North,Uttar Pradesh,Lucknow,2023-03-11,Referral
+CUST00129,Priya Chawla,Core,West,Gujarat,Ahmedabad,2024-10-23,Organic Search
+CUST00130,Naina Das,Premium,South,Tamil Nadu,Chennai,2023-08-12,Organic Search
+CUST00131,Avni Chopra,Core,North,Chandigarh,Chandigarh,2024-11-07,Paid Search
+CUST00132,Varun Kohli,Value,South,Telangana,Hyderabad,2023-04-16,Referral
+CUST00133,Karan Tiwari,Core,Central,Maharashtra,Nagpur,2023-01-19,Paid Search
+CUST00134,Rohan Verma,Value,South,Karnataka,Bengaluru,2023-03-28,Organic Search
+CUST00135,Ishaan Iyer,Core,West,Gujarat,Ahmedabad,2023-08-15,Affiliate
+CUST00136,Kiara Menon,Value,South,Tamil Nadu,Chennai,2025-05-27,Referral
+CUST00137,Siddharth Gupta,Core,North,Chandigarh,Chandigarh,2024-01-02,Paid Search
+CUST00138,Vivaan Tiwari,Core,South,Tamil Nadu,Chennai,2024-09-06,Organic Search
+CUST00139,Navya Chawla,Premium,East,Odisha,Bhubaneswar,2024-01-04,Paid Social
+CUST00140,Kavya Chawla,Value,West,Maharashtra,Pune,2023-06-01,Affiliate
+CUST00141,Shreya Joshi,Core,North,Uttar Pradesh,Noida,2024-04-15,Organic Search
+CUST00142,Priya Joshi,Core,North,Uttar Pradesh,Lucknow,2024-08-24,Paid Search
+CUST00143,Neel Banerjee,Core,South,Telangana,Hyderabad,2024-11-14,Organic Search
+CUST00144,Ananya Verma,Core,East,Bihar,Patna,2023-08-21,Paid Social
+CUST00145,Priya Reddy,Premium,West,Gujarat,Ahmedabad,2025-01-12,Email
+CUST00146,Varun Agarwal,Core,Central,Maharashtra,Nagpur,2024-11-03,Organic Search
+CUST00147,Riya Reddy,Premium,South,Tamil Nadu,Chennai,2023-05-04,Direct
+CUST00148,Aditya Gupta,Core,North,Delhi,Delhi,2025-04-25,Paid Social
+CUST00149,Dhruv Sharma,Core,East,Odisha,Bhubaneswar,2025-05-26,Direct
+CUST00150,Navya Kapoor,Core,West,Gujarat,Ahmedabad,2025-04-27,Paid Social
+CUST00151,Pooja Bansal,Value,East,Odisha,Bhubaneswar,2025-03-01,Affiliate
+CUST00152,Karan Chawla,Core,North,Delhi,Delhi,2025-04-12,Paid Search
+CUST00153,Simran Khanna,Value,South,Telangana,Hyderabad,2025-06-09,Email
+CUST00154,Kavya Khanna,Value,North,Chandigarh,Chandigarh,2023-12-05,Email
+CUST00155,Riya Patel,Core,East,Odisha,Bhubaneswar,2023-01-11,Paid Social
+CUST00156,Reyansh Chawla,Core,South,Karnataka,Bengaluru,2023-06-08,Paid Social
+CUST00157,Tanya Iyer,Core,East,Bihar,Patna,2023-08-15,Affiliate
+CUST00158,Ananya Banerjee,Value,North,Uttar Pradesh,Lucknow,2025-06-02,Referral
+CUST00159,Arjun Saxena,Core,West,Maharashtra,Pune,2023-10-06,Paid Search
+CUST00160,Avni Kohli,Core,South,Kerala,Kochi,2024-06-27,Paid Social
+CUST00161,Rahul Das,Core,North,Uttar Pradesh,Lucknow,2024-11-14,Organic Search
+CUST00162,Navya Sethi,Value,South,Tamil Nadu,Chennai,2024-08-18,Email
+CUST00163,Avni Kapoor,Core,West,Gujarat,Ahmedabad,2023-12-18,Organic Search
+CUST00164,Ira Banerjee,Core,Central,Madhya Pradesh,Indore,2025-06-10,Referral
+CUST00165,Avni Sharma,Core,West,Maharashtra,Mumbai,2023-10-07,Paid Social
+CUST00166,Kabir Arora,Value,East,Odisha,Bhubaneswar,2024-04-06,Email
+CUST00167,Dhruv Sethi,Core,North,Rajasthan,Jaipur,2024-03-24,Email
+CUST00168,Navya Agarwal,Core,Central,Maharashtra,Nagpur,2023-09-26,Direct
+CUST00169,Rahul Kapoor,Value,West,Maharashtra,Pune,2023-12-23,Direct
+CUST00170,Navya Sethi,Core,North,Uttar Pradesh,Noida,2025-06-01,Paid Social
+CUST00171,Aarav Saxena,Value,North,Chandigarh,Chandigarh,2025-03-29,Affiliate
+CUST00172,Simran Singh,Core,North,Delhi,Delhi,2024-01-17,Organic Search
+CUST00173,Yash Malhotra,Core,North,Chandigarh,Chandigarh,2024-06-21,Email
+CUST00174,Manav Reddy,Value,East,Bihar,Patna,2024-01-20,Direct
+CUST00175,Dhruv Patel,Core,North,Uttar Pradesh,Noida,2023-10-20,Paid Social
+CUST00176,Aarav Bansal,Core,East,West Bengal,Kolkata,2025-02-07,Paid Search
+CUST00177,Aarav Chopra,Core,Central,Madhya Pradesh,Indore,2024-10-05,Paid Search
+CUST00178,Neel Mehta,Value,North,Uttar Pradesh,Lucknow,2024-12-04,Paid Search
+CUST00179,Varun Singh,Premium,South,Tamil Nadu,Chennai,2024-09-03,Paid Search
+CUST00180,Arjun Agarwal,Core,West,Gujarat,Ahmedabad,2024-09-15,Organic Search
+CUST00181,Riya Mehta,Core,South,Tamil Nadu,Chennai,2023-05-09,Email
+CUST00182,Reyansh Das,Core,South,Tamil Nadu,Chennai,2023-06-11,Referral
+CUST00183,Siddharth Chopra,Core,North,Rajasthan,Jaipur,2023-11-16,Affiliate
+CUST00184,Aditya Rao,Core,North,Delhi,Delhi,2024-11-21,Organic Search
+CUST00185,Ishaan Verma,Core,North,Rajasthan,Jaipur,2023-06-29,Email
+CUST00186,Sana Das,Core,East,Bihar,Patna,2024-07-24,Direct
+CUST00187,Tanya Sethi,Core,East,West Bengal,Kolkata,2025-06-17,Direct
+CUST00188,Meera Mishra,Core,Central,Maharashtra,Nagpur,2025-01-21,Paid Search
+CUST00189,Varun Menon,Premium,North,Uttar Pradesh,Lucknow,2023-11-25,Email
+CUST00190,Simran Iyer,Core,North,Chandigarh,Chandigarh,2023-12-27,Paid Search
+CUST00191,Kavya Joshi,Core,South,Kerala,Kochi,2025-01-27,Email
+CUST00192,Neel Jain,Core,North,Rajasthan,Jaipur,2024-05-17,Paid Search
+CUST00193,Rohan Shah,Value,South,Tamil Nadu,Chennai,2025-03-22,Organic Search
+CUST00194,Siddharth Nair,Core,South,Kerala,Kochi,2023-12-12,Paid Social
+CUST00195,Riya Sharma,Core,South,Kerala,Kochi,2024-05-25,Email
+CUST00196,Aditi Jain,Core,East,West Bengal,Kolkata,2024-09-22,Paid Search
+CUST00197,Meera Kapoor,Value,West,Maharashtra,Mumbai,2024-02-24,Direct
+CUST00198,Priya Reddy,Premium,West,Maharashtra,Pune,2024-12-20,Direct
+CUST00199,Navya Jain,Value,East,Odisha,Bhubaneswar,2023-04-27,Paid Search
+CUST00200,Nikhil Bansal,Core,South,Telangana,Hyderabad,2023-01-16,Organic Search
+CUST00201,Rahul Joshi,Core,South,Kerala,Kochi,2023-10-27,Email
+CUST00202,Siddharth Chopra,Core,Central,Madhya Pradesh,Indore,2023-04-19,Organic Search
+CUST00203,Naina Chawla,Value,Central,Maharashtra,Nagpur,2024-06-28,Organic Search
+CUST00204,Dev Chawla,Core,East,Bihar,Patna,2024-06-07,Paid Social
+CUST00205,Aarav Mishra,Value,North,Uttar Pradesh,Lucknow,2023-09-23,Direct
+CUST00206,Ankit Mehta,Premium,East,West Bengal,Kolkata,2024-02-18,Paid Search
+CUST00207,Ishaan Chawla,Core,North,Rajasthan,Jaipur,2023-05-19,Organic Search
+CUST00208,Ayaan Sethi,Core,South,Karnataka,Bengaluru,2024-03-13,Email
+CUST00209,Manav Khanna,Core,East,West Bengal,Kolkata,2024-09-02,Organic Search
+CUST00210,Naina Chopra,Core,East,Odisha,Bhubaneswar,2023-11-10,Paid Social
+CUST00211,Meera Gupta,Core,East,Bihar,Patna,2023-02-01,Referral
+CUST00212,Aditya Shah,Core,West,Maharashtra,Mumbai,2024-12-15,Organic Search
+CUST00213,Isha Tiwari,Value,North,Uttar Pradesh,Lucknow,2023-12-13,Organic Search
+CUST00214,Aditya Patel,Core,East,West Bengal,Kolkata,2024-03-25,Organic Search
+CUST00215,Aditi Kulkarni,Core,East,West Bengal,Kolkata,2024-11-23,Organic Search
+CUST00216,Navya Kulkarni,Core,East,Odisha,Bhubaneswar,2024-11-11,Email
+CUST00217,Kiara Sethi,Core,West,Maharashtra,Mumbai,2024-12-24,Paid Social
+CUST00218,Ishaan Malhotra,Core,North,Delhi,Delhi,2023-03-16,Referral
+CUST00219,Kabir Chawla,Core,North,Delhi,Delhi,2025-01-05,Paid Social
+CUST00220,Tanya Agarwal,Value,North,Delhi,Delhi,2024-10-29,Organic Search
+CUST00221,Ira Patel,Core,North,Chandigarh,Chandigarh,2023-02-13,Affiliate
+CUST00222,Dev Jain,Core,North,Chandigarh,Chandigarh,2025-01-25,Paid Social
+CUST00223,Priya Shah,Premium,West,Maharashtra,Pune,2025-03-22,Direct
+CUST00224,Ananya Chopra,Value,Central,Madhya Pradesh,Indore,2025-03-20,Direct
+CUST00225,Dev Shah,Core,South,Telangana,Hyderabad,2024-05-30,Direct
+CUST00226,Sana Chawla,Core,South,Telangana,Hyderabad,2023-01-01,Referral
+CUST00227,Yash Khanna,Core,East,West Bengal,Kolkata,2023-01-19,Referral
+CUST00228,Aditya Das,Premium,South,Telangana,Hyderabad,2023-01-23,Email
+CUST00229,Kabir Jain,Value,North,Delhi,Delhi,2025-04-22,Direct
+CUST00230,Aditya Singh,Core,North,Uttar Pradesh,Lucknow,2023-03-07,Affiliate
+CUST00231,Tanya Mishra,Value,North,Chandigarh,Chandigarh,2025-02-01,Direct
+CUST00232,Isha Iyer,Core,South,Kerala,Kochi,2024-02-25,Paid Search
+CUST00233,Dhruv Saxena,Premium,West,Gujarat,Ahmedabad,2024-02-23,Paid Social
+CUST00234,Sana Mehta,Value,Central,Madhya Pradesh,Indore,2023-06-22,Paid Search
+CUST00235,Arjun Arora,Core,East,Odisha,Bhubaneswar,2023-02-02,Paid Social
+CUST00236,Kavya Tiwari,Core,North,Chandigarh,Chandigarh,2024-05-30,Direct
+CUST00237,Rahul Chawla,Value,East,Bihar,Patna,2024-04-19,Referral
+CUST00238,Sneha Chawla,Premium,East,West Bengal,Kolkata,2023-07-07,Direct
+CUST00239,Tanya Khanna,Core,South,Kerala,Kochi,2023-08-02,Direct
+CUST00240,Ishaan Banerjee,Value,East,Bihar,Patna,2024-04-26,Paid Search
+CUST00241,Nikhil Nair,Core,North,Delhi,Delhi,2024-11-23,Affiliate
+CUST00242,Riya Gupta,Value,North,Uttar Pradesh,Noida,2025-05-31,Paid Search
+CUST00243,Ankit Kapoor,Core,Central,Maharashtra,Nagpur,2025-05-01,Paid Social
+CUST00244,Navya Mishra,Premium,West,Maharashtra,Mumbai,2025-04-07,Direct
+CUST00245,Reyansh Kapoor,Value,West,Maharashtra,Mumbai,2024-05-06,Direct
+CUST00246,Dhruv Verma,Premium,North,Uttar Pradesh,Noida,2023-04-09,Email
+CUST00247,Riya Agarwal,Core,North,Delhi,Delhi,2024-11-27,Organic Search
+CUST00248,Riya Menon,Core,North,Delhi,Delhi,2024-09-12,Paid Search
+CUST00249,Ananya Das,Core,Central,Madhya Pradesh,Indore,2023-04-07,Organic Search
+CUST00250,Aarav Khanna,Core,North,Chandigarh,Chandigarh,2025-05-07,Organic Search
+CUST00251,Rahul Khanna,Core,West,Maharashtra,Mumbai,2023-11-12,Affiliate
+CUST00252,Ayaan Malhotra,Core,East,West Bengal,Kolkata,2023-10-25,Direct
+CUST00253,Riya Tiwari,Core,Central,Maharashtra,Nagpur,2024-04-15,Paid Search
+CUST00254,Naina Joshi,Value,East,West Bengal,Kolkata,2023-02-23,Organic Search
+CUST00255,Mahi Tiwari,Core,West,Gujarat,Ahmedabad,2024-09-19,Referral
+CUST00256,Ankit Kulkarni,Premium,East,Odisha,Bhubaneswar,2023-10-15,Paid Search
+CUST00257,Varun Bansal,Value,South,Karnataka,Bengaluru,2025-02-19,Organic Search
+CUST00258,Aarav Mishra,Value,East,West Bengal,Kolkata,2024-10-05,Direct
+CUST00259,Aarav Mishra,Core,West,Maharashtra,Mumbai,2023-07-22,Organic Search
+CUST00260,Dhruv Banerjee,Core,East,Odisha,Bhubaneswar,2024-04-23,Organic Search
+CUST00261,Ira Arora,Premium,South,Tamil Nadu,Chennai,2025-03-14,Organic Search
+CUST00262,Arjun Agarwal,Premium,North,Chandigarh,Chandigarh,2023-04-03,Organic Search
+CUST00263,Kiara Gupta,Core,East,West Bengal,Kolkata,2023-09-30,Direct
+CUST00264,Rahul Patel,Value,South,Kerala,Kochi,2025-02-23,Organic Search
+CUST00265,Dev Menon,Premium,Central,Maharashtra,Nagpur,2023-11-16,Direct
+CUST00266,Mahi Sethi,Value,North,Rajasthan,Jaipur,2024-02-13,Referral
+CUST00267,Sneha Kulkarni,Core,Central,Madhya Pradesh,Indore,2024-03-27,Paid Social
+CUST00268,Reyansh Nair,Premium,North,Rajasthan,Jaipur,2024-07-19,Paid Search
+CUST00269,Pooja Singh,Premium,North,Rajasthan,Jaipur,2024-09-05,Email
+CUST00270,Mahi Chopra,Premium,North,Chandigarh,Chandigarh,2024-09-02,Affiliate
+CUST00271,Dev Mehta,Core,Central,Madhya Pradesh,Indore,2023-03-23,Paid Search
+CUST00272,Navya Gupta,Value,North,Delhi,Delhi,2023-06-22,Email
+CUST00273,Kavya Iyer,Core,East,West Bengal,Kolkata,2024-04-08,Affiliate
+CUST00274,Karan Joshi,Core,South,Kerala,Kochi,2023-06-15,Email
+CUST00275,Ayaan Das,Value,West,Maharashtra,Mumbai,2023-12-05,Affiliate
+CUST00276,Simran Banerjee,Premium,North,Rajasthan,Jaipur,2025-02-19,Direct
+CUST00277,Dhruv Reddy,Premium,South,Kerala,Kochi,2024-04-09,Paid Social
+CUST00278,Ananya Rao,Value,West,Maharashtra,Pune,2023-01-22,Paid Social
+CUST00279,Ayaan Gupta,Premium,East,West Bengal,Kolkata,2024-05-03,Paid Social
+CUST00280,Mahi Kapoor,Core,South,Tamil Nadu,Chennai,2023-10-29,Organic Search
+CUST00281,Arjun Shah,Core,North,Chandigarh,Chandigarh,2025-01-09,Paid Search
+CUST00282,Navya Kulkarni,Value,Central,Maharashtra,Nagpur,2024-08-28,Affiliate
+CUST00283,Neel Arora,Premium,North,Chandigarh,Chandigarh,2024-02-10,Paid Social
+CUST00284,Mahi Menon,Value,South,Tamil Nadu,Chennai,2024-03-12,Paid Social
+CUST00285,Mahi Reddy,Core,Central,Madhya Pradesh,Indore,2023-02-14,Paid Search
+CUST00286,Meera Das,Value,West,Maharashtra,Pune,2024-09-17,Organic Search
+CUST00287,Dev Arora,Premium,North,Uttar Pradesh,Noida,2023-02-16,Paid Social
+CUST00288,Simran Iyer,Value,North,Delhi,Delhi,2024-11-04,Organic Search
+CUST00289,Sneha Kulkarni,Value,South,Kerala,Kochi,2023-04-19,Email
+CUST00290,Reyansh Gupta,Premium,West,Gujarat,Ahmedabad,2023-03-03,Organic Search
+CUST00291,Ayaan Joshi,Core,Central,Madhya Pradesh,Indore,2024-09-15,Referral
+CUST00292,Aditya Kapoor,Core,Central,Maharashtra,Nagpur,2024-02-06,Email
+CUST00293,Ananya Saxena,Premium,North,Uttar Pradesh,Noida,2025-03-17,Affiliate
+CUST00294,Neel Shah,Value,South,Kerala,Kochi,2024-08-22,Referral
+CUST00295,Reyansh Joshi,Core,West,Maharashtra,Mumbai,2023-11-21,Referral
+CUST00296,Neel Kohli,Value,North,Delhi,Delhi,2023-05-17,Paid Social
+CUST00297,Siddharth Joshi,Value,Central,Maharashtra,Nagpur,2023-12-17,Organic Search
+CUST00298,Kabir Mishra,Value,West,Maharashtra,Pune,2024-05-01,Paid Social
+CUST00299,Riya Khanna,Value,East,Odisha,Bhubaneswar,2023-05-13,Referral
+CUST00300,Diya Sharma,Core,West,Gujarat,Ahmedabad,2023-09-12,Organic Search
+CUST00301,Ayaan Gupta,Core,South,Kerala,Kochi,2023-08-13,Paid Social
+CUST00302,Aditi Mehta,Core,West,Maharashtra,Mumbai,2024-02-02,Email
+CUST00303,Reyansh Gupta,Value,Central,Maharashtra,Nagpur,2024-06-26,Paid Social
+CUST00304,Aarav Iyer,Core,North,Uttar Pradesh,Noida,2024-03-20,Paid Search
+CUST00305,Neel Chopra,Core,West,Maharashtra,Mumbai,2023-09-14,Direct
+CUST00306,Siddharth Shah,Premium,South,Karnataka,Bengaluru,2023-12-19,Direct
+CUST00307,Ira Malhotra,Value,East,Bihar,Patna,2025-04-06,Direct
+CUST00308,Tanya Nair,Core,South,Karnataka,Bengaluru,2023-01-05,Affiliate
+CUST00309,Ishaan Sethi,Core,North,Chandigarh,Chandigarh,2023-04-30,Affiliate
+CUST00310,Ishaan Patel,Core,North,Rajasthan,Jaipur,2024-02-11,Direct
+CUST00311,Avni Iyer,Value,South,Tamil Nadu,Chennai,2025-04-17,Paid Social
+CUST00312,Tanya Shah,Core,Central,Madhya Pradesh,Indore,2023-08-22,Organic Search
+CUST00313,Dhruv Shah,Core,West,Gujarat,Ahmedabad,2023-12-19,Paid Search
+CUST00314,Riya Menon,Core,West,Gujarat,Ahmedabad,2024-09-02,Referral
+CUST00315,Dhruv Arora,Core,West,Maharashtra,Pune,2024-11-30,Email
+CUST00316,Aditi Gupta,Core,South,Kerala,Kochi,2023-06-04,Referral
+CUST00317,Manav Kapoor,Core,North,Delhi,Delhi,2024-02-21,Paid Social
+CUST00318,Sneha Malhotra,Core,East,Odisha,Bhubaneswar,2024-04-15,Paid Search
+CUST00319,Navya Das,Core,South,Kerala,Kochi,2024-02-15,Email
+CUST00320,Dhruv Patel,Core,East,Bihar,Patna,2025-04-18,Referral
+CUST00321,Rohan Banerjee,Core,East,Odisha,Bhubaneswar,2023-01-06,Paid Search
+CUST00322,Sana Khanna,Value,West,Maharashtra,Mumbai,2023-05-14,Affiliate
+CUST00323,Vivaan Saxena,Premium,North,Chandigarh,Chandigarh,2025-05-15,Email
+CUST00324,Sneha Sethi,Premium,Central,Maharashtra,Nagpur,2023-12-29,Referral
+CUST00325,Kiara Chopra,Core,Central,Madhya Pradesh,Indore,2023-12-09,Referral
+CUST00326,Tanya Mehta,Premium,Central,Maharashtra,Nagpur,2024-04-28,Referral
+CUST00327,Mahi Menon,Core,West,Gujarat,Ahmedabad,2023-12-30,Paid Social
+CUST00328,Reyansh Bansal,Core,North,Rajasthan,Jaipur,2023-04-01,Paid Social
+CUST00329,Aarav Verma,Core,North,Delhi,Delhi,2023-08-04,Paid Social
+CUST00330,Dev Bansal,Core,West,Gujarat,Ahmedabad,2024-06-26,Referral
+CUST00331,Manav Shah,Core,East,West Bengal,Kolkata,2023-09-13,Organic Search
+CUST00332,Dev Kapoor,Value,South,Kerala,Kochi,2024-08-15,Paid Search
+CUST00333,Tanya Chopra,Value,East,Odisha,Bhubaneswar,2023-01-30,Organic Search
+CUST00334,Aarav Mishra,Premium,North,Rajasthan,Jaipur,2025-04-02,Paid Social
+CUST00335,Rahul Saxena,Premium,North,Uttar Pradesh,Noida,2023-04-06,Referral
+CUST00336,Simran Rao,Value,South,Kerala,Kochi,2024-08-30,Referral
+CUST00337,Reyansh Verma,Premium,North,Chandigarh,Chandigarh,2025-04-22,Affiliate
+CUST00338,Aditi Mishra,Value,West,Gujarat,Ahmedabad,2025-04-06,Organic Search
+CUST00339,Avni Banerjee,Core,North,Chandigarh,Chandigarh,2025-03-15,Organic Search
+CUST00340,Siddharth Mehta,Core,South,Karnataka,Bengaluru,2023-06-18,Organic Search
+CUST00341,Varun Mehta,Core,East,Bihar,Patna,2023-01-20,Organic Search
+CUST00342,Varun Jain,Premium,East,West Bengal,Kolkata,2024-07-15,Direct
+CUST00343,Ayaan Das,Core,North,Delhi,Delhi,2024-03-19,Paid Search
+CUST00344,Diya Sethi,Core,North,Rajasthan,Jaipur,2023-08-19,Paid Social
+CUST00345,Aditya Kohli,Core,North,Chandigarh,Chandigarh,2023-01-25,Affiliate
+CUST00346,Rohan Kohli,Core,South,Karnataka,Bengaluru,2025-05-22,Organic Search
+CUST00347,Navya Reddy,Core,West,Maharashtra,Mumbai,2024-04-23,Paid Search
+CUST00348,Manav Jain,Value,East,West Bengal,Kolkata,2024-04-17,Referral
+CUST00349,Aditya Khanna,Core,North,Uttar Pradesh,Noida,2024-01-26,Email
+CUST00350,Aditya Patel,Core,North,Chandigarh,Chandigarh,2023-07-09,Direct
+CUST00351,Nikhil Joshi,Value,West,Maharashtra,Pune,2025-03-26,Referral
+CUST00352,Rahul Mehta,Core,North,Delhi,Delhi,2024-12-12,Organic Search
+CUST00353,Kavya Kulkarni,Core,West,Maharashtra,Pune,2024-03-11,Email
+CUST00354,Sneha Shah,Core,Central,Madhya Pradesh,Indore,2024-03-11,Paid Search
+CUST00355,Ankit Chawla,Core,West,Maharashtra,Pune,2023-10-10,Referral
+CUST00356,Aditya Menon,Value,North,Delhi,Delhi,2024-10-29,Email
+CUST00357,Isha Gupta,Value,North,Chandigarh,Chandigarh,2024-01-19,Direct
+CUST00358,Simran Chopra,Value,East,West Bengal,Kolkata,2024-11-15,Paid Search
+CUST00359,Rahul Tiwari,Core,East,Odisha,Bhubaneswar,2024-02-09,Affiliate
+CUST00360,Yash Kulkarni,Core,North,Delhi,Delhi,2023-06-09,Affiliate
+CUST00361,Arjun Khanna,Core,South,Telangana,Hyderabad,2025-04-23,Paid Search
+CUST00362,Rohan Sharma,Core,East,Bihar,Patna,2023-04-01,Email
+CUST00363,Arjun Reddy,Value,North,Uttar Pradesh,Lucknow,2025-01-05,Organic Search
+CUST00364,Sneha Saxena,Core,North,Delhi,Delhi,2024-04-15,Paid Social
+CUST00365,Kabir Jain,Value,South,Tamil Nadu,Chennai,2023-07-13,Direct
+CUST00366,Varun Mishra,Premium,Central,Maharashtra,Nagpur,2025-05-12,Affiliate
+CUST00367,Kavya Gupta,Core,Central,Maharashtra,Nagpur,2025-05-22,Paid Social
+CUST00368,Naina Mishra,Value,North,Chandigarh,Chandigarh,2023-09-07,Paid Search
+CUST00369,Mahi Bansal,Core,West,Maharashtra,Mumbai,2025-02-21,Direct
+CUST00370,Varun Kulkarni,Core,South,Kerala,Kochi,2024-01-23,Direct
+CUST00371,Sana Banerjee,Core,South,Karnataka,Bengaluru,2024-05-02,Referral
+CUST00372,Shreya Reddy,Core,West,Maharashtra,Mumbai,2024-01-26,Paid Search
+CUST00373,Neel Menon,Value,Central,Madhya Pradesh,Indore,2023-04-23,Paid Social
+CUST00374,Navya Mehta,Core,West,Gujarat,Ahmedabad,2024-01-18,Email
+CUST00375,Sneha Mishra,Core,East,Odisha,Bhubaneswar,2023-01-26,Direct
+CUST00376,Vivaan Das,Core,East,Odisha,Bhubaneswar,2023-03-03,Email
+CUST00377,Aditi Chopra,Premium,South,Telangana,Hyderabad,2023-03-17,Organic Search
+CUST00378,Nikhil Mishra,Core,South,Telangana,Hyderabad,2024-08-22,Paid Search
+CUST00379,Navya Kapoor,Premium,West,Maharashtra,Mumbai,2023-12-01,Referral
+CUST00380,Siddharth Chawla,Premium,South,Kerala,Kochi,2023-07-08,Direct
+CUST00381,Kabir Kulkarni,Core,South,Tamil Nadu,Chennai,2025-05-04,Direct
+CUST00382,Aditya Gupta,Core,East,West Bengal,Kolkata,2024-12-22,Paid Search
+CUST00383,Manav Sethi,Premium,East,Bihar,Patna,2024-11-17,Referral
+CUST00384,Ananya Gupta,Core,West,Maharashtra,Mumbai,2023-12-23,Paid Social
+CUST00385,Ankit Verma,Core,Central,Maharashtra,Nagpur,2024-01-21,Organic Search
+CUST00386,Meera Banerjee,Core,Central,Madhya Pradesh,Indore,2025-05-25,Email
+CUST00387,Siddharth Arora,Core,South,Kerala,Kochi,2023-05-19,Email
+CUST00388,Ishaan Singh,Value,Central,Madhya Pradesh,Indore,2025-05-30,Affiliate
+CUST00389,Sneha Kohli,Core,North,Uttar Pradesh,Noida,2024-01-17,Paid Social
+CUST00390,Sneha Patel,Core,North,Rajasthan,Jaipur,2025-01-16,Paid Social
+CUST00391,Aditi Kulkarni,Value,West,Maharashtra,Pune,2024-10-29,Paid Search
+CUST00392,Ankit Tiwari,Value,East,Odisha,Bhubaneswar,2023-04-27,Referral
+CUST00393,Nikhil Nair,Core,East,West Bengal,Kolkata,2023-02-10,Organic Search
+CUST00394,Kavya Singh,Value,Central,Maharashtra,Nagpur,2024-12-17,Email
+CUST00395,Arjun Mishra,Core,South,Tamil Nadu,Chennai,2025-03-02,Organic Search
+CUST00396,Ananya Sharma,Core,North,Delhi,Delhi,2024-10-22,Direct
+CUST00397,Karan Menon,Value,South,Telangana,Hyderabad,2023-01-22,Organic Search
+CUST00398,Varun Singh,Core,West,Maharashtra,Pune,2023-08-04,Affiliate
+CUST00399,Avni Gupta,Core,West,Gujarat,Ahmedabad,2024-08-15,Email
+CUST00400,Ira Khanna,Core,North,Rajasthan,Jaipur,2024-10-28,Organic Search
+CUST00401,Dhruv Khanna,Value,South,Telangana,Hyderabad,2024-12-21,Affiliate
+CUST00402,Manav Khanna,Value,Central,Maharashtra,Nagpur,2023-03-18,Email
+CUST00403,Isha Malhotra,Core,South,Kerala,Kochi,2023-05-29,Affiliate
+CUST00404,Diya Mishra,Premium,Central,Maharashtra,Nagpur,2025-05-08,Organic Search
+CUST00405,Isha Arora,Core,Central,Madhya Pradesh,Indore,2023-07-27,Email
+CUST00406,Rahul Tiwari,Core,Central,Madhya Pradesh,Indore,2025-06-16,Organic Search
+CUST00407,Sneha Banerjee,Value,East,West Bengal,Kolkata,2024-04-20,Paid Social
+CUST00408,Varun Khanna,Core,South,Karnataka,Bengaluru,2023-11-11,Paid Social
+CUST00409,Kabir Joshi,Core,North,Uttar Pradesh,Noida,2024-03-17,Paid Social
+CUST00410,Riya Rao,Core,North,Chandigarh,Chandigarh,2024-11-12,Paid Social
+CUST00411,Naina Menon,Core,East,Bihar,Patna,2023-05-13,Paid Search
+CUST00412,Rohan Patel,Core,West,Gujarat,Ahmedabad,2024-12-09,Direct
+CUST00413,Mahi Shah,Value,West,Maharashtra,Mumbai,2023-12-07,Paid Search
+CUST00414,Kiara Singh,Value,North,Rajasthan,Jaipur,2024-07-18,Email
+CUST00415,Sneha Verma,Premium,East,West Bengal,Kolkata,2023-05-03,Organic Search
+CUST00416,Varun Kohli,Core,North,Chandigarh,Chandigarh,2024-04-06,Direct
+CUST00417,Avni Banerjee,Value,Central,Madhya Pradesh,Indore,2024-08-13,Direct
+CUST00418,Ishaan Patel,Core,North,Rajasthan,Jaipur,2023-07-14,Paid Search
+CUST00419,Tanya Singh,Core,North,Delhi,Delhi,2024-04-05,Paid Search
+CUST00420,Yash Kulkarni,Value,North,Chandigarh,Chandigarh,2024-08-14,Affiliate
+CUST00421,Sana Nair,Core,South,Tamil Nadu,Chennai,2023-02-04,Paid Social
+CUST00422,Reyansh Kulkarni,Value,West,Maharashtra,Mumbai,2024-06-09,Referral
+CUST00423,Priya Saxena,Core,North,Chandigarh,Chandigarh,2024-12-06,Organic Search
+CUST00424,Simran Saxena,Core,North,Chandigarh,Chandigarh,2024-10-08,Organic Search
+CUST00425,Aditi Das,Core,East,Odisha,Bhubaneswar,2023-04-30,Email
+CUST00426,Ayaan Rao,Value,South,Karnataka,Bengaluru,2024-06-03,Referral
+CUST00427,Kabir Bansal,Core,South,Telangana,Hyderabad,2024-09-08,Affiliate
+CUST00428,Ayaan Nair,Value,Central,Maharashtra,Nagpur,2024-01-09,Direct
+CUST00429,Yash Khanna,Value,South,Tamil Nadu,Chennai,2023-10-19,Email
+CUST00430,Ankit Kapoor,Core,West,Maharashtra,Mumbai,2025-03-20,Organic Search
+CUST00431,Aarav Mehta,Premium,North,Delhi,Delhi,2024-06-09,Paid Social
+CUST00432,Mahi Kulkarni,Value,South,Kerala,Kochi,2024-10-24,Referral
+CUST00433,Ishaan Gupta,Core,North,Uttar Pradesh,Lucknow,2023-10-16,Email
+CUST00434,Varun Chopra,Core,North,Chandigarh,Chandigarh,2025-06-17,Organic Search
+CUST00435,Yash Das,Core,North,Chandigarh,Chandigarh,2023-04-03,Affiliate
+CUST00436,Ishaan Kohli,Premium,West,Maharashtra,Pune,2025-01-07,Referral
+CUST00437,Simran Joshi,Core,North,Uttar Pradesh,Lucknow,2024-05-10,Direct
+CUST00438,Simran Sharma,Core,North,Delhi,Delhi,2023-07-10,Direct
+CUST00439,Kabir Chopra,Core,South,Telangana,Hyderabad,2024-11-25,Email
+CUST00440,Ayaan Kapoor,Core,South,Karnataka,Bengaluru,2024-10-02,Paid Search
+CUST00441,Sana Kohli,Core,North,Uttar Pradesh,Lucknow,2023-11-17,Affiliate
+CUST00442,Manav Kapoor,Core,Central,Maharashtra,Nagpur,2023-07-30,Email
+CUST00443,Ira Sethi,Value,West,Maharashtra,Mumbai,2023-05-22,Referral
+CUST00444,Dev Nair,Premium,North,Uttar Pradesh,Noida,2025-06-09,Paid Search
+CUST00445,Aarav Kapoor,Premium,Central,Madhya Pradesh,Indore,2025-04-03,Paid Search
+CUST00446,Kiara Nair,Core,North,Delhi,Delhi,2025-03-04,Referral
+CUST00447,Kabir Kapoor,Premium,South,Kerala,Kochi,2024-03-26,Organic Search
+CUST00448,Reyansh Kohli,Value,West,Maharashtra,Mumbai,2025-01-05,Paid Search
+CUST00449,Isha Mishra,Core,East,West Bengal,Kolkata,2024-08-11,Paid Search
+CUST00450,Yash Verma,Core,West,Maharashtra,Mumbai,2025-04-08,Direct
+CUST00451,Isha Gupta,Value,South,Tamil Nadu,Chennai,2024-04-24,Direct
+CUST00452,Reyansh Chopra,Value,East,Odisha,Bhubaneswar,2024-12-12,Paid Search
+CUST00453,Aarav Khanna,Value,East,Bihar,Patna,2023-07-25,Paid Social
+CUST00454,Sana Saxena,Core,Central,Madhya Pradesh,Indore,2025-05-08,Direct
+CUST00455,Vivaan Rao,Core,East,Bihar,Patna,2023-02-13,Direct
+CUST00456,Varun Shah,Core,East,Odisha,Bhubaneswar,2025-02-11,Email
+CUST00457,Mahi Chopra,Core,Central,Madhya Pradesh,Indore,2023-03-03,Paid Social
+CUST00458,Nikhil Chopra,Core,North,Delhi,Delhi,2024-05-01,Direct
+CUST00459,Sana Chawla,Core,South,Telangana,Hyderabad,2024-04-02,Direct
+CUST00460,Reyansh Saxena,Value,North,Delhi,Delhi,2024-03-23,Direct
+CUST00461,Nikhil Rao,Core,West,Maharashtra,Mumbai,2023-03-12,Organic Search
+CUST00462,Rahul Nair,Value,East,Bihar,Patna,2024-02-15,Organic Search
+CUST00463,Ananya Malhotra,Premium,East,Odisha,Bhubaneswar,2023-11-03,Direct
+CUST00464,Priya Gupta,Core,South,Telangana,Hyderabad,2025-03-25,Referral
+CUST00465,Siddharth Jain,Core,East,Odisha,Bhubaneswar,2025-06-13,Direct
+CUST00466,Sneha Reddy,Premium,South,Tamil Nadu,Chennai,2024-09-25,Paid Search
+CUST00467,Yash Singh,Premium,Central,Madhya Pradesh,Indore,2025-05-14,Organic Search
+CUST00468,Ananya Chopra,Core,South,Tamil Nadu,Chennai,2024-01-30,Email
+CUST00469,Siddharth Verma,Core,North,Delhi,Delhi,2024-10-31,Affiliate
+CUST00470,Mahi Kulkarni,Core,North,Chandigarh,Chandigarh,2024-03-05,Paid Social
+CUST00471,Kiara Singh,Premium,Central,Madhya Pradesh,Indore,2024-11-07,Paid Search
+CUST00472,Pooja Singh,Core,North,Rajasthan,Jaipur,2023-07-17,Paid Social
+CUST00473,Sana Saxena,Value,East,Odisha,Bhubaneswar,2025-04-21,Organic Search
+CUST00474,Kabir Menon,Value,North,Rajasthan,Jaipur,2025-01-21,Paid Search
+CUST00475,Simran Singh,Core,East,Odisha,Bhubaneswar,2025-05-20,Paid Social
+CUST00476,Diya Joshi,Core,North,Uttar Pradesh,Noida,2023-02-01,Paid Social
+CUST00477,Arjun Jain,Core,South,Tamil Nadu,Chennai,2023-02-09,Organic Search
+CUST00478,Siddharth Reddy,Core,East,West Bengal,Kolkata,2023-01-31,Paid Search
+CUST00479,Pooja Malhotra,Value,East,Odisha,Bhubaneswar,2023-09-05,Organic Search
+CUST00480,Priya Agarwal,Core,West,Maharashtra,Mumbai,2025-05-23,Organic Search
+CUST00481,Naina Agarwal,Value,North,Delhi,Delhi,2024-04-12,Email
+CUST00482,Ishaan Jain,Core,North,Uttar Pradesh,Lucknow,2023-02-28,Email
+CUST00483,Siddharth Menon,Core,North,Delhi,Delhi,2025-06-12,Organic Search
+CUST00484,Mahi Rao,Value,South,Tamil Nadu,Chennai,2023-12-14,Paid Social
+CUST00485,Sneha Malhotra,Core,North,Uttar Pradesh,Noida,2023-09-27,Paid Social
+CUST00486,Aditya Agarwal,Core,North,Chandigarh,Chandigarh,2023-11-10,Affiliate
+CUST00487,Nikhil Chawla,Core,Central,Maharashtra,Nagpur,2023-05-30,Direct
+CUST00488,Priya Sethi,Core,West,Gujarat,Ahmedabad,2024-01-16,Affiliate
+CUST00489,Neel Gupta,Value,West,Gujarat,Ahmedabad,2025-05-11,Affiliate
+CUST00490,Rohan Malhotra,Premium,North,Delhi,Delhi,2023-02-11,Paid Search
+CUST00491,Aditya Verma,Core,West,Maharashtra,Pune,2025-05-06,Paid Social
+CUST00492,Pooja Gupta,Core,East,West Bengal,Kolkata,2023-06-05,Affiliate
+CUST00493,Reyansh Chawla,Value,Central,Madhya Pradesh,Indore,2024-05-18,Paid Social
+CUST00494,Siddharth Shah,Value,Central,Maharashtra,Nagpur,2023-12-13,Organic Search
+CUST00495,Tanya Saxena,Core,East,Bihar,Patna,2023-12-16,Direct
+CUST00496,Siddharth Sharma,Core,South,Telangana,Hyderabad,2024-04-11,Email
+CUST00497,Yash Tiwari,Core,South,Telangana,Hyderabad,2024-05-08,Referral
+CUST00498,Kavya Tiwari,Value,South,Telangana,Hyderabad,2023-09-17,Paid Social
+CUST00499,Manav Banerjee,Core,South,Tamil Nadu,Chennai,2023-10-06,Paid Search
+CUST00500,Ishaan Das,Premium,South,Telangana,Hyderabad,2025-04-22,Paid Social
+CUST00501,Dev Chawla,Core,South,Kerala,Kochi,2024-03-04,Affiliate
+CUST00502,Shreya Khanna,Core,North,Uttar Pradesh,Noida,2024-09-23,Affiliate
+CUST00503,Aditya Sethi,Core,North,Uttar Pradesh,Noida,2023-01-24,Organic Search
+CUST00504,Aditya Saxena,Value,East,Odisha,Bhubaneswar,2025-01-07,Paid Search
+CUST00505,Manav Reddy,Value,East,Odisha,Bhubaneswar,2023-08-30,Direct
+CUST00506,Rohan Saxena,Core,South,Telangana,Hyderabad,2024-08-09,Paid Social
+CUST00507,Naina Sethi,Value,East,Odisha,Bhubaneswar,2023-07-03,Email
+CUST00508,Meera Chawla,Core,Central,Madhya Pradesh,Indore,2023-07-23,Paid Social
+CUST00509,Sneha Gupta,Premium,East,Bihar,Patna,2024-10-09,Paid Social
+CUST00510,Naina Khanna,Core,West,Maharashtra,Pune,2024-04-19,Email
+CUST00511,Riya Nair,Core,East,Odisha,Bhubaneswar,2024-05-04,Paid Social
+CUST00512,Arjun Sethi,Core,South,Karnataka,Bengaluru,2025-06-13,Paid Social
+CUST00513,Aditi Gupta,Core,West,Maharashtra,Pune,2024-11-06,Affiliate
+CUST00514,Ayaan Bansal,Value,Central,Madhya Pradesh,Indore,2023-01-01,Organic Search
+CUST00515,Pooja Shah,Core,West,Maharashtra,Mumbai,2024-10-14,Referral
+CUST00516,Sneha Shah,Core,North,Rajasthan,Jaipur,2023-03-21,Paid Search
+CUST00517,Aditi Singh,Core,East,West Bengal,Kolkata,2025-02-19,Organic Search
+CUST00518,Kavya Mishra,Premium,North,Uttar Pradesh,Lucknow,2024-11-11,Affiliate
+CUST00519,Naina Arora,Core,West,Maharashtra,Mumbai,2023-01-12,Organic Search
+CUST00520,Isha Mishra,Premium,East,West Bengal,Kolkata,2025-01-25,Referral
+CUST00521,Avni Bansal,Core,North,Delhi,Delhi,2023-11-30,Referral
+CUST00522,Arjun Gupta,Core,North,Rajasthan,Jaipur,2024-01-16,Organic Search
+CUST00523,Arjun Gupta,Core,East,West Bengal,Kolkata,2023-07-11,Affiliate
+CUST00524,Avni Chawla,Core,East,Bihar,Patna,2024-10-13,Paid Social
+CUST00525,Kiara Kapoor,Value,West,Maharashtra,Mumbai,2023-10-12,Referral
+CUST00526,Aditya Sethi,Core,North,Uttar Pradesh,Noida,2025-06-07,Referral
+CUST00527,Aditi Das,Core,North,Delhi,Delhi,2025-01-03,Direct
+CUST00528,Mahi Kohli,Value,West,Gujarat,Ahmedabad,2025-02-02,Organic Search
+CUST00529,Naina Das,Value,North,Delhi,Delhi,2023-09-30,Paid Social
+CUST00530,Karan Joshi,Core,East,West Bengal,Kolkata,2023-10-31,Affiliate
+CUST00531,Shreya Rao,Value,Central,Madhya Pradesh,Indore,2023-05-24,Paid Search
+CUST00532,Nikhil Banerjee,Premium,North,Rajasthan,Jaipur,2023-07-16,Direct
+CUST00533,Karan Bansal,Premium,Central,Maharashtra,Nagpur,2025-04-26,Paid Search
+CUST00534,Riya Tiwari,Core,East,Bihar,Patna,2025-04-23,Referral
+CUST00535,Yash Mishra,Value,South,Karnataka,Bengaluru,2023-06-19,Email
+CUST00536,Isha Das,Core,Central,Maharashtra,Nagpur,2023-12-15,Email
+CUST00537,Naina Mishra,Core,North,Rajasthan,Jaipur,2023-09-09,Organic Search
+CUST00538,Nikhil Kapoor,Premium,North,Uttar Pradesh,Lucknow,2023-10-29,Affiliate
+CUST00539,Isha Reddy,Core,South,Telangana,Hyderabad,2024-08-29,Organic Search
+CUST00540,Diya Joshi,Core,East,Odisha,Bhubaneswar,2023-03-26,Organic Search
+CUST00541,Arjun Malhotra,Core,South,Karnataka,Bengaluru,2025-02-14,Direct
+CUST00542,Aarav Khanna,Premium,West,Maharashtra,Pune,2024-08-21,Organic Search
+CUST00543,Tanya Khanna,Value,East,Bihar,Patna,2023-08-19,Paid Social
+CUST00544,Karan Agarwal,Premium,North,Uttar Pradesh,Lucknow,2024-10-07,Paid Search
+CUST00545,Dhruv Verma,Premium,North,Delhi,Delhi,2024-09-27,Direct
+CUST00546,Varun Malhotra,Core,North,Rajasthan,Jaipur,2023-05-06,Paid Search
+CUST00547,Priya Singh,Core,South,Tamil Nadu,Chennai,2023-11-24,Direct
+CUST00548,Tanya Verma,Value,East,Bihar,Patna,2024-11-29,Paid Social
+CUST00549,Nikhil Das,Premium,South,Tamil Nadu,Chennai,2023-04-01,Direct
+CUST00550,Rohan Chawla,Core,South,Telangana,Hyderabad,2024-04-10,Email
+CUST00551,Aditi Khanna,Value,East,Odisha,Bhubaneswar,2023-12-16,Paid Search
+CUST00552,Kiara Arora,Premium,South,Karnataka,Bengaluru,2023-03-15,Direct
+CUST00553,Naina Reddy,Value,South,Tamil Nadu,Chennai,2023-08-08,Organic Search
+CUST00554,Varun Nair,Premium,North,Uttar Pradesh,Lucknow,2024-08-28,Organic Search
+CUST00555,Aarav Sethi,Core,West,Gujarat,Ahmedabad,2025-01-11,Paid Social
+CUST00556,Rahul Sethi,Core,North,Uttar Pradesh,Noida,2025-03-16,Paid Social
+CUST00557,Dev Mishra,Core,North,Rajasthan,Jaipur,2023-02-12,Email
+CUST00558,Rohan Kohli,Core,Central,Madhya Pradesh,Indore,2023-06-26,Paid Social
+CUST00559,Tanya Menon,Value,North,Chandigarh,Chandigarh,2024-08-28,Affiliate
+CUST00560,Dev Patel,Premium,North,Rajasthan,Jaipur,2024-09-03,Paid Search
+CUST00561,Simran Mehta,Premium,South,Telangana,Hyderabad,2025-02-13,Paid Social
+CUST00562,Aditya Jain,Core,Central,Madhya Pradesh,Indore,2023-03-10,Organic Search
+CUST00563,Ishaan Khanna,Core,East,Odisha,Bhubaneswar,2023-05-12,Paid Search
+CUST00564,Tanya Chawla,Core,North,Chandigarh,Chandigarh,2024-12-29,Referral
+CUST00565,Siddharth Saxena,Core,West,Maharashtra,Mumbai,2024-07-16,Paid Social
+CUST00566,Neel Kapoor,Core,Central,Madhya Pradesh,Indore,2025-01-24,Organic Search
+CUST00567,Siddharth Malhotra,Core,South,Telangana,Hyderabad,2025-02-24,Direct
+CUST00568,Diya Bansal,Core,East,Odisha,Bhubaneswar,2024-07-28,Organic Search
+CUST00569,Neel Das,Premium,North,Uttar Pradesh,Noida,2024-05-16,Affiliate
+CUST00570,Simran Chopra,Core,South,Tamil Nadu,Chennai,2025-01-05,Paid Social
+CUST00571,Yash Gupta,Value,Central,Maharashtra,Nagpur,2024-03-10,Referral
+CUST00572,Ankit Bansal,Value,North,Rajasthan,Jaipur,2024-09-13,Referral
+CUST00573,Yash Reddy,Core,South,Telangana,Hyderabad,2025-06-16,Affiliate
+CUST00574,Ayaan Agarwal,Core,Central,Maharashtra,Nagpur,2023-12-06,Direct
+CUST00575,Nikhil Kulkarni,Core,East,Odisha,Bhubaneswar,2024-02-19,Direct
+CUST00576,Ayaan Agarwal,Core,South,Kerala,Kochi,2024-06-11,Direct
+CUST00577,Priya Patel,Core,West,Maharashtra,Mumbai,2023-11-10,Email
+CUST00578,Aarav Banerjee,Core,Central,Maharashtra,Nagpur,2024-08-05,Referral
+CUST00579,Meera Joshi,Value,North,Uttar Pradesh,Lucknow,2024-12-18,Referral
+CUST00580,Ayaan Iyer,Value,South,Kerala,Kochi,2024-09-07,Direct
+CUST00581,Pooja Arora,Core,West,Maharashtra,Mumbai,2024-10-24,Paid Search
+CUST00582,Priya Kohli,Premium,Central,Maharashtra,Nagpur,2024-08-16,Direct
+CUST00583,Riya Patel,Value,North,Delhi,Delhi,2025-05-09,Email
+CUST00584,Siddharth Mishra,Core,North,Uttar Pradesh,Noida,2023-01-12,Referral
+CUST00585,Ira Gupta,Value,Central,Maharashtra,Nagpur,2024-04-11,Paid Social
+CUST00586,Sana Nair,Value,West,Maharashtra,Pune,2024-07-06,Organic Search
+CUST00587,Arjun Singh,Value,South,Tamil Nadu,Chennai,2024-05-27,Organic Search
+CUST00588,Reyansh Nair,Core,South,Kerala,Kochi,2025-03-29,Paid Social
+CUST00589,Naina Shah,Core,South,Telangana,Hyderabad,2024-07-05,Email
+CUST00590,Sana Mehta,Premium,Central,Maharashtra,Nagpur,2023-02-26,Paid Search
+CUST00591,Nikhil Shah,Premium,South,Telangana,Hyderabad,2024-09-02,Organic Search
+CUST00592,Tanya Kohli,Core,East,Odisha,Bhubaneswar,2025-02-10,Affiliate
+CUST00593,Sneha Chawla,Premium,East,Bihar,Patna,2023-06-12,Affiliate
+CUST00594,Sana Reddy,Premium,East,Odisha,Bhubaneswar,2024-12-08,Paid Search
+CUST00595,Kavya Chawla,Core,East,West Bengal,Kolkata,2024-02-14,Email
+CUST00596,Neel Iyer,Premium,North,Rajasthan,Jaipur,2025-02-15,Organic Search
+CUST00597,Priya Sharma,Value,East,Odisha,Bhubaneswar,2023-07-14,Affiliate
+CUST00598,Dev Kapoor,Core,West,Maharashtra,Mumbai,2025-05-31,Referral
+CUST00599,Avni Nair,Core,North,Uttar Pradesh,Lucknow,2024-10-18,Organic Search
+CUST00600,Nikhil Iyer,Premium,West,Maharashtra,Pune,2024-05-22,Organic Search
+CUST00601,Aarav Kohli,Core,South,Karnataka,Bengaluru,2023-03-28,Referral
+CUST00602,Pooja Khanna,Core,North,Chandigarh,Chandigarh,2025-03-29,Paid Social
+CUST00603,Dev Iyer,Core,South,Tamil Nadu,Chennai,2024-09-26,Paid Social
+CUST00604,Shreya Agarwal,Premium,North,Uttar Pradesh,Noida,2024-05-18,Organic Search
+CUST00605,Isha Mehta,Core,South,Telangana,Hyderabad,2023-08-07,Organic Search
+CUST00606,Meera Das,Core,West,Gujarat,Ahmedabad,2025-05-17,Email
+CUST00607,Kabir Rao,Core,South,Telangana,Hyderabad,2024-07-04,Referral
+CUST00608,Kabir Patel,Core,South,Karnataka,Bengaluru,2024-03-26,Organic Search
+CUST00609,Kiara Das,Core,South,Karnataka,Bengaluru,2025-03-21,Paid Social
+CUST00610,Dhruv Das,Value,East,Bihar,Patna,2024-01-28,Email
+CUST00611,Priya Arora,Premium,East,Odisha,Bhubaneswar,2024-09-29,Organic Search
+CUST00612,Naina Jain,Premium,West,Maharashtra,Mumbai,2023-08-29,Organic Search
+CUST00613,Vivaan Gupta,Core,South,Karnataka,Bengaluru,2024-10-18,Direct
+CUST00614,Ayaan Mehta,Premium,South,Kerala,Kochi,2023-12-08,Affiliate
+CUST00615,Arjun Arora,Premium,South,Telangana,Hyderabad,2024-06-23,Paid Social
+CUST00616,Aditya Sethi,Core,Central,Maharashtra,Nagpur,2024-09-12,Referral
+CUST00617,Naina Jain,Core,Central,Maharashtra,Nagpur,2025-05-22,Paid Social
+CUST00618,Naina Banerjee,Core,West,Maharashtra,Pune,2025-02-27,Direct
+CUST00619,Yash Patel,Premium,North,Chandigarh,Chandigarh,2025-01-30,Direct
+CUST00620,Shreya Nair,Premium,North,Uttar Pradesh,Noida,2024-03-03,Referral
+CUST00621,Priya Mishra,Value,South,Tamil Nadu,Chennai,2024-03-26,Affiliate
+CUST00622,Kiara Iyer,Core,South,Tamil Nadu,Chennai,2023-04-05,Email
+CUST00623,Riya Shah,Value,South,Kerala,Kochi,2023-12-14,Paid Social
+CUST00624,Sneha Sharma,Core,North,Chandigarh,Chandigarh,2024-10-04,Organic Search
+CUST00625,Isha Shah,Premium,Central,Madhya Pradesh,Indore,2025-04-02,Direct
+CUST00626,Avni Singh,Value,Central,Maharashtra,Nagpur,2023-02-17,Organic Search
+CUST00627,Aarav Mishra,Core,West,Maharashtra,Pune,2024-04-08,Referral
+CUST00628,Reyansh Kulkarni,Core,South,Kerala,Kochi,2024-07-21,Paid Social
+CUST00629,Simran Sethi,Core,Central,Maharashtra,Nagpur,2024-04-24,Direct
+CUST00630,Ankit Chawla,Core,South,Karnataka,Bengaluru,2024-01-07,Email
+CUST00631,Mahi Kulkarni,Core,East,Bihar,Patna,2024-01-10,Affiliate
+CUST00632,Avni Singh,Premium,South,Telangana,Hyderabad,2023-07-30,Organic Search
+CUST00633,Yash Patel,Premium,North,Uttar Pradesh,Noida,2023-12-23,Paid Social
+CUST00634,Naina Joshi,Core,West,Maharashtra,Pune,2023-04-04,Organic Search
+CUST00635,Kavya Singh,Premium,North,Rajasthan,Jaipur,2025-05-31,Paid Search
+CUST00636,Yash Kohli,Core,West,Maharashtra,Pune,2025-03-11,Paid Search
+CUST00637,Kabir Menon,Premium,South,Karnataka,Bengaluru,2023-12-04,Affiliate
+CUST00638,Manav Shah,Value,West,Maharashtra,Pune,2025-05-01,Paid Social
+CUST00639,Karan Mehta,Core,North,Delhi,Delhi,2023-04-04,Direct
+CUST00640,Siddharth Mehta,Value,North,Uttar Pradesh,Lucknow,2024-09-17,Email
+CUST00641,Dev Khanna,Core,North,Chandigarh,Chandigarh,2023-02-20,Email
+CUST00642,Kabir Tiwari,Core,East,West Bengal,Kolkata,2024-08-16,Referral
+CUST00643,Pooja Kulkarni,Core,North,Rajasthan,Jaipur,2025-04-19,Paid Search
+CUST00644,Ankit Reddy,Value,South,Tamil Nadu,Chennai,2023-04-20,Paid Search
+CUST00645,Meera Chawla,Value,North,Delhi,Delhi,2023-05-10,Email
+CUST00646,Aditi Bansal,Core,North,Uttar Pradesh,Lucknow,2024-05-31,Referral
+CUST00647,Shreya Joshi,Core,South,Kerala,Kochi,2023-02-20,Direct
+CUST00648,Yash Joshi,Core,South,Karnataka,Bengaluru,2023-08-28,Email
+CUST00649,Riya Sharma,Premium,West,Maharashtra,Mumbai,2025-04-19,Affiliate
+CUST00650,Ayaan Khanna,Core,South,Tamil Nadu,Chennai,2024-08-17,Direct
+CUST00651,Arjun Verma,Premium,West,Maharashtra,Pune,2024-08-28,Organic Search
+CUST00652,Yash Chawla,Core,Central,Madhya Pradesh,Indore,2023-02-08,Paid Search
+CUST00653,Kavya Agarwal,Core,North,Rajasthan,Jaipur,2025-01-05,Paid Social
+CUST00654,Reyansh Saxena,Core,West,Gujarat,Ahmedabad,2024-11-11,Paid Social
+CUST00655,Priya Banerjee,Core,East,Bihar,Patna,2024-06-25,Paid Social
+CUST00656,Navya Singh,Core,West,Maharashtra,Mumbai,2025-06-17,Paid Search
+CUST00657,Dhruv Arora,Core,South,Kerala,Kochi,2023-07-22,Affiliate
+CUST00658,Shreya Mishra,Core,South,Telangana,Hyderabad,2025-02-25,Direct
+CUST00659,Rahul Jain,Core,Central,Maharashtra,Nagpur,2023-02-15,Organic Search
+CUST00660,Varun Kohli,Core,East,Odisha,Bhubaneswar,2023-04-15,Paid Search
+CUST00661,Neel Mehta,Core,East,West Bengal,Kolkata,2023-03-26,Paid Search
+CUST00662,Priya Menon,Premium,North,Chandigarh,Chandigarh,2025-01-02,Paid Search
+CUST00663,Priya Kulkarni,Value,North,Uttar Pradesh,Noida,2023-10-22,Direct
+CUST00664,Rahul Arora,Core,East,Odisha,Bhubaneswar,2025-01-10,Paid Search
+CUST00665,Kavya Sharma,Value,South,Karnataka,Bengaluru,2024-02-08,Organic Search
+CUST00666,Riya Chawla,Core,West,Gujarat,Ahmedabad,2025-03-12,Referral
+CUST00667,Pooja Rao,Core,South,Karnataka,Bengaluru,2024-10-10,Organic Search
+CUST00668,Ankit Sethi,Core,East,Bihar,Patna,2024-04-26,Referral
+CUST00669,Isha Iyer,Premium,South,Karnataka,Bengaluru,2024-01-10,Affiliate
+CUST00670,Manav Iyer,Value,East,Bihar,Patna,2024-05-29,Paid Search
+CUST00671,Neel Kulkarni,Core,North,Uttar Pradesh,Lucknow,2023-09-23,Paid Search
+CUST00672,Arjun Chopra,Core,North,Uttar Pradesh,Lucknow,2023-06-26,Direct
+CUST00673,Naina Kapoor,Core,South,Telangana,Hyderabad,2023-09-09,Referral
+CUST00674,Shreya Menon,Core,Central,Maharashtra,Nagpur,2024-11-05,Affiliate
+CUST00675,Nikhil Kohli,Core,West,Maharashtra,Mumbai,2024-05-29,Email
+CUST00676,Arjun Malhotra,Core,South,Karnataka,Bengaluru,2024-02-26,Paid Social
+CUST00677,Navya Das,Core,North,Rajasthan,Jaipur,2024-07-13,Email
+CUST00678,Dhruv Saxena,Core,West,Maharashtra,Mumbai,2023-07-04,Paid Search
+CUST00679,Avni Malhotra,Core,East,Odisha,Bhubaneswar,2023-10-14,Referral
+CUST00680,Isha Bansal,Core,North,Chandigarh,Chandigarh,2024-04-12,Paid Social
+CUST00681,Arjun Kohli,Core,North,Chandigarh,Chandigarh,2024-02-02,Direct
+CUST00682,Dev Chawla,Premium,West,Gujarat,Ahmedabad,2023-11-20,Email
+CUST00683,Ira Mehta,Premium,North,Chandigarh,Chandigarh,2023-09-12,Paid Social
+CUST00684,Siddharth Kulkarni,Premium,North,Chandigarh,Chandigarh,2023-08-09,Organic Search
+CUST00685,Navya Verma,Core,North,Uttar Pradesh,Lucknow,2025-01-23,Paid Search
+CUST00686,Kavya Saxena,Core,East,Odisha,Bhubaneswar,2024-12-25,Email
+CUST00687,Reyansh Mishra,Premium,South,Tamil Nadu,Chennai,2024-10-25,Paid Social
+CUST00688,Vivaan Chawla,Premium,East,Odisha,Bhubaneswar,2024-04-12,Paid Search
+CUST00689,Priya Kapoor,Core,East,Odisha,Bhubaneswar,2023-07-09,Organic Search
+CUST00690,Kavya Malhotra,Value,North,Delhi,Delhi,2023-03-02,Organic Search
+CUST00691,Pooja Menon,Core,North,Delhi,Delhi,2023-11-20,Organic Search
+CUST00692,Naina Khanna,Core,West,Maharashtra,Pune,2023-03-13,Email
+CUST00693,Rohan Verma,Value,North,Delhi,Delhi,2023-06-06,Paid Search
+CUST00694,Tanya Joshi,Core,North,Uttar Pradesh,Noida,2023-05-31,Affiliate
+CUST00695,Aarav Tiwari,Premium,North,Rajasthan,Jaipur,2023-08-24,Paid Social
+CUST00696,Vivaan Kapoor,Core,North,Delhi,Delhi,2023-12-01,Paid Social
+CUST00697,Vivaan Kohli,Core,North,Delhi,Delhi,2023-10-18,Organic Search
+CUST00698,Diya Chawla,Core,Central,Madhya Pradesh,Indore,2025-02-06,Organic Search
+CUST00699,Manav Arora,Core,West,Maharashtra,Pune,2024-07-16,Paid Search
+CUST00700,Kavya Joshi,Value,North,Chandigarh,Chandigarh,2024-01-14,Paid Search
+CUST00701,Aarav Tiwari,Core,East,West Bengal,Kolkata,2024-06-13,Referral
+CUST00702,Kabir Joshi,Core,North,Uttar Pradesh,Noida,2023-10-04,Affiliate
+CUST00703,Isha Iyer,Premium,West,Gujarat,Ahmedabad,2023-09-03,Paid Search
+CUST00704,Pooja Banerjee,Premium,North,Uttar Pradesh,Lucknow,2024-10-12,Email
+CUST00705,Aditi Agarwal,Core,West,Gujarat,Ahmedabad,2023-05-18,Organic Search
+CUST00706,Yash Sharma,Core,Central,Madhya Pradesh,Indore,2024-04-07,Paid Social
+CUST00707,Vivaan Verma,Core,North,Delhi,Delhi,2025-05-27,Paid Search
+CUST00708,Tanya Rao,Premium,South,Karnataka,Bengaluru,2025-03-23,Email
+CUST00709,Aditi Rao,Core,North,Uttar Pradesh,Lucknow,2025-04-20,Organic Search
+CUST00710,Mahi Khanna,Core,South,Telangana,Hyderabad,2023-09-29,Organic Search
+CUST00711,Meera Patel,Value,North,Delhi,Delhi,2025-04-19,Referral
+CUST00712,Yash Khanna,Core,South,Karnataka,Bengaluru,2023-06-02,Direct
+CUST00713,Ayaan Gupta,Premium,South,Tamil Nadu,Chennai,2023-02-28,Organic Search
+CUST00714,Pooja Sethi,Core,Central,Madhya Pradesh,Indore,2024-11-01,Referral
+CUST00715,Dhruv Joshi,Core,Central,Madhya Pradesh,Indore,2024-01-14,Paid Search
+CUST00716,Manav Jain,Core,West,Maharashtra,Pune,2023-11-03,Referral
+CUST00717,Simran Verma,Premium,West,Maharashtra,Pune,2025-05-25,Organic Search
+CUST00718,Siddharth Khanna,Core,South,Telangana,Hyderabad,2024-06-26,Affiliate
+CUST00719,Yash Verma,Core,West,Maharashtra,Mumbai,2025-06-07,Referral
+CUST00720,Siddharth Singh,Core,Central,Maharashtra,Nagpur,2024-11-23,Paid Social
+CUST00721,Ankit Kohli,Core,Central,Maharashtra,Nagpur,2024-06-19,Affiliate
+CUST00722,Aditya Iyer,Core,North,Rajasthan,Jaipur,2023-04-11,Paid Social
+CUST00723,Siddharth Bansal,Core,South,Karnataka,Bengaluru,2023-07-07,Paid Search
+CUST00724,Naina Iyer,Premium,North,Chandigarh,Chandigarh,2023-08-14,Paid Search
+CUST00725,Reyansh Reddy,Value,Central,Maharashtra,Nagpur,2023-07-08,Referral
+CUST00726,Mahi Nair,Value,Central,Maharashtra,Nagpur,2023-03-02,Paid Social
+CUST00727,Aditi Verma,Core,West,Maharashtra,Pune,2025-05-09,Direct
+CUST00728,Navya Sethi,Value,West,Gujarat,Ahmedabad,2023-08-12,Organic Search
+CUST00729,Arjun Kapoor,Core,North,Rajasthan,Jaipur,2023-02-06,Paid Social
+CUST00730,Aditya Patel,Core,East,Odisha,Bhubaneswar,2025-04-18,Paid Social
+CUST00731,Tanya Iyer,Value,Central,Maharashtra,Nagpur,2023-10-29,Referral
+CUST00732,Vivaan Menon,Premium,North,Chandigarh,Chandigarh,2023-10-01,Affiliate
+CUST00733,Sneha Rao,Premium,Central,Maharashtra,Nagpur,2024-10-03,Paid Search
+CUST00734,Mahi Rao,Core,East,Bihar,Patna,2023-08-03,Direct
+CUST00735,Mahi Gupta,Core,East,Bihar,Patna,2023-12-25,Paid Social
+CUST00736,Riya Gupta,Value,North,Delhi,Delhi,2024-05-11,Paid Social
+CUST00737,Neel Iyer,Core,South,Tamil Nadu,Chennai,2024-07-06,Email
+CUST00738,Shreya Sharma,Premium,South,Kerala,Kochi,2023-09-13,Affiliate
+CUST00739,Priya Chopra,Premium,West,Gujarat,Ahmedabad,2025-04-06,Direct
+CUST00740,Aarav Kapoor,Premium,North,Chandigarh,Chandigarh,2024-01-15,Organic Search
+CUST00741,Priya Mehta,Premium,South,Karnataka,Bengaluru,2023-12-30,Email
+CUST00742,Dev Kohli,Core,East,Bihar,Patna,2024-05-12,Paid Search
+CUST00743,Sana Banerjee,Premium,West,Gujarat,Ahmedabad,2024-01-18,Direct
+CUST00744,Reyansh Jain,Core,Central,Maharashtra,Nagpur,2024-03-16,Referral
+CUST00745,Ananya Rao,Core,North,Uttar Pradesh,Noida,2025-03-21,Affiliate
+CUST00746,Rohan Nair,Core,South,Tamil Nadu,Chennai,2023-11-29,Direct
+CUST00747,Siddharth Gupta,Value,South,Tamil Nadu,Chennai,2023-09-03,Referral
+CUST00748,Ishaan Tiwari,Premium,West,Maharashtra,Pune,2024-03-12,Organic Search
+CUST00749,Shreya Malhotra,Core,Central,Madhya Pradesh,Indore,2023-09-01,Paid Search
+CUST00750,Kavya Tiwari,Value,Central,Madhya Pradesh,Indore,2024-01-18,Organic Search
+CUST00751,Sana Rao,Premium,West,Maharashtra,Mumbai,2023-11-06,Paid Social
+CUST00752,Aditya Sharma,Core,East,Bihar,Patna,2024-05-08,Organic Search
+CUST00753,Aditi Rao,Core,East,Bihar,Patna,2024-06-07,Affiliate
+CUST00754,Pooja Kulkarni,Core,South,Kerala,Kochi,2023-04-07,Organic Search
+CUST00755,Arjun Agarwal,Core,West,Gujarat,Ahmedabad,2024-02-15,Affiliate
+CUST00756,Siddharth Tiwari,Core,West,Maharashtra,Pune,2025-01-29,Affiliate
+CUST00757,Reyansh Saxena,Core,West,Gujarat,Ahmedabad,2024-08-15,Direct
+CUST00758,Kiara Menon,Core,South,Tamil Nadu,Chennai,2023-05-20,Organic Search
+CUST00759,Shreya Kapoor,Value,West,Maharashtra,Pune,2025-03-20,Direct
+CUST00760,Meera Joshi,Core,Central,Madhya Pradesh,Indore,2025-06-13,Paid Social
+CUST00761,Pooja Khanna,Value,Central,Maharashtra,Nagpur,2025-06-15,Paid Social
+CUST00762,Rahul Joshi,Core,North,Uttar Pradesh,Noida,2023-05-18,Referral
+CUST00763,Nikhil Jain,Core,South,Karnataka,Bengaluru,2024-03-14,Affiliate
+CUST00764,Priya Chawla,Core,South,Karnataka,Bengaluru,2025-03-27,Paid Search
+CUST00765,Reyansh Khanna,Core,South,Kerala,Kochi,2025-06-14,Email
+CUST00766,Shreya Kohli,Premium,North,Chandigarh,Chandigarh,2025-03-29,Direct
+CUST00767,Sneha Sharma,Core,West,Gujarat,Ahmedabad,2024-03-25,Email
+CUST00768,Simran Chawla,Premium,North,Rajasthan,Jaipur,2025-03-01,Organic Search
+CUST00769,Avni Mehta,Core,North,Chandigarh,Chandigarh,2024-03-12,Organic Search
+CUST00770,Tanya Reddy,Core,West,Maharashtra,Mumbai,2023-07-04,Affiliate
+CUST00771,Sneha Kulkarni,Value,North,Chandigarh,Chandigarh,2024-02-03,Paid Social
+CUST00772,Kiara Joshi,Premium,West,Maharashtra,Mumbai,2024-04-15,Organic Search
+CUST00773,Dev Patel,Core,East,Bihar,Patna,2023-12-19,Organic Search
+CUST00774,Tanya Agarwal,Core,Central,Madhya Pradesh,Indore,2024-07-13,Email
+CUST00775,Kabir Chopra,Core,Central,Madhya Pradesh,Indore,2024-08-15,Email
+CUST00776,Avni Sethi,Value,South,Tamil Nadu,Chennai,2024-02-27,Email
+CUST00777,Avni Das,Core,East,West Bengal,Kolkata,2023-04-18,Organic Search
+CUST00778,Sneha Mishra,Value,South,Telangana,Hyderabad,2024-04-05,Affiliate
+CUST00779,Diya Reddy,Premium,South,Telangana,Hyderabad,2023-07-02,Paid Social
+CUST00780,Neel Saxena,Core,East,Bihar,Patna,2023-10-17,Referral
+CUST00781,Yash Rao,Core,North,Uttar Pradesh,Lucknow,2024-01-14,Organic Search
+CUST00782,Simran Kapoor,Value,East,Bihar,Patna,2023-07-27,Direct
+CUST00783,Priya Shah,Value,North,Uttar Pradesh,Lucknow,2024-08-03,Paid Search
+CUST00784,Riya Jain,Value,West,Maharashtra,Mumbai,2023-12-15,Paid Search
+CUST00785,Karan Shah,Core,East,Odisha,Bhubaneswar,2024-12-28,Organic Search
+CUST00786,Yash Jain,Core,North,Uttar Pradesh,Lucknow,2023-01-28,Direct
+CUST00787,Riya Banerjee,Value,South,Telangana,Hyderabad,2025-06-14,Referral
+CUST00788,Dev Kulkarni,Core,West,Gujarat,Ahmedabad,2023-01-03,Affiliate
+CUST00789,Priya Bansal,Value,North,Uttar Pradesh,Noida,2023-01-08,Direct
+CUST00790,Vivaan Kohli,Core,South,Tamil Nadu,Chennai,2023-07-03,Paid Social
+CUST00791,Vivaan Arora,Core,East,West Bengal,Kolkata,2025-03-28,Paid Search
+CUST00792,Sneha Bansal,Core,Central,Maharashtra,Nagpur,2024-01-05,Paid Search
+CUST00793,Simran Verma,Value,South,Telangana,Hyderabad,2024-08-13,Paid Search
+CUST00794,Siddharth Kulkarni,Core,Central,Maharashtra,Nagpur,2024-07-19,Paid Social
+CUST00795,Neel Kulkarni,Core,North,Chandigarh,Chandigarh,2024-05-14,Paid Social
+CUST00796,Kabir Arora,Core,West,Gujarat,Ahmedabad,2025-02-07,Email
+CUST00797,Priya Joshi,Core,East,West Bengal,Kolkata,2024-01-07,Direct
+CUST00798,Ankit Malhotra,Core,South,Tamil Nadu,Chennai,2023-10-29,Email
+CUST00799,Siddharth Tiwari,Core,North,Chandigarh,Chandigarh,2023-08-03,Affiliate
+CUST00800,Dev Bansal,Core,North,Uttar Pradesh,Lucknow,2024-01-20,Direct
+CUST00801,Shreya Joshi,Value,West,Gujarat,Ahmedabad,2023-01-21,Organic Search
+CUST00802,Ananya Das,Core,Central,Madhya Pradesh,Indore,2024-03-06,Referral
+CUST00803,Aditya Malhotra,Core,West,Gujarat,Ahmedabad,2024-05-03,Paid Social
+CUST00804,Sana Shah,Premium,East,Odisha,Bhubaneswar,2023-08-01,Organic Search
+CUST00805,Mahi Patel,Core,West,Maharashtra,Mumbai,2023-01-14,Email
+CUST00806,Naina Kapoor,Core,Central,Madhya Pradesh,Indore,2025-05-25,Referral
+CUST00807,Nikhil Chawla,Premium,North,Rajasthan,Jaipur,2023-01-20,Email
+CUST00808,Priya Arora,Core,West,Gujarat,Ahmedabad,2025-01-14,Paid Social
+CUST00809,Meera Jain,Premium,Central,Madhya Pradesh,Indore,2025-02-12,Paid Search
+CUST00810,Pooja Reddy,Premium,North,Delhi,Delhi,2023-03-13,Paid Social
+CUST00811,Dhruv Iyer,Core,South,Kerala,Kochi,2024-09-22,Paid Search
+CUST00812,Reyansh Shah,Core,East,Bihar,Patna,2024-11-12,Paid Search
+CUST00813,Aarav Mehta,Core,North,Delhi,Delhi,2023-12-31,Paid Social
+CUST00814,Ayaan Mehta,Premium,South,Telangana,Hyderabad,2025-02-11,Affiliate
+CUST00815,Kavya Sharma,Core,South,Tamil Nadu,Chennai,2024-03-15,Organic Search
+CUST00816,Mahi Bansal,Core,Central,Maharashtra,Nagpur,2023-09-11,Organic Search
+CUST00817,Arjun Verma,Core,West,Maharashtra,Mumbai,2024-10-31,Paid Search
+CUST00818,Karan Rao,Core,East,West Bengal,Kolkata,2024-08-22,Organic Search
+CUST00819,Navya Saxena,Core,South,Karnataka,Bengaluru,2025-05-19,Paid Search
+CUST00820,Aditi Reddy,Core,South,Telangana,Hyderabad,2025-06-04,Email
+CUST00821,Nikhil Mishra,Core,Central,Madhya Pradesh,Indore,2025-05-09,Organic Search
+CUST00822,Avni Saxena,Core,West,Maharashtra,Pune,2024-02-10,Organic Search
+CUST00823,Rohan Chawla,Core,East,Bihar,Patna,2024-07-16,Paid Search
+CUST00824,Varun Mehta,Core,South,Karnataka,Bengaluru,2023-09-05,Organic Search
+CUST00825,Aarav Joshi,Core,North,Delhi,Delhi,2023-06-07,Direct
+CUST00826,Meera Kulkarni,Value,Central,Madhya Pradesh,Indore,2024-10-17,Affiliate
+CUST00827,Aditi Mehta,Core,North,Chandigarh,Chandigarh,2024-05-11,Paid Social
+CUST00828,Priya Patel,Premium,East,West Bengal,Kolkata,2024-10-31,Referral
+CUST00829,Mahi Saxena,Core,South,Kerala,Kochi,2023-04-13,Organic Search
+CUST00830,Arjun Agarwal,Value,East,West Bengal,Kolkata,2023-12-05,Organic Search
+CUST00831,Ankit Sethi,Core,South,Kerala,Kochi,2023-01-11,Organic Search
+CUST00832,Diya Menon,Premium,Central,Madhya Pradesh,Indore,2023-11-13,Paid Search
+CUST00833,Riya Kapoor,Core,Central,Maharashtra,Nagpur,2024-03-05,Referral
+CUST00834,Arjun Tiwari,Core,North,Rajasthan,Jaipur,2023-09-26,Organic Search
+CUST00835,Reyansh Banerjee,Premium,South,Kerala,Kochi,2023-10-10,Referral
+CUST00836,Shreya Malhotra,Core,Central,Madhya Pradesh,Indore,2024-04-20,Paid Search
+CUST00837,Dev Tiwari,Value,North,Uttar Pradesh,Lucknow,2023-06-09,Email
+CUST00838,Nikhil Chopra,Core,North,Delhi,Delhi,2023-06-20,Paid Search
+CUST00839,Shreya Tiwari,Core,West,Gujarat,Ahmedabad,2023-02-22,Organic Search
+CUST00840,Kabir Patel,Premium,East,Bihar,Patna,2025-06-18,Email
+CUST00841,Aarav Khanna,Core,South,Tamil Nadu,Chennai,2023-06-30,Affiliate
+CUST00842,Kavya Mehta,Value,Central,Madhya Pradesh,Indore,2024-02-27,Affiliate
+CUST00843,Dhruv Malhotra,Core,North,Chandigarh,Chandigarh,2025-06-05,Organic Search
+CUST00844,Aditi Menon,Core,North,Chandigarh,Chandigarh,2024-11-16,Organic Search
+CUST00845,Ankit Arora,Premium,North,Uttar Pradesh,Noida,2023-06-07,Direct
+CUST00846,Mahi Chawla,Core,South,Telangana,Hyderabad,2023-02-01,Referral
+CUST00847,Ishaan Iyer,Core,West,Maharashtra,Pune,2024-03-30,Organic Search
+CUST00848,Kavya Joshi,Value,North,Rajasthan,Jaipur,2025-06-13,Paid Search
+CUST00849,Diya Shah,Core,East,West Bengal,Kolkata,2024-01-21,Organic Search
+CUST00850,Aarav Bansal,Premium,West,Maharashtra,Mumbai,2024-08-27,Paid Search
+CUST00851,Dev Patel,Premium,South,Karnataka,Bengaluru,2024-09-18,Organic Search
+CUST00852,Kiara Saxena,Core,North,Uttar Pradesh,Noida,2024-01-31,Paid Social
+CUST00853,Simran Menon,Core,South,Telangana,Hyderabad,2024-08-24,Referral
+CUST00854,Riya Das,Value,South,Telangana,Hyderabad,2023-11-20,Paid Social
+CUST00855,Meera Sethi,Core,West,Maharashtra,Pune,2023-08-17,Referral
+CUST00856,Dhruv Malhotra,Value,South,Tamil Nadu,Chennai,2023-02-25,Email
+CUST00857,Nikhil Bansal,Core,East,West Bengal,Kolkata,2024-05-17,Referral
+CUST00858,Ankit Tiwari,Core,North,Uttar Pradesh,Noida,2023-02-14,Affiliate
+CUST00859,Nikhil Mehta,Core,East,West Bengal,Kolkata,2025-04-23,Affiliate
+CUST00860,Aditya Kohli,Premium,East,Bihar,Patna,2024-04-22,Email
+CUST00861,Yash Tiwari,Core,East,Odisha,Bhubaneswar,2023-06-09,Organic Search
+CUST00862,Siddharth Rao,Core,West,Maharashtra,Mumbai,2023-03-27,Paid Search
+CUST00863,Simran Kapoor,Core,South,Tamil Nadu,Chennai,2023-04-30,Paid Search
+CUST00864,Manav Agarwal,Premium,Central,Madhya Pradesh,Indore,2024-06-12,Organic Search
+CUST00865,Shreya Khanna,Core,North,Chandigarh,Chandigarh,2023-11-20,Organic Search
+CUST00866,Kavya Shah,Core,North,Uttar Pradesh,Lucknow,2025-06-14,Referral
+CUST00867,Yash Jain,Value,Central,Madhya Pradesh,Indore,2025-01-08,Affiliate
+CUST00868,Ishaan Kulkarni,Premium,Central,Madhya Pradesh,Indore,2023-03-29,Email
+CUST00869,Riya Sharma,Premium,South,Tamil Nadu,Chennai,2023-10-20,Direct
+CUST00870,Sana Rao,Value,South,Karnataka,Bengaluru,2025-05-01,Email
+CUST00871,Rahul Mehta,Premium,North,Uttar Pradesh,Noida,2025-06-11,Paid Social
+CUST00872,Avni Das,Core,West,Maharashtra,Mumbai,2023-12-10,Direct
+CUST00873,Sneha Sharma,Value,Central,Madhya Pradesh,Indore,2025-04-16,Referral
+CUST00874,Diya Jain,Core,North,Chandigarh,Chandigarh,2025-02-15,Organic Search
+CUST00875,Tanya Kohli,Core,East,Bihar,Patna,2024-10-23,Paid Search
+CUST00876,Pooja Sethi,Value,North,Uttar Pradesh,Noida,2023-06-29,Paid Search
+CUST00877,Ishaan Patel,Core,Central,Maharashtra,Nagpur,2023-07-17,Direct
+CUST00878,Rohan Jain,Core,West,Gujarat,Ahmedabad,2024-01-09,Referral
+CUST00879,Dhruv Menon,Value,West,Gujarat,Ahmedabad,2025-06-12,Email
+CUST00880,Yash Chopra,Core,West,Maharashtra,Mumbai,2024-11-15,Paid Search
+CUST00881,Navya Patel,Value,South,Telangana,Hyderabad,2023-11-11,Organic Search
+CUST00882,Naina Arora,Core,West,Gujarat,Ahmedabad,2025-03-20,Paid Search
+CUST00883,Sneha Sharma,Premium,North,Uttar Pradesh,Noida,2024-09-12,Email
+CUST00884,Vivaan Singh,Premium,East,West Bengal,Kolkata,2024-05-02,Direct
+CUST00885,Yash Patel,Core,North,Uttar Pradesh,Noida,2023-06-11,Organic Search
+CUST00886,Priya Malhotra,Core,North,Chandigarh,Chandigarh,2024-07-27,Paid Social
+CUST00887,Reyansh Khanna,Core,North,Delhi,Delhi,2023-07-21,Organic Search
+CUST00888,Reyansh Verma,Core,Central,Madhya Pradesh,Indore,2023-04-16,Paid Search
+CUST00889,Avni Agarwal,Premium,Central,Madhya Pradesh,Indore,2025-05-11,Organic Search
+CUST00890,Navya Reddy,Value,East,Odisha,Bhubaneswar,2023-08-20,Email
+CUST00891,Meera Jain,Core,West,Maharashtra,Pune,2023-05-26,Organic Search
+CUST00892,Aditi Singh,Core,South,Karnataka,Bengaluru,2023-06-14,Direct
+CUST00893,Dhruv Patel,Premium,East,Bihar,Patna,2024-07-01,Email
+CUST00894,Rahul Arora,Value,North,Uttar Pradesh,Lucknow,2023-07-22,Paid Social
+CUST00895,Kabir Malhotra,Value,South,Tamil Nadu,Chennai,2023-09-27,Paid Search
+CUST00896,Rohan Joshi,Value,Central,Maharashtra,Nagpur,2023-07-03,Referral
+CUST00897,Ayaan Arora,Premium,South,Kerala,Kochi,2023-05-01,Organic Search
+CUST00898,Tanya Jain,Premium,West,Gujarat,Ahmedabad,2024-10-12,Referral
+CUST00899,Rahul Menon,Core,South,Karnataka,Bengaluru,2024-12-19,Referral
+CUST00900,Aditi Arora,Core,North,Uttar Pradesh,Noida,2023-07-25,Organic Search
+CUST00901,Pooja Banerjee,Premium,North,Uttar Pradesh,Noida,2025-04-10,Affiliate
+CUST00902,Nikhil Malhotra,Core,South,Tamil Nadu,Chennai,2023-05-21,Organic Search
+CUST00903,Karan Nair,Premium,West,Maharashtra,Pune,2023-02-23,Organic Search
+CUST00904,Navya Chawla,Core,South,Karnataka,Bengaluru,2024-04-15,Paid Social
+CUST00905,Sneha Patel,Core,West,Maharashtra,Mumbai,2023-11-20,Organic Search
+CUST00906,Ira Chopra,Core,Central,Madhya Pradesh,Indore,2024-03-26,Paid Social
+CUST00907,Aarav Mehta,Core,West,Gujarat,Ahmedabad,2024-05-27,Direct
+CUST00908,Aditi Bansal,Core,East,Odisha,Bhubaneswar,2023-11-10,Paid Search
+CUST00909,Rahul Kohli,Premium,Central,Maharashtra,Nagpur,2023-12-31,Affiliate
+CUST00910,Aditya Joshi,Core,North,Uttar Pradesh,Noida,2025-01-05,Paid Search
+CUST00911,Mahi Kulkarni,Value,East,Bihar,Patna,2024-07-09,Paid Search
+CUST00912,Ishaan Rao,Core,West,Maharashtra,Pune,2023-01-29,Referral
+CUST00913,Avni Shah,Value,West,Gujarat,Ahmedabad,2024-04-22,Organic Search
+CUST00914,Shreya Mishra,Core,North,Delhi,Delhi,2023-04-25,Direct
+CUST00915,Vivaan Khanna,Premium,North,Delhi,Delhi,2023-12-07,Affiliate
+CUST00916,Nikhil Sethi,Premium,North,Uttar Pradesh,Noida,2023-10-09,Paid Search
+CUST00917,Ankit Patel,Value,East,Odisha,Bhubaneswar,2023-06-17,Paid Search
+CUST00918,Naina Iyer,Core,Central,Madhya Pradesh,Indore,2025-05-24,Organic Search
+CUST00919,Varun Sharma,Core,West,Gujarat,Ahmedabad,2024-02-09,Organic Search
+CUST00920,Avni Jain,Value,South,Kerala,Kochi,2023-08-02,Paid Search
+CUST00921,Ankit Gupta,Core,Central,Madhya Pradesh,Indore,2023-03-05,Paid Search
+CUST00922,Isha Verma,Core,Central,Madhya Pradesh,Indore,2025-04-10,Referral
+CUST00923,Naina Singh,Core,West,Gujarat,Ahmedabad,2025-05-01,Paid Search
+CUST00924,Arjun Chopra,Core,Central,Maharashtra,Nagpur,2023-03-06,Email
+CUST00925,Vivaan Patel,Value,Central,Maharashtra,Nagpur,2023-05-27,Paid Social
+CUST00926,Meera Shah,Value,West,Gujarat,Ahmedabad,2024-01-18,Email
+CUST00927,Ankit Tiwari,Core,South,Karnataka,Bengaluru,2024-09-02,Affiliate
+CUST00928,Ayaan Das,Premium,South,Kerala,Kochi,2023-11-19,Paid Social
+CUST00929,Kiara Saxena,Core,East,Bihar,Patna,2023-12-11,Direct
+CUST00930,Nikhil Saxena,Core,Central,Madhya Pradesh,Indore,2023-03-13,Referral
+CUST00931,Ira Iyer,Core,West,Gujarat,Ahmedabad,2023-07-29,Paid Search
+CUST00932,Vivaan Tiwari,Core,Central,Madhya Pradesh,Indore,2023-11-22,Referral
+CUST00933,Manav Joshi,Core,North,Delhi,Delhi,2023-05-05,Email
+CUST00934,Rahul Kohli,Premium,East,Bihar,Patna,2024-11-28,Paid Social
+CUST00935,Ira Verma,Core,Central,Maharashtra,Nagpur,2023-08-29,Direct
+CUST00936,Sana Kohli,Core,North,Rajasthan,Jaipur,2023-05-21,Organic Search
+CUST00937,Varun Joshi,Premium,Central,Maharashtra,Nagpur,2024-10-17,Organic Search
+CUST00938,Kabir Kohli,Core,South,Karnataka,Bengaluru,2024-06-22,Paid Search
+CUST00939,Manav Kapoor,Value,West,Gujarat,Ahmedabad,2023-11-21,Email
+CUST00940,Karan Khanna,Premium,North,Uttar Pradesh,Lucknow,2023-05-10,Organic Search
+CUST00941,Yash Menon,Core,North,Chandigarh,Chandigarh,2023-12-17,Organic Search
+CUST00942,Simran Bansal,Core,North,Uttar Pradesh,Lucknow,2025-03-09,Email
+CUST00943,Aditya Sethi,Value,South,Kerala,Kochi,2023-09-15,Organic Search
+CUST00944,Dhruv Joshi,Value,South,Tamil Nadu,Chennai,2025-02-07,Paid Social
+CUST00945,Diya Iyer,Core,West,Gujarat,Ahmedabad,2025-03-16,Organic Search
+CUST00946,Vivaan Banerjee,Premium,North,Uttar Pradesh,Lucknow,2023-10-04,Referral
+CUST00947,Kiara Gupta,Premium,Central,Maharashtra,Nagpur,2023-06-21,Email
+CUST00948,Kabir Tiwari,Premium,South,Telangana,Hyderabad,2024-08-17,Organic Search
+CUST00949,Neel Arora,Core,East,Odisha,Bhubaneswar,2024-02-07,Direct
+CUST00950,Tanya Patel,Value,South,Karnataka,Bengaluru,2024-09-23,Organic Search
+CUST00951,Manav Joshi,Core,North,Delhi,Delhi,2023-10-21,Organic Search
+CUST00952,Riya Sharma,Core,East,Odisha,Bhubaneswar,2025-05-29,Organic Search
+CUST00953,Tanya Das,Core,North,Chandigarh,Chandigarh,2023-10-15,Organic Search
+CUST00954,Tanya Das,Value,North,Uttar Pradesh,Lucknow,2024-11-25,Affiliate
+CUST00955,Karan Tiwari,Core,North,Rajasthan,Jaipur,2024-06-02,Organic Search
+CUST00956,Rahul Kohli,Core,North,Delhi,Delhi,2023-05-20,Direct
+CUST00957,Aditi Banerjee,Premium,South,Kerala,Kochi,2024-06-07,Affiliate
+CUST00958,Ayaan Kohli,Core,South,Tamil Nadu,Chennai,2024-03-26,Affiliate
+CUST00959,Aarav Nair,Core,Central,Maharashtra,Nagpur,2024-07-23,Paid Search
+CUST00960,Ira Kohli,Premium,East,Bihar,Patna,2023-02-04,Direct
+CUST00961,Aditi Reddy,Value,South,Karnataka,Bengaluru,2023-08-27,Organic Search
+CUST00962,Rahul Mehta,Core,East,Odisha,Bhubaneswar,2023-11-08,Organic Search
+CUST00963,Ananya Singh,Premium,North,Uttar Pradesh,Lucknow,2023-03-01,Email
+CUST00964,Neel Khanna,Value,East,West Bengal,Kolkata,2023-01-24,Referral
+CUST00965,Navya Iyer,Core,South,Karnataka,Bengaluru,2023-05-05,Paid Social
+CUST00966,Sneha Sethi,Core,North,Uttar Pradesh,Lucknow,2023-10-12,Organic Search
+CUST00967,Navya Saxena,Core,South,Tamil Nadu,Chennai,2024-01-15,Direct
+CUST00968,Aarav Nair,Core,West,Gujarat,Ahmedabad,2024-11-16,Direct
+CUST00969,Nikhil Chopra,Value,Central,Maharashtra,Nagpur,2023-02-07,Referral
+CUST00970,Kabir Kulkarni,Value,East,Odisha,Bhubaneswar,2025-03-02,Email
+CUST00971,Tanya Reddy,Value,East,Bihar,Patna,2024-03-30,Email
+CUST00972,Simran Sethi,Premium,South,Karnataka,Bengaluru,2023-05-06,Paid Search
+CUST00973,Manav Shah,Premium,North,Delhi,Delhi,2023-05-05,Paid Search
+CUST00974,Ayaan Jain,Value,East,Bihar,Patna,2025-06-17,Referral
+CUST00975,Sana Rao,Core,South,Kerala,Kochi,2025-04-11,Email
+CUST00976,Aditi Agarwal,Value,North,Chandigarh,Chandigarh,2024-07-09,Email
+CUST00977,Kiara Menon,Core,South,Telangana,Hyderabad,2023-06-11,Organic Search
+CUST00978,Ankit Sharma,Premium,South,Karnataka,Bengaluru,2023-06-07,Direct
+CUST00979,Aditya Mehta,Core,East,West Bengal,Kolkata,2023-08-07,Paid Search
+CUST00980,Arjun Arora,Core,North,Rajasthan,Jaipur,2024-07-15,Organic Search
+CUST00981,Riya Gupta,Value,South,Telangana,Hyderabad,2024-09-25,Affiliate
+CUST00982,Nikhil Jain,Value,East,West Bengal,Kolkata,2024-01-02,Organic Search
+CUST00983,Kavya Mishra,Core,North,Uttar Pradesh,Noida,2024-01-06,Organic Search
+CUST00984,Ayaan Kulkarni,Value,South,Tamil Nadu,Chennai,2023-10-04,Paid Search
+CUST00985,Kiara Shah,Premium,North,Chandigarh,Chandigarh,2023-07-10,Affiliate
+CUST00986,Diya Sethi,Premium,South,Kerala,Kochi,2023-11-18,Direct
+CUST00987,Aarav Shah,Value,North,Rajasthan,Jaipur,2024-03-24,Organic Search
+CUST00988,Arjun Patel,Premium,East,Bihar,Patna,2024-06-17,Affiliate
+CUST00989,Riya Sharma,Core,East,West Bengal,Kolkata,2023-12-07,Paid Search
+CUST00990,Dhruv Sharma,Value,North,Delhi,Delhi,2024-07-11,Referral
+CUST00991,Aditya Mishra,Core,East,Odisha,Bhubaneswar,2025-01-14,Affiliate
+CUST00992,Karan Saxena,Premium,North,Uttar Pradesh,Noida,2023-06-10,Direct
+CUST00993,Ankit Nair,Value,South,Kerala,Kochi,2024-03-13,Direct
+CUST00994,Meera Sethi,Premium,South,Karnataka,Bengaluru,2024-01-21,Paid Social
+CUST00995,Nikhil Chopra,Core,North,Chandigarh,Chandigarh,2023-05-27,Paid Social
+CUST00996,Vivaan Joshi,Core,East,West Bengal,Kolkata,2023-08-23,Organic Search
+CUST00997,Ishaan Patel,Core,West,Gujarat,Ahmedabad,2024-09-25,Organic Search
+CUST00998,Priya Verma,Core,South,Tamil Nadu,Chennai,2023-06-21,Email
+CUST00999,Naina Shah,Core,Central,Maharashtra,Nagpur,2024-10-13,Organic Search
+CUST01000,Rohan Kapoor,Premium,West,Gujarat,Ahmedabad,2023-06-18,Organic Search
