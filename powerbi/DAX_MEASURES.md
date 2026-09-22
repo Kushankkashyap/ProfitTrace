@@ -33,7 +33,7 @@ Profit per Order = DIVIDE([Gross Profit], [Delivered Orders])
 
 Return Events = COUNTROWS(FactReturns)
 
-Approved Return Events = CALCULATE([Return Events], FactReturns[return_status] = Approved)
+Approved Return Events = CALCULATE([Return Events], FactReturns[return_status] = "Approved")
 
 Returned Orders = CALCULATE([Orders], FactProfitability[is_returned] = 1, FactProfitability[is_delivered] = 1)
 
@@ -54,10 +54,6 @@ Return Leakage % = DIVIDE([Refund Value] + [Return Cost], [Gross Revenue])
 Customers = CALCULATE(DISTINCTCOUNT(FactProfitability[customer_id]), FactProfitability[is_delivered] = 1)
 
 Orders per Customer = DIVIDE([Delivered Orders], [Customers])
-
-Repeat Customers = count of customers whose delivered order count is greater than 1.
-
-Repeat Customer % = DIVIDE([Repeat Customers], [Customers])
 
 Profit per Customer = DIVIDE([Gross Profit], [Customers])
 
@@ -86,5 +82,8 @@ Sort Month by Month Number and use Year Month for chronological trends.
 ## Formatting
 
 Currency: revenue, discounts, refunds, costs, profit and AOV.
-Percentage: margin, discount rate, return rate, late delivery rate, return leakage and repeat customer percentage.
+Percentage: margin, discount rate, return rate, late delivery rate and return leakage.
+Whole number: orders, customers, return events and returned orders.
+
+Final KPI note: Repeat Customer % is not used as a final dashboard KPI because the synthetic dataset produces multiple delivered orders for all customers.
 Whole number: orders, customers, return events and returned orders.
