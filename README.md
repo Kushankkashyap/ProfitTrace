@@ -2,15 +2,15 @@
 
 > **Trace the Revenue. Find the Leakage. Protect the Profit.**
 
-ProfitTrace is an end-to-end analytics portfolio project built around one practical commercial question:
+**Status: ✅ Completed Portfolio Project**
+
+ProfitTrace is an end-to-end analytics project built around one practical commercial question:
 
 > **Revenue looks healthy, but where is the business actually losing profit?**
 
-The project mirrors a real analyst workflow:
+The project follows a realistic analyst workflow from operational source data through SQL validation and business logic into a Power BI semantic model, DAX measures and an executive dashboard.
 
-**Source Data → SQL Server → Data Quality → Business Logic → Power BI Model → DAX → Executive Dashboard**
-
-It combines **SQL Server, Power BI, DAX and Excel/CSV** to analyze profitability, discounting, returns, delivery performance, customer economics and operational leakage.
+**Source Data → SQL Server → Data Quality → Business Logic → Power BI Star Schema → DAX → Executive Dashboard**
 
 ---
 
@@ -23,27 +23,49 @@ It combines **SQL Server, Power BI, DAX and Excel/CSV** to analyze profitability
 | Customers | 1,000 |
 | Products | 300 |
 | Orders | 15,000 |
-| Returns | 1,155 |
+| Shipping Records | 15,000 |
+| Return Events | 1,155 |
 | SQL Scripts | 7 |
 | Power BI Pages | 4 |
 | DAX Measures | 32 |
 | Data Model | Star Schema |
-| Final Deliverables | PBIX + PDF + Screenshots |
+| Primary Tools | SQL Server, SSMS, Power BI, DAX, Excel/CSV |
+| Final Deliverables | PBIX + PDF + 4 Screenshots |
 
 ---
 
 ## 🎯 Business Problem
 
-An e-commerce business can grow revenue while silently losing margin through discounts, refunds, product costs, shipping and return-related expenses.
+E-commerce revenue can look strong while profitability is reduced by:
 
-ProfitTrace is designed to answer questions such as:
+- discounting
+- refunds
+- product costs
+- shipping costs
+- return-related costs
+- delivery issues
 
-- Which categories and products create the most profit?
+ProfitTrace is designed to answer:
+
+- Which categories and products generate the most profit?
 - Where are discounts compressing margin?
-- Which high-revenue products have weaker profitability?
-- How much revenue is lost through refunds and return-related costs?
-- How do late-delivery patterns relate to return activity?
-- Which customer segments and acquisition channels create stronger economics?
+- Which high-revenue areas have weaker profitability?
+- How much economic leakage comes from refunds and return-related costs?
+- How do late-delivery orders compare with on-time orders on return rate?
+- Which customer segments, regions and acquisition channels create stronger economics?
+
+---
+
+## 🔎 Key Findings
+
+The final dashboard shows:
+
+- **₹147.92M net revenue** and **₹59.33M gross profit**, resulting in a **40% profit margin** on the delivered-order scope.
+- **Electronics contributes ₹33.8M of profit**, the largest category contribution in the dashboard.
+- **Fashion has the highest category return rate at 12%**; Sports is 7%, while Electronics, Beauty and Home are each 6%.
+- **Late-delivery orders have an 11% return rate versus 7% for on-time orders** in the synthetic dataset. This is an observed association, not proof of causation.
+- **Profit margin declines across the discount bands**, from 45% in the 0-5% band to 19% in the 25-30% band.
+- **Return leakage is 6% of gross revenue** under the project's defined leakage formula.
 
 ---
 
@@ -69,23 +91,13 @@ Power BI Star Schema
 4-Page Executive Dashboard
 ```
 
----
-
-## 🧰 Technology Stack
-
-| Technology | Role |
-|---|---|
-| **Excel / CSV** | Operational source data |
-| **SQL Server / SSMS** | Staging, validation, cleaning, transformation and QA |
-| **Power BI** | Data modeling, visualization and dashboard delivery |
-| **DAX** | Reusable KPI and analytical measures |
-| **GitHub** | Portfolio versioning and project documentation |
+The project is completed end to end. The repository contains the implementation, analytical SQL, QA scripts, Power BI artifacts and final evidence.
 
 ---
 
 ## 📊 Source Data
 
-| Dataset | Grain | Records |
+| Dataset | Grain | Rows |
 |---|---|---:|
 | Customers | One row per customer | 1,000 |
 | Products | One row per product | 300 |
@@ -93,15 +105,17 @@ Power BI Star Schema
 | Shipping | One row per order shipment | 15,000 |
 | Returns | One row per return event | 1,155 |
 
-The data is **synthetic and intentionally structured for portfolio analysis**. It contains controlled quality issues such as inconsistent text formatting, an out-of-range discount value, an inconsistent status value and incomplete shipping dates.
+The source data is **synthetic and intentionally structured for portfolio analysis**.
 
-These issues are intentionally detected in SQL rather than manually repaired in the source layer.
+Controlled quality issues include inconsistent casing/whitespace, one discount above the intended 0%-30% range, an inconsistent order-status value, an inconsistent carrier value, an inconsistent return-reason value and blank shipping/delivery dates on a subset of rows.
+
+These issues are surfaced in validation and standardized in the analytical layer rather than manually overwritten in the source.
 
 ---
 
-## 🗄️ SQL Layer
+## 🗄️ SQL Server Layer
 
-The SQL workflow is separated into seven auditable scripts. The staging script creates the typed tables; source-file ingestion is performed with the documented SQL Server import workflow.
+The SQL workflow is separated into seven auditable scripts:
 
 ```text
 01_Database_Setup.sql
@@ -113,30 +127,37 @@ The SQL workflow is separated into seven auditable scripts. The staging script c
 07_Final_Portfolio_QA.sql
 ```
 
-### What the SQL layer demonstrates
+### What it demonstrates
 
 - Typed staging tables
-- Data-quality validation
+- Source-data validation
+- Required-field and domain checks
+- Referential-integrity checks
+- Grain and uniqueness checks
 - Text standardization
-- `TRY_CONVERT` / `NULLIF` handling
-- CTEs and aggregations
-- Joins and analytical transformations
-- Financial reconciliation
+- Discount correction
+- Date and delivery consistency checks
+- CTEs, joins and window functions
 - Order-level cost allocation
-- Profitability and returns analysis
-- Post-load and final QA
+- Financial reconciliation
+- Business-analysis queries
+- Post-load and final portfolio QA
 
 ### Delivered-order scope
 
 `is_delivered = 1` is the project's definition of realized delivered-order scope.
 
-Core profitability and customer-economic measures use this same rule in SQL and Power BI so the two layers remain analytically aligned.
+Core revenue, profit and customer-economic measures use this same rule in SQL and Power BI.
+
+### Shipping import handling
+
+The Shipping source contains blank values in shipment and delivery date fields. The documented workflow uses a temporary text landing layer when direct date conversion is not accepted by the SQL Server import wizard, then applies controlled `TRY_CONVERT` / `NULLIF` conversion into the typed staging table.
 
 ---
 
-## ⭐ Power BI Model
+## ⭐ Power BI Semantic Model
 
-The final semantic model uses a star-schema structure:
+The final model uses a star-schema structure:
 
 ```text
                          DimDate
@@ -147,7 +168,7 @@ DimCustomer ---- FactProfitability ---- DimProduct
                    FactReturns
 ```
 
-### Facts
+### Fact tables
 
 - **FactProfitability** → `analytics.vw_OrderProfitability`
 - **FactReturns** → `analytics.vw_ReturnsOperations`
@@ -158,11 +179,38 @@ DimCustomer ---- FactProfitability ---- DimProduct
 - **DimCustomer**
 - **DimProduct**
 
-Relationships are **1:* and single-direction from dimensions to facts**.
+### Modeling discipline
 
-There is no direct fact-to-fact relationship.
+- 1:* relationships
+- Single-direction filtering from dimensions to facts
+- No direct fact-to-fact relationship
+- FactReturns intentionally remains disconnected from DimProduct because the return source does not contain a reliable product identifier
 
-The returns source does not contain a reliable product identifier, so the project intentionally avoids unsupported product/category return attribution.
+---
+
+## 🧮 Key Metric Definitions
+
+### Return Rate
+
+**Returned delivered orders ÷ delivered orders**
+
+Approved return events are used to determine returned orders. Rejected return events remain visible in return-event detail but do not count toward Return Rate.
+
+### Return Leakage %
+
+**(Refund Value + Return Cost) ÷ Gross Revenue**
+
+### Profit per Order
+
+**Gross Profit ÷ Delivered Orders**
+
+### Profit per Customer
+
+**Gross Profit ÷ Delivered Customers**
+
+### Late Delivery
+
+A delivered order is classified as **Late** when its delivery date is later than its promised delivery date.
 
 ---
 
@@ -180,10 +228,10 @@ Includes:
 - Return Rate %
 - Delivered Orders
 - Return Leakage %
-- Revenue vs Gross Profit trend
-- Category profit contribution
-- Revenue-to-profit waterfall
-- Revenue vs Margin analysis
+- Revenue vs Gross Profit Trend
+- Profit Contribution by Category
+- Revenue-to-Profit Waterfall
+- Revenue vs Margin
 
 ### 02 | Profitability Deep Dive
 
@@ -204,15 +252,15 @@ Includes:
 Includes:
 
 - Returned Orders
-- Return Rate %
 - Refund Value
-- Return Leakage %
 - Late Delivery %
-- Return reasons
-- Monthly refund leakage by return month
-- Return rate by category
-- Return rate by delivery status
-- Return-event detail
+- Return Leakage %
+- Return Rate %
+- Why Customers Return
+- Monthly Refund Leakage by Return Month
+- Return Rate by Delivery Status
+- Return Rate by Category
+- Return Event Detail with Return Status
 
 ### 04 | Customer & Commercial Intelligence
 
@@ -224,15 +272,17 @@ Includes:
 - Orders Per Customer
 - Profit per Order
 - Profit per Customer
-- Customer segment profitability
-- Acquisition-channel economics
-- Regional profitability
-- Top profit-contributing customers
-- Channel scorecard
+- Customer Segment Profitability
+- Acquisition-Channel Economics
+- Regional Profitability
+- Top Profit-Contributing Customers
+- Channel Scorecard
+
+> **Portfolio note:** Repeat Customer % is not used as a final KPI because every customer in this synthetic dataset has multiple delivered orders, so the metric does not provide useful differentiation.
 
 ---
 
-## 📌 Current Dashboard Snapshot
+## 📌 Final Dashboard Snapshot
 
 | KPI | Value |
 |---|---:|
@@ -241,25 +291,16 @@ Includes:
 | Profit Margin | 40% |
 | AOV | ₹10,049.36 |
 | Customers | 1,000 |
+| Delivered Orders | 14,719 |
 | Orders per Customer | 14.72 |
 | Profit per Order | ₹4,030.61 |
 | Profit per Customer | ₹59,326.55 |
-
-These values are from the completed synthetic portfolio dataset and represent the final dashboard output.
-
-> **Note:** The synthetic dataset produces multiple delivered orders for all customers, so repeat-customer percentage is not used as a final KPI because it does not provide useful differentiation in this dataset.
+| Return Rate | 8% |
+| Return Leakage | 6% |
 
 ---
 
-## 🔎 Key Findings
-
-- **₹147.92M net revenue generated ₹59.33M gross profit**, representing a **40% profit margin** on delivered-order economics.
-- **Electronics contributed ₹33.8M of profit**, the largest category contribution in the final dashboard.
-- **Fashion recorded a 12% return rate**, while Sports was 7% and Electronics, Beauty and Home were each 6%.
-- **Late-delivery orders had an 11% return rate versus 7% for on-time orders** in the synthetic dataset. This is an observed relationship, not proof of causation.
-- **Profit margin declined as discounting increased**, from 45% in the 0-5% discount band to 19% in the 25-30% band.
-
-## 🖼️ Dashboard Preview
+## 🖼️ Final Dashboard Screenshots
 
 ### Executive Profit Command Center
 ![Executive Profit Command Center](screenshots/executive_profit_command_center.png)
@@ -277,24 +318,19 @@ These values are from the completed synthetic portfolio dataset and represent th
 
 ## 📥 Final Deliverables
 
-**Power BI Report**
-
+### Power BI Report
 [Open the final PBIX](powerbi/ProfitTrace_Dashboard.pbix)
 
-**PDF Export**
-
+### Dashboard PDF
 [Open the final dashboard PDF](ProfitTrace_Dashboard.pdf)
 
-**SQL Scripts**
-
+### SQL Scripts
 [Open the SQL layer](sql/)
 
-**Power BI Documentation**
-
+### Power BI Documentation
 [Open the Power BI documentation](powerbi/)
 
-**Final Screenshots**
-
+### Final Screenshots
 [Open the dashboard screenshots](screenshots/)
 
 ---
@@ -318,8 +354,8 @@ ProfitTrace/
 │   └── RECRUITER_REVIEW.md
 ├── powerbi/
 │   ├── ProfitTrace_Dashboard.pbix
-│   ├── DASHBOARD_BLUEPRINT.md
 │   ├── BUILD_HANDOFF.md
+│   ├── DASHBOARD_BLUEPRINT.md
 │   └── DAX_MEASURES.md
 ├── screenshots/
 │   ├── customer_commercial_intelligence.png
@@ -338,21 +374,32 @@ ProfitTrace/
 
 ---
 
-## ✅ Final Project
+## ✅ Project Completion
 
-ProfitTrace is now maintained as a **completed portfolio project**, not an in-progress build checklist.
+ProfitTrace is maintained as a **completed portfolio project**.
 
-The repository contains the implemented SQL layer, analytical views, QA scripts, Power BI model documentation, 32-measure DAX layer, completed four-page dashboard, final PBIX, PDF export and screenshots.
+The repository includes:
+
+- completed SQL staging, transformation and QA workflow
+- analytical SQL views
+- 32 Power BI DAX measures
+- star-schema semantic model
+- completed 4-page dashboard
+- final PBIX
+- final PDF export
+- four final dashboard screenshots
+- build and recruiter-facing documentation
+
+There are no in-progress checklist blocks in the project README.
 
 ---
 
-## ⚠️ Analytical Discipline
+## ⚠️ Analytical Discipline & Limitations
 
-ProfitTrace distinguishes **observed association from causation**.
-
-For example, a higher return rate among late-delivery orders is an observed relationship in the synthetic dataset. It is not proof that late delivery caused every return.
-
-The project also avoids product/category return attribution because the source return data does not provide a reliable product key.
+- The dataset is synthetic and intended for portfolio and learning use.
+- Observed relationships are not presented as causal proof.
+- The returns source has no reliable product identifier, so unsupported product/category return attribution is intentionally avoided.
+- The final customer KPI set excludes Repeat Customer % because the synthetic population does not provide meaningful variation for that metric.
 
 ---
 
