@@ -101,7 +101,7 @@ These issues are intentionally detected in SQL rather than manually repaired in 
 
 ## 🗄️ SQL Layer
 
-The SQL workflow is separated into seven auditable scripts:
+The SQL workflow is separated into seven auditable scripts. The staging script creates the typed tables; source-file ingestion is performed with the documented SQL Server import workflow.
 
 ```text
 01_Database_Setup.sql
