@@ -236,8 +236,8 @@ Includes:
 
 | KPI | Value |
 |---|---:|
-| Net Revenue | 147.92M |
-| Gross Profit | 59.33M |
+| Net Revenue | ₹147.92M |
+| Gross Profit | ₹59.33M |
 | Profit Margin | 40% |
 | AOV | ₹10,049.36 |
 | Customers | 1,000 |
