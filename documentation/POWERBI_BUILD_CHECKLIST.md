@@ -16,7 +16,8 @@
 
 - [x] Core revenue and profit measures.
 - [x] Return and delivery measures.
-- [x] Customer and repeat-customer measures.
+- [x] Customer and repeat-customer measures are implemented in the model.
+- [x] Repeat Customer % is not used as a final KPI because all customers in the synthetic dataset are repeat customers.
 - [x] Opportunity measures.
 - [x] Waterfall support.
 - [x] Discount-band profitability support.
@@ -40,5 +41,7 @@
 - [x] Return source-key limitation respected.
 - [x] Late-delivery language preserves association rather than causation.
 - [x] Final screenshots captured.
+- [x] Page 3 return-event detail exposes Return Status.
+- [x] Page 3 monthly refund leakage is presented by return month.
 - [x] Final PBIX committed.
 - [x] Final PDF committed.
