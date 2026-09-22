@@ -43,9 +43,9 @@ Late Orders = CALCULATE([Orders], FactProfitability[is_late_delivery] = 1, FactP
 
 Late Delivery % = DIVIDE([Late Orders], [Delivered Orders])
 
-Return Refund Value = CALCULATE(SUM(FactReturns[refund_amount]), FactReturns[return_status] = Approved)
+Return Refund Value = CALCULATE(SUM(FactReturns[refund_amount]), FactReturns[return_status] = "Approved")
 
-Return Event Cost = CALCULATE(SUM(FactReturns[total_return_cost]), FactReturns[return_status] = Approved)
+Return Event Cost = CALCULATE(SUM(FactReturns[total_return_cost]), FactReturns[return_status] = "Approved")
 
 Return Leakage % = DIVIDE([Refund Value] + [Return Cost], [Gross Revenue])
 
@@ -54,6 +54,10 @@ Return Leakage % = DIVIDE([Refund Value] + [Return Cost], [Gross Revenue])
 Customers = CALCULATE(DISTINCTCOUNT(FactProfitability[customer_id]), FactProfitability[is_delivered] = 1)
 
 Orders per Customer = DIVIDE([Delivered Orders], [Customers])
+
+Repeat Customers = COUNTROWS(FILTER(VALUES(FactProfitability[customer_id]), CALCULATE(DISTINCTCOUNT(FactProfitability[order_id]), FactProfitability[is_delivered] = 1) > 1))
+
+Repeat Customer % = DIVIDE([Repeat Customers], [Customers])
 
 Profit per Customer = DIVIDE([Gross Profit], [Customers])
 
@@ -83,7 +87,6 @@ Sort Month by Month Number and use Year Month for chronological trends.
 
 Currency: revenue, discounts, refunds, costs, profit and AOV.
 Percentage: margin, discount rate, return rate, late delivery rate and return leakage.
-Whole number: orders, customers, return events and returned orders.
+Whole number: orders, customers, repeat customers, return events and returned orders.
 
-Final KPI note: Repeat Customer % is not used as a final dashboard KPI because the synthetic dataset produces multiple delivered orders for all customers.
-Whole number: orders, customers, return events and returned orders.
+Final KPI note: Repeat Customer % remains a model measure for analysis/documentation, but is not used as a final dashboard KPI because the synthetic dataset produces multiple delivered orders for all customers.
