@@ -29,6 +29,10 @@
 - [x] 32 DAX measures implemented.
 - [x] Core revenue/profit/customer metrics use delivered-order scope.
 - [x] Four dashboard pages complete.
+- [x] Final Page 3 return-event detail includes Return Status.
+- [x] Final Page 3 monthly refund leakage uses return-month analysis.
+- [x] Final Page 3 uses category return rate and delivery-status return rate.
+- [x] Final Page 4 uses Profit per Order instead of Repeat Customer %.
 
 ## Dashboard
 - [x] Executive page complete.
