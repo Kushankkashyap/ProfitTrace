@@ -1,8 +1,8 @@
 # ProfitTrace | Source Data
 
-ProfitTrace starts with a connected set of e-commerce operational extracts. Excel is the primary source representation. CSV copies are a practical SQL Server import fallback when the local environment cannot read `.xlsx` files directly.
+ProfitTrace starts with a connected set of e-commerce operational extracts. Excel is the primary source representation. The raw Excel/CSV source package is maintained separately and is **not committed to this public repository**. CSV copies can be used locally as a practical SQL Server import fallback when the environment cannot read `.xlsx` files directly.
 
-## Source Files
+## Expected Source Package
 
 | File | Grain | Rows |
 |---|---|---:|
@@ -51,9 +51,9 @@ A small number of source records contain deliberate quality issues such as:
 
 ## Import Note
 
-Run `01_Database_Setup.sql`, then `02_Import_Raw_Data.sql` to create the typed staging tables.
+The filenames below describe the source package expected by the SQL workflow; the files themselves are not stored in this public repository. Run `01_Database_Setup.sql`, then `02_Import_Raw_Data.sql` to create the typed staging tables.
 
-When the SQL Server Import and Export Wizard can read Excel, the `.xlsx` workbooks can be loaded directly. If the Excel OLE DB provider is unavailable or has a bitness mismatch, use the CSV copies with `Flat File Source` and load the matching `stg` tables.
+When the SQL Server Import and Export Wizard can read Excel, the local `.xlsx` workbooks can be loaded directly. If the Excel OLE DB provider is unavailable or has a bitness mismatch, use local CSV copies with `Flat File Source` and load the matching `stg` tables.
 
 For the Shipping CSV, some source date fields are blank. If the wizard attempts to coerce those blanks directly to `DATE` and fails, use the documented temporary `dbo.Shipping_Raw` text landing table workflow in `documentation/HANDS_ON_BUILD_GUIDE.md`. The raw text is then converted with `TRY_CONVERT` into the final typed `stg.Shipping` table.
 
