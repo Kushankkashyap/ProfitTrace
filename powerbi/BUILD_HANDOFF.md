@@ -33,9 +33,9 @@ Page 1 | Executive Profit Command Center: six KPI cards plus revenue/profit tren
 
 Page 2 | Profitability Deep Dive: four KPI cards plus category margin, revenue mix, high-revenue/low-margin opportunities, discounting-vs-profitability and product profitability matrix.
 
-Page 3 | Returns & Operational Leakage: five KPI cards plus return reasons, monthly refund leakage, return-reason mix, delivery performance vs returns and return-event detail.
+Page 3 | Returns & Operational Leakage: five KPI cards plus return reasons, monthly refund leakage by return month, return rate by category, return rate by delivery status and return-event detail.
 
-Page 4 | Customer & Commercial Intelligence: four KPI cards plus customer-segment profit, acquisition-channel performance, regional profitability, top ten customers and channel scorecard.
+Page 4 | Customer & Commercial Intelligence: four KPI cards plus customer-segment profit, acquisition-channel performance, regional profitability, top ten customers, profit per order and channel scorecard.
 
 ## Design
 
