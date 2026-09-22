@@ -19,7 +19,7 @@ Expected source counts:
 
 Customers 1,000 | Products 300 | Orders 15,000 | Shipping 15,000 | Returns 1,155
 
-Run the seven SQL scripts in order:
+Use the seven scripts in this order:
 
 01_Database_Setup.sql
 02_Import_Raw_Data.sql
@@ -29,7 +29,7 @@ Run the seven SQL scripts in order:
 06_Post_Load_QA.sql
 07_Final_Portfolio_QA.sql
 
-The five datasets load into stg.Customers, stg.Products, stg.Orders, stg.Shipping and stg.Returns.
+Important: 02_Import_Raw_Data.sql creates the typed staging tables. The five source datasets are then loaded into stg.Customers, stg.Products, stg.Orders, stg.Shipping and stg.Returns using the documented SQL Server import workflow. Scripts 03-07 run after the source data is loaded.
 
 ### Shipping import handling
 
@@ -92,11 +92,15 @@ Visuals: Margin by Category; Revenue Mix; High Revenue, Low Margin Opportunities
 
 KPI cards: Returned Orders, Return Rate %, Refund Value, Return Leakage %, Late Delivery %.
 
-Visuals: Why Customers Return; Monthly Refund Leakage; Return Reason Mix; Delivery Performance vs Returns; Return Event Detail.
+Visuals: Why Customers Return; Monthly Refund Leakage by Return Month; Return Rate by Category; Return Rate by Delivery Status; Return Event Detail.
+
+Return Event Detail includes Return Status so approved and rejected return events remain visible.
 
 ### Page 4 | Customer & Commercial Intelligence
 
-KPI cards: Customers, Orders Per Customer, Repeat Customer %, Profit per Customer.
+KPI cards: Customers, Orders Per Customer, Profit per Order, Profit per Customer.
+
+Repeat Customer % is not used as a final KPI because all customers in the synthetic dataset have multiple delivered orders.
 
 Visuals: Profit by Customer Segment; Commercial Performance by Acquisition Channel; Regional Profitability; Top Profit-Contributing Customers; Channel Scorecard.
 
