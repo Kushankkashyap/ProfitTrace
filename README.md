@@ -107,7 +107,7 @@ The project is completed end to end. The repository contains the implementation,
 
 The source data is **synthetic and intentionally structured for portfolio analysis**.
 
-> **Public repository note:** The five raw source workbooks/CSV extracts used to build the final PBIX are maintained outside this public repository and are intentionally not committed here. The repository retains the source-data documentation, row-count expectations, validation rules and SQL import workflow so the portfolio remains auditable without publishing the raw dataset.
+> **Public repository note:** The five raw source CSV extracts used to build the final PBIX are included in the `data/` folder. The source data is synthetic and is published here so the SQL workflow and portfolio analysis are directly inspectable. The original Excel workbooks are not included; CSV is the public source representation.
 
 Controlled quality issues include inconsistent casing/whitespace, one discount above the intended 0%-30% range, an inconsistent order-status value, an inconsistent carrier value, an inconsistent return-reason value and blank shipping/delivery dates on a subset of rows.
 
@@ -324,7 +324,7 @@ Includes:
 [Open the final PBIX](powerbi/ProfitTrace_Dashboard.pbix)
 
 ### Source Data
-[Open the source-data documentation](data/README.md) — the raw Excel/CSV package is maintained separately and is not committed to this public repository.
+[Open the source-data folder](data/) — the five raw CSV source files and source-data documentation are included in this public repository.
 
 ### Dashboard PDF
 [Open the final dashboard PDF](ProfitTrace_Dashboard.pdf)
@@ -347,6 +347,11 @@ ProfitTrace/
 ├── ProfitTrace_Dashboard.pdf
 ├── README.md
 ├── data/
+│   ├── Customers.csv
+│   ├── Orders.csv
+│   ├── Products.csv
+│   ├── Returns.csv
+│   ├── Shipping.csv
 │   └── README.md
 ├── documentation/
 │   ├── PROJECT_BRIEF.md
