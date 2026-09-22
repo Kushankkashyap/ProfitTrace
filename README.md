@@ -107,6 +107,8 @@ The project is completed end to end. The repository contains the implementation,
 
 The source data is **synthetic and intentionally structured for portfolio analysis**.
 
+> **Public repository note:** The five raw source workbooks/CSV extracts used to build the final PBIX are maintained outside this public repository and are intentionally not committed here. The repository retains the source-data documentation, row-count expectations, validation rules and SQL import workflow so the portfolio remains auditable without publishing the raw dataset.
+
 Controlled quality issues include inconsistent casing/whitespace, one discount above the intended 0%-30% range, an inconsistent order-status value, an inconsistent carrier value, an inconsistent return-reason value and blank shipping/delivery dates on a subset of rows.
 
 These issues are surfaced in validation and standardized in the analytical layer rather than manually overwritten in the source.
@@ -320,6 +322,9 @@ Includes:
 
 ### Power BI Report
 [Open the final PBIX](powerbi/ProfitTrace_Dashboard.pbix)
+
+### Source Data
+[Open the source-data documentation](data/README.md) — the raw Excel/CSV package is maintained separately and is not committed to this public repository.
 
 ### Dashboard PDF
 [Open the final dashboard PDF](ProfitTrace_Dashboard.pdf)
