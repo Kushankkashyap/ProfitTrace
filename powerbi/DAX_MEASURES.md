@@ -2,6 +2,8 @@
 
 The final Power BI model contains 32 measures using clean business-facing names.
 
+**Measure-count reconciliation:** 14 Core + 9 Returns & Operations + 5 Customer + 2 Opportunity + 2 Support = **32 measures**. The two support measures are `Waterfall Value` and `Discount Band Profit Margin %`.
+
 ## Core measures
 
 Orders = DISTINCTCOUNT(FactProfitability[order_id])
