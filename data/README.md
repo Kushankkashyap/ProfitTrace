@@ -1,16 +1,16 @@
 # ProfitTrace | Source Data
 
-ProfitTrace starts with a connected set of e-commerce operational extracts. Excel is the primary source representation. The raw Excel/CSV source package is maintained separately and is **not committed to this public repository**. CSV copies can be used locally as a practical SQL Server import fallback when the environment cannot read `.xlsx` files directly.
+ProfitTrace starts with a connected set of e-commerce operational extracts. The public repository includes the five raw **CSV source files** used by the project. The original Excel workbooks are not included; CSV is the public source representation used for inspection and SQL Server import.
 
 ## Expected Source Package
 
 | File | Grain | Rows |
 |---|---|---:|
-| `Customers.xlsx` / `.csv` | One row per customer | 1,000 |
-| `Products.xlsx` / `.csv` | One row per product | 300 |
-| `Orders.xlsx` / `.csv` | One row per order-product transaction | 15,000 |
-| `Shipping.xlsx` / `.csv` | One row per order shipment | 15,000 |
-| `Returns.xlsx` / `.csv` | One row per return event | 1,155 |
+| `Customers.csv` | One row per customer | 1,000 |
+| `Products.csv` | One row per product | 300 |
+| `Orders.csv` | One row per order-product transaction | 15,000 |
+| `Shipping.csv` | One row per order shipment | 15,000 |
+| `Returns.csv` | One row per return event | 1,155 |
 
 ## Source-to-SQL Mapping
 
@@ -51,7 +51,7 @@ A small number of source records contain deliberate quality issues such as:
 
 ## Import Note
 
-The filenames below describe the source package expected by the SQL workflow; the files themselves are not stored in this public repository. Run `01_Database_Setup.sql`, then `02_Import_Raw_Data.sql` to create the typed staging tables.
+The filenames below describe the source files used by the SQL workflow; the raw CSV files are included in this public repository under `data/`. Run `01_Database_Setup.sql`, then `02_Import_Raw_Data.sql` to create the typed staging tables.
 
 When the SQL Server Import and Export Wizard can read Excel, the local `.xlsx` workbooks can be loaded directly. If the Excel OLE DB provider is unavailable or has a bitness mismatch, use local CSV copies with `Flat File Source` and load the matching `stg` tables.
 
