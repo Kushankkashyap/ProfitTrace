@@ -4,7 +4,7 @@
 
 An end-to-end analytics portfolio project that investigates a practical e-commerce question:
 
-> **Revenue looks healthy — but where is the business actually losing profit?**
+> **Revenue looks healthy, but where is the business actually losing profit?**
 
 ProfitTrace combines **SQL Server, data quality validation, business analysis, Power BI, DAX, and dimensional modeling** to analyze profitability, discounting, returns, refunds, shipping performance, customers, and commercial channels.
 
@@ -60,7 +60,7 @@ The analysis focuses on six business questions:
 
 The Power BI report contains four business-focused pages.
 
-### 01 — Executive Profit Command Center
+### 01 | Executive Profit Command Center
 **Question:** Where is revenue becoming profit, and where is it leaking?
 
 - Net Revenue
@@ -74,7 +74,7 @@ The Power BI report contains four business-focused pages.
 - Revenue-to-profit waterfall
 - Revenue vs. margin
 
-### 02 — Profitability Deep Dive
+### 02 | Profitability Deep Dive
 **Question:** Which products and categories convert sales into healthy profit?
 
 - Margin by category
@@ -83,7 +83,7 @@ The Power BI report contains four business-focused pages.
 - Discounting vs. profitability
 - Product profitability matrix
 
-### 03 — Returns & Operational Leakage
+### 03 | Returns & Operational Leakage
 **Question:** Where do returns and operational friction affect economics?
 
 - Returned orders
@@ -95,7 +95,7 @@ The Power BI report contains four business-focused pages.
 - Monthly refund leakage
 - Return event detail
 
-### 04 — Customer & Commercial Intelligence
+### 04 | Customer & Commercial Intelligence
 **Question:** Which customer groups and acquisition sources create stronger economics?
 
 - Customer profitability
